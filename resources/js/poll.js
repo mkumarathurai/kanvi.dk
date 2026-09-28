@@ -38,6 +38,21 @@ window.kanviPoll = (initial) => {
             }),
         });
     return Object.assign(editor, {
+        screen: !initial.isOpen ? 'results' : initial.participant ? 'answers' : 'intro',
+        goTo(screen) {
+            if (!['intro', 'answers', 'confirmation', 'results'].includes(screen)) return;
+            if (screen === 'confirmation' && (this.state !== 'saved' || !this.hasParticipant)) return;
+            if (screen === 'results' && this.isOpen && !this.canSeeResults) return;
+            this.screen = screen;
+            this.$nextTick?.(() => {
+                const heading = this.$root.querySelector(`[data-screen="${screen}"] h1, [data-screen="${screen}"] h2`);
+                heading?.focus({ preventScroll: true });
+                window.scrollTo({ top: 0, behavior: 'instant' });
+            });
+        },
+        confirmedCount() {
+            return (initial.optionIds ?? []).filter(id => this.confirmed?.answers[id]).length;
+        },
         results: null,
         finalDate: initial.finalDate ?? null,
         optionsChanged: false,

@@ -20,13 +20,17 @@ class CreatePoll extends Component
     public int $step = 1;
 
     #[Locked]
+    public bool $landing = true;
+
+    #[Locked]
     public string $month;
 
     #[Locked]
     public ?string $createdPublicId = null;
 
-    public function mount(): void
+    public function mount(bool $landing = true): void
     {
+        $this->landing = $landing;
         $this->month = CarbonImmutable::now('Europe/Copenhagen')->startOfMonth()->toDateString();
     }
 
@@ -38,6 +42,7 @@ class CreatePoll extends Component
             'title.max' => 'Brug højst 140 tegn til spørgsmålet.',
         ]);
         $this->step = 2;
+        $this->landing = false;
     }
 
     public function back(): void

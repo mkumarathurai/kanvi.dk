@@ -9,7 +9,7 @@ use App\Http\Middleware\PrivatePollHeaders;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'create')->name('home');
-Route::view('/opret', 'create')->name('polls.create');
+Route::view('/opret', 'create', ['landing' => false])->name('polls.create');
 
 Route::middleware(PrivatePollHeaders::class)->group(function () {
     Route::get('/adgang/link/{token}', [PollRecoveryController::class, 'open'])->where('token', '[a-f0-9]{64}')->middleware('throttle:60,1')->name('recovery.open');

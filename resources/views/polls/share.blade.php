@@ -1,6 +1,6 @@
 <x-layout :title="$poll->title" :private="true">
     <section class="flow screen-card share-flow" x-data="{ notice: '', adminNotice: '' }" aria-labelledby="share-heading">
-        <div class="celebration" aria-hidden="true">🎉</div>
+        <div class="share-illustration"><x-kanvi.calendar-sketch /></div>
         <h1 class="compact-heading" id="share-heading">Din afstemning er klar!</h1>
         <p class="share-lead">Del linket med dem, der skal svare.</p>
         <div class="poll-summary">
@@ -17,8 +17,8 @@
         </div>
         <button type="button" class="button secondary" x-cloak x-show="typeof navigator.share === 'function'" @click="notice = await window.kanviShare($refs.publicUrl.value, {{ Illuminate\Support\Js::from($poll->title) }})">Del…</button>
         <p class="hint status" role="status" x-text="notice"></p>
-        <a class="text-link" href="{{ route('polls.show', $poll) }}">Se afstemningen →</a>
-        <a class="button secondary" href="{{ route('polls.manage', $poll) }}">Administrér datoer og vælg dagen</a>
+        <a class="button secondary" href="{{ route('polls.show', $poll) }}">Gå til afstemningen →</a>
+        <a class="text-link" href="{{ route('polls.manage', $poll) }}">Administrér datoer og vælg dagen</a>
 
         <aside class="access-note">
             <h2><x-kanvi.icon name="check" />Denne browser kan administrere afstemningen.</h2>

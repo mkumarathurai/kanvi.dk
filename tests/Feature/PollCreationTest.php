@@ -59,6 +59,17 @@ class PollCreationTest extends TestCase
         $this->assertDatabaseCount('polls', 0);
     }
 
+    public function test_dedicated_creation_starts_with_title_and_back_keeps_input(): void
+    {
+        $this->get(route('polls.create'))->assertOk()->assertSee('Titel på afstemningen')->assertDontSee('home-hero');
+        Livewire::test(CreatePollComponent::class, ['landing' => false])
+            ->assertSet('step', 1)->assertSee('Titel på afstemningen')
+            ->set('title', 'Sommerfest')->call('next')
+            ->call('toggleDate', '2026-10-09')->call('back')
+            ->assertSet('step', 1)->assertSet('title', 'Sommerfest')
+            ->assertSet('dates', ['2026-10-09'])->assertSee('Titel på afstemningen');
+    }
+
     public function test_review_requires_two_dates_and_preserves_edits_without_creating_a_poll(): void
     {
         Livewire::test(CreatePollComponent::class)

@@ -1,5 +1,5 @@
-<div @class(['create-flow', 'home-flow' => $step === 1, 'flow' => $step !== 1])>
-    @if ($step === 1)
+<div @class(['create-flow', 'home-flow' => $step === 1 && $landing, 'flow' => $step !== 1 || ! $landing])>
+    @if ($step === 1 && $landing)
         <div class="home-hero">
         <form wire:submit="next" class="intro" aria-labelledby="create-heading">
             <p class="eyebrow">Planer er bedre sammen</p>
@@ -24,11 +24,22 @@
                 @endforeach
             </ol>
         </section>
+    @elseif ($step === 1)
+        <form wire:submit="next" class="screen-card creation-card wizard-card title-card" aria-labelledby="title-heading">
+            <x-kanvi.creation-progress :step="1" />
+            <h1 id="title-heading">Hvad skal vi finde en dag til?</h1>
+            <p class="lead small">Skriv en kort titel, så alle ved, hvad det handler om.</p>
+            <label for="title">Titel på afstemningen</label>
+            <x-kanvi.input id="title" wire:model="title" maxlength="140" autocomplete="off" placeholder="Fx sommerfest med naboerne" aria-describedby="title-error" />
+            <p id="title-error" class="error" role="alert">@error('title') {{ $message }} @enderror</p>
+            <div class="title-illustration"><x-kanvi.calendar-sketch /><p class="hand-note">Det kan være hvad som helst<br>– stort eller småt.</p></div>
+            <x-kanvi.button type="submit" wire:loading.attr="disabled">Fortsæt <span aria-hidden="true">→</span></x-kanvi.button>
+        </form>
     @elseif ($step === 2)
-        <section class="screen-card creation-card" aria-labelledby="dates-heading">
-            <button type="button" class="back-link" wire:click="back">← <span>{{ $title }}</span></button>
-            <div class="creation-progress" aria-label="Trin 2 af 3"><span>✓</span><i></i><span class="active">2</span><i></i><span>3</span></div>
-            <h1 class="compact-heading" id="dates-heading">Hvornår kunne det være?</h1>
+        <section class="screen-card creation-card wizard-card" aria-labelledby="dates-heading">
+            <p class="wizard-context">{{ $title }}</p>
+            <x-kanvi.creation-progress :step="2" />
+            <h1 class="compact-heading" id="dates-heading">Vælg datoer</h1>
             <p class="lead small">Vælg mindst to datoer. Tidspunktet kan I aftale senere.</p>
             <div class="calendar-layout">
             <div class="calendar" aria-label="Vælg mulige datoer">
@@ -73,13 +84,13 @@
             @if ($errors->any())
                 <div class="error" role="alert">{{ $errors->first() }}</div>
             @endif
-            <x-kanvi.button class="calendar-continue" wire:click="review" wire:loading.attr="disabled" :disabled="count($dates) < 2">Fortsæt <span aria-hidden="true">→</span></x-kanvi.button>
+            <div class="wizard-actions"><x-kanvi.button variant="secondary" wire:click="back">← Tilbage</x-kanvi.button><x-kanvi.button class="calendar-continue" wire:click="review" wire:loading.attr="disabled" :disabled="count($dates) < 2">Fortsæt <span aria-hidden="true">→</span></x-kanvi.button></div>
             <p class="hint centered">Tjek dine valg, før du opretter.</p>
         </section>
     @else
-        <section class="screen-card creation-card review-card" aria-labelledby="review-heading">
-            <button type="button" class="back-link" wire:click="back">← Tilbage til datoerne</button>
-            <div class="creation-progress" aria-label="Trin 3 af 3"><span>✓</span><i></i><span>✓</span><i></i><span class="active">3</span></div>
+        <section class="screen-card creation-card wizard-card review-card" aria-labelledby="review-heading">
+
+            <x-kanvi.creation-progress :step="3" />
             <h1 class="compact-heading" id="review-heading">Er alt klar?</h1>
             <p class="lead small">Her er overblikket over din afstemning.</p>
             <div class="creation-summary">
@@ -90,10 +101,10 @@
             </div>
             <p class="review-note"><x-kanvi.icon name="check" />Du kan tilføje og fjerne datoer, mens afstemningen er åben.</p>
             @if ($errors->any()) <p class="error" role="alert">{{ $errors->first() }}</p> @endif
-            <button type="button" class="button primary" wire:click="create" wire:loading.attr="disabled">
+            <div class="wizard-actions"><x-kanvi.button variant="secondary" wire:click="back">← Tilbage</x-kanvi.button><button type="button" class="button primary" wire:click="create" wire:loading.attr="disabled">
                 <span wire:loading.remove wire:target="create">Opret afstemning</span>
                 <span wire:loading wire:target="create">Opretter…</span><span aria-hidden="true">→</span>
-            </button>
+            </button></div>
         </section>
     @endif
 </div>

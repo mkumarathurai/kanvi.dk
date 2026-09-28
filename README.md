@@ -23,9 +23,13 @@ Forside → titel → multiselect-kalender → gennemgang → oprettelse → del
 - Browseradgangen kontrolleres mod databaseposten på hver beskyttet visning,
   inklusive udløb, tilbagekaldelse og hvilken poll adgangen tilhører.
 - Kopier link, native deling hvor understøttet og privat administrationslink.
+- Kopier-knapper bruger Clipboard API med en synkron fallback på lokal HTTP.
+  Hvis browseren afviser begge metoder, markeres linket til manuel kopiering.
 - Offentlige polls har `noindex, nofollow`, `no-store` og `no-referrer`.
 
 - Navn og Kan / Måske / Kan ikke uden konto, med redigering i samme browser.
+- Deltagerflow med introduktion, svar, serverbekræftet kvittering og separat resultat.
+  “Fortsæt” navigerer efter autosave; delvise svar er fortsat gyldige.
 - Autosave med lokal og serverbekræftet tilstand, revisioner, backoff og manuel retry.
 - Idempotent første svar og genforsøg; gamle mutationer kan ikke skrive et nyere svar over.
 - Databaseconstraints håndhæver samme poll, gyldige svarværdier og ét svar pr. dato/deltager.

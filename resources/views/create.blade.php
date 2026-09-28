@@ -1,3 +1,3 @@
-<x-layout :home="true">
-    <livewire:create-poll />
+<x-layout :home="$landing ?? true">
+    <livewire:create-poll :landing="$landing ?? true" />
 </x-layout>

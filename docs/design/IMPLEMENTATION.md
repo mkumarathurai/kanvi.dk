@@ -32,6 +32,14 @@ Logoets opdaterede brandregler findes i BRAND.md.
   skærme; kontrolhøjder er mindst 44 px. Reduced motion fjerner transitions.
 - Oprettelsen viser valgte datoer til gennemgang lige før “Opret afstemning”.
   Der tilføjes ikke en indstillingsside eller ekstra submit-knap til svarflowet.
+- `/opret` har en særskilt titelskærm og fælles trinindikator: Titel → Datoer →
+  Overblik → Deling. En titel fra forsiden fortsætter direkte til datoerne.
+- Deltagerflowet har introduktion → svar → gemt-bekræftelse → resultat.
+  “Fortsæt” navigerer og sender ikke svar. Den åbnes kun efter ACK af seneste
+  lokale version; delvise svar er stadig gyldige. “Se resultatet” åbnes efter
+  første gemte svar. Tilbage til svar bevarer lokale valg, og ugemte ændringer
+  vises også på resultatskærmen. Genbesøg starter på egne svar; lukkede polls
+  starter på resultat/status med den eksisterende adgangskontrol.
 - Resultatet viser både rangordnede datoer og en vandret scrollbar tabel med
   deltagernes individuelle svar. Begge bruger samme adgangskontrol. Initialer
   markerer navne; der indføres ikke profilbilleder eller en uploadfunktion.

@@ -35,7 +35,7 @@
             <a class="logo-link" href="{{ route('home') }}" aria-label="Kanvi — forsiden"><x-kanvi.logo /></a>
             @if ($home)
                 <nav class="home-nav" aria-label="Hovedmenu"><a href="#saadan-virker-det">Sådan virker det</a><a href="#eksempel">Se et eksempel</a></nav>
-                <a class="header-create" href="#title">Opret afstemning <span aria-hidden="true">↗</span></a>
+                <a class="header-create" href="{{ route('polls.create') }}">Opret afstemning <span aria-hidden="true">↗</span></a>
             @else
                 <span class="brand-note">Find ud af det sammen.</span>
             @endif

@@ -3,7 +3,7 @@
 <html lang="da">
 <head>
     <meta charset="utf-8">
-    <link rel="icon" type="image/svg+xml" href="{{ asset('brand/kanvi-mark.svg') }}">
+    <link rel="icon" type="image/svg+xml" href="{{ asset('brand/kanvi-mark.svg') }}?v=2">
     <meta name="theme-color" content="#FFFDF8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Find en dag, der passer gruppen. Opret en datoafstemning uden konto.">

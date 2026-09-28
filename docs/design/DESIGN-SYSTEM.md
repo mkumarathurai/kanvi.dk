@@ -2,7 +2,7 @@
 
 **Status:** Approved visual direction for implementation\
 **Brand direction:** Soft Nordic\
-**Logo direction:** Dynamisk overlap
+**Logo direction:** Dynamisk overlap + `kanvi?` (v2)
 
 ## 1. Design intent
 
@@ -28,7 +28,9 @@ green actions and the green/yellow/red response language.
 
 ## 2. Logo
 
-The approved concept is **Dynamisk overlap**.
+The approved concept is **Dynamisk overlap + kanvi?**. The supplied v2 assets
+and [BRAND.md](BRAND.md) supersede the original logo reference. Preserve the
+green question mark and its yellow accent in the full wordmark.
 
 Three overlapping forms represent different people, possibilities and
 the common area they can find together. The logo deliberately does not
@@ -40,6 +42,8 @@ Files:
 -   `public/brand/kanvi-mark.svg` --- symbol only.
 -   `public/brand/kanvi-logo.svg` --- light-background wordmark.
 -   `public/brand/kanvi-logo-dark.svg` --- dark-background wordmark.
+-   `public/brand/kanvi-wordmark.svg` --- wordmark without the symbol.
+-   `public/brand/kanvi-app-icon.svg` --- app icon on cream.
 -   `docs/design/kanvi-logo-reference.png` --- visual reference from
     concept exploration.
 

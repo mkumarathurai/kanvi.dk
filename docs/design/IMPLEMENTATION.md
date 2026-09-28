@@ -1,7 +1,8 @@
 # Designimplementation
 
 Den leverede DESIGN-SYSTEM.md og design-tokens.json er kilden. Referencebillederne
-opbevares uændret som visuel reference. De tre SVG-assets ligger i public/brand.
+opbevares uændret som visuel reference. De fem v2-SVG-assets ligger i public/brand.
+Logoets opdaterede brandregler findes i BRAND.md.
 
 - Inter indlæses lokalt fra @fontsource-variable/inter via Vite. Ingen eksterne
   fontkald på deltagersider med adgangscookies.
@@ -14,7 +15,10 @@ opbevares uændret som visuel reference. De tre SVG-assets ligger i public/brand
 - Knapper, inputs, logo, kort, svarvalg, autosave og resultatbjælker deler Blade-
   komponenter. Øvrige formularer bruger de samme CSS-primitiver.
 - Logo-SVG indsættes fra den betroede assetfil, så ordmærket bruger sidens Inter.
-  Symbolet er også favicon. Geometri og farveforhold er bevaret.
+  Symbolet er også favicon. V2-filerne er kopieret uændret fra logo-pakken.
+  Logoets wrapper skjuler kun den ekstra transparente højremargin, så symbol
+  og tekst bevarer deres hidtidige visuelle størrelse. Geometri, proportioner,
+  farveforhold og det nye spørgsmålstegn er bevaret.
 - Hvid tekst på den rene brandgrønne #16A34A opfylder ikke 4,5:1 ved normal
   tekststørrelse. Primær handling bruger derfor 75% grøn + 25% navy, cirka
   #138448 (4,74:1 mod hvid). Det er en funktionel kontrastnuance af tokens,

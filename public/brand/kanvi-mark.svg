@@ -1,6 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-labelledby="title">
-<title>Kanvi Dynamisk overlap symbol</title>
-<circle cx="58" cy="68" r="34" fill="#86EFAC" fill-opacity=".82"/>
-<circle cx="86" cy="43" r="34" fill="#16A34A" fill-opacity=".88"/>
-<circle cx="111" cy="72" r="28" fill="#FBBF24" fill-opacity=".88"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120"><circle cx="55" cy="69" r="33" fill="#86EFAC" fill-opacity=".82"/><circle cx="84" cy="43" r="34" fill="#16A34A" fill-opacity=".9"/><circle cx="111" cy="72" r="28" fill="#FBBF24" fill-opacity=".9"/></svg>

@@ -33,8 +33,10 @@ a { color: inherit; text-underline-offset: 4px; }
 .page-shell { min-height: 100dvh; display: flex; flex-direction: column; }
 .site-header { max-width: 1180px; width: 100%; margin: 0 auto; padding: 20px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
 .logo-link { display: inline-flex; align-items: center; min-height: 44px; }
-.brand-logo { display: block; width: 136px; line-height: 0; }
+.brand-logo { display: block; width: 136px; line-height: 0; overflow: hidden; }
 .brand-logo svg { width: 100%; height: auto; overflow: visible; }
+/* V2 has extra transparent space on the right; retain the visible logo scale. */
+.brand-logo:not(.brand-mark) svg { width: calc(100% * 590 / 470); max-width: none; }
 .brand-logo svg text { font-family: var(--font-sans); }
 .brand-mark { width: 52px; }
 .brand-note { color: var(--muted); font-size: 13px; }

@@ -1,0 +1,39 @@
+{
+  "brand": {
+    "navy": "#0B2540",
+    "green": "#16A34A",
+    "mint": "#86EFAC",
+    "cream": "#FFFDF8",
+    "yellow": "#FBBF24",
+    "red": "#EF4444",
+    "softRed": "#FEE2E2",
+    "softGreen": "#DCFCE7",
+    "softYellow": "#FEF3C7",
+    "muted": "#64748B",
+    "border": "#E7E5DF"
+  },
+  "radius": {
+    "sm": "10px",
+    "md": "16px",
+    "lg": "22px",
+    "xl": "28px",
+    "pill": "9999px"
+  },
+  "control": {
+    "height": "52px",
+    "touchTargetMin": "44px"
+  },
+  "layout": {
+    "maxWidth": "1180px",
+    "contentWidth": "760px",
+    "pagePaddingMobile": "20px",
+    "pagePaddingDesktop": "32px"
+  },
+  "shadow": {
+    "card": "0 10px 30px rgba(11,37,64,.07)"
+  },
+  "motion": {
+    "fast": "150ms",
+    "normal": "220ms"
+  }
+}

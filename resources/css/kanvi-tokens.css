@@ -1,0 +1,16 @@
+:root {
+  --kanvi-navy: #0B2540;
+  --kanvi-green: #16A34A;
+  --kanvi-mint: #86EFAC;
+  --kanvi-cream: #FFFDF8;
+  --kanvi-yellow: #FBBF24;
+  --kanvi-red: #EF4444;
+  --kanvi-soft-green: #DCFCE7;
+  --kanvi-soft-yellow: #FEF3C7;
+  --kanvi-soft-red: #FEE2E2;
+  --kanvi-muted: #64748B;
+  --kanvi-border: #E7E5DF;
+  --kanvi-radius-card: 22px;
+  --kanvi-radius-control: 16px;
+  --kanvi-shadow-card: 0 10px 30px rgba(11,37,64,.07);
+}

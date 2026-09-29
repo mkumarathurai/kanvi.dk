@@ -1,0 +1,1 @@
+<img src="{{ rtrim(config('app.url'), '/') }}/images/email/kanvi-logo.png" width="120" alt="Kanvi" style="display:block; width:120px; max-width:120px; height:auto; margin:0 auto; border:0; color:#0B2540; font-size:24px; font-weight:700;">

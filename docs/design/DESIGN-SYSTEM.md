@@ -243,6 +243,7 @@ specifications.
 -   `kanvi-master-reference.png` — master reference for the homepage and core screens.
 -   `kanvi-creation-reference.png` — creation and sharing references.
 -   `kanvi-home-reference.png` — original exploration.
+-   `kanvi-home-full-reference.png` — complete homepage section reference.
 -   `kanvi-participant-reference.png`
 -   `kanvi-logo-reference.png`
 

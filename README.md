@@ -3,12 +3,20 @@
 Find ud af det sammen. Konto-fri datoafstemninger bygget med Laravel 12,
 PHP 8.4, Livewire 4 (inklusive Alpine) og Tailwind CSS 4.
 
+Session handover: [technical snapshot](docs/SNAPSHOT.md). Start a new session
+with [AGENTS.md](AGENTS.md), which links to the shared Knowledge Base overview.
+
 ## Produktgrundlag
 
 [Product & Solution Specification v1.1 – Behavioral Contract](docs/kanvi-product-solution-spec-v1.1.md)
 er arbejdsgrundlaget. De seks beslutninger er indarbejdet i de relevante
 afsnit, med permissionsmatrix, acceptkriterier og særskilt markerede åbne spørgsmål.
 Den oprindelige v1.0-fil i Downloads er ikke ændret.
+
+[SEO- og indholdsstrategien](docs/seo-og-indholdsstrategi.md) samler positionering,
+planlagte sider, artikelidéer og prioritering frem mod launch. De første ti artikler
+er implementeret med en oversigt på `/guides` og links fra forsiden.
+Se [publicering og redigering af artikler](docs/indhold/PUBLICERING.md).
 
 ## Implementeret
 
@@ -48,7 +56,9 @@ Forside → titel → multiselect-kalender → gennemgang → oprettelse → del
 - Open Graph-tags og PNG-preview med polltitel og brandmark, uden private svar.
 
 Mail-flowet er implementeret og testet, men faktisk afsendelse kræver valg og
-konfiguration af mailtjeneste. Retention og analytics er endnu ikke implementeret.
+konfiguration af mailtjeneste. Retention er endnu ikke implementeret.
+[Selvhostet Umami](docs/analytics.md) er tilføjet til offentlige sider i produktion;
+private flows spores ikke, og produktets funnel-events afventer implementation.
 
 ## Lokalt
 

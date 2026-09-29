@@ -45,6 +45,35 @@ class PollCreationTest extends TestCase
         $this->get(route('polls.show', $poll))->assertOk()->assertSee($poll->title)->assertSee('9. oktober 2026');
     }
 
+    public function test_homepage_offers_examples_and_answers_without_creating_polls(): void
+    {
+        $this->get(route('home'))->assertOk()
+            ->assertSee('Prøveafstemning · dine valg gemmes ikke.')
+            ->assertSee('Der er altid noget, der skal passe sammen.')
+            ->assertSee('Kan deltagerne ændre deres svar?')
+            ->assertSee(route('polls.create', ['title' => 'Bestyrelsesmøde']), false);
+        $this->assertDatabaseCount('polls', 0);
+    }
+
+    public function test_occasion_prefills_editable_title_and_survives_next_step(): void
+    {
+        Livewire::withQueryParams(['title' => '  Bestyrelsesmøde  '])
+            ->test(CreatePollComponent::class, ['landing' => false])
+            ->assertSet('title', 'Bestyrelsesmøde')
+            ->set('title', 'Bestyrelsesmøde i klubben')
+            ->call('next')->assertHasNoErrors()->assertSet('step', 2)
+            ->assertSet('title', 'Bestyrelsesmøde i klubben');
+        $this->assertDatabaseCount('polls', 0);
+    }
+
+    public function test_title_suggestion_handles_array_input_and_limits_length(): void
+    {
+        Livewire::withQueryParams(['title' => ['unexpected']])
+            ->test(CreatePollComponent::class, ['landing' => false])->assertSet('title', '');
+        Livewire::withQueryParams(['title' => str_repeat('ø', 200)])
+            ->test(CreatePollComponent::class, ['landing' => false])->assertSet('title', str_repeat('ø', 140));
+    }
+
     public function test_calendar_removes_dates_and_keeps_them_when_going_back(): void
     {
         Livewire::test(CreatePollComponent::class)

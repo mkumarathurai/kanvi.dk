@@ -31,6 +31,10 @@ class CreatePoll extends Component
     public function mount(bool $landing = true): void
     {
         $this->landing = $landing;
+        $suggestedTitle = request()->query('title');
+        if (! $landing && is_string($suggestedTitle)) {
+            $this->title = mb_substr(trim($suggestedTitle), 0, 140);
+        }
         $this->month = CarbonImmutable::now('Europe/Copenhagen')->startOfMonth()->toDateString();
     }
 

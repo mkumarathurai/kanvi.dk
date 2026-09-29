@@ -1,4 +1,7 @@
 import './poll.js';
+import { createDemoPoll } from './demo-poll.js';
+
+window.kanviDemo = createDemoPoll;
 
 window.kanviCopy = async (input) => {
     if (navigator.clipboard?.writeText) {

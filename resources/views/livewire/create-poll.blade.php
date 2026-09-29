@@ -24,6 +24,7 @@
                 @endforeach
             </ol>
         </section>
+        <x-kanvi.home-sections />
     @elseif ($step === 1)
         <form wire:submit="next" class="screen-card creation-card wizard-card title-card" aria-labelledby="title-heading">
             <x-kanvi.creation-progress :step="1" />

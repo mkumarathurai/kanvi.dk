@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\PollController;
 use App\Http\Controllers\PollManagementController;
 use App\Http\Controllers\PollPreviewController;
@@ -10,6 +11,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'create')->name('home');
 Route::view('/opret', 'create', ['landing' => false])->name('polls.create');
+Route::get('/guides', [ArticleController::class, 'index'])->name('articles.index');
+Route::get('/til', [ArticleController::class, 'index'])->name('articles.situations');
+Route::get('/sitemap.xml', [ArticleController::class, 'sitemap'])->name('sitemap');
+foreach (config('articles') as $key => $article) {
+    Route::get($article['path'], [ArticleController::class, 'show'])->defaults('article', $key)->name('articles.'.$key);
+}
 
 Route::middleware(PrivatePollHeaders::class)->group(function () {
     Route::get('/adgang/link/{token}', [PollRecoveryController::class, 'open'])->where('token', '[a-f0-9]{64}')->middleware('throttle:60,1')->name('recovery.open');

@@ -41,8 +41,9 @@ Canonical og sitemap bruger `APP_URL`, som skal være `https://kanvi.dk` i
 produktion. Private afstemninger og administrationssider er ikke med i sitemap;
 deres eksisterende noindex-beskyttelse er bevaret.
 
-De planlagte screenshots, illustrationer og artikel-specifikke `og:image` er
-endnu ikke produceret. Billedbriefs er bevaret i oplæggene, men vises ikke på
+De planlagte screenshots og artikel-specifikke `og:image` mangler fortsat.
+Klasseartiklen har nu illustrationer til brugsscenarier og beskedtråd kontra
+overblik; de øvrige illustrationer mangler. Billedbriefs er bevaret i oplæggene, men vises ikke på
 de offentlige sider. Tilføj de rigtige produktbilleder med dimensioner og alt-tekst
 senere; brug ikke fiktive UI-screenshots som dokumentation for produktet.
 
@@ -55,8 +56,11 @@ noter i den offentlige tekst.
 ## Class event article — 2026-09-29
 
 The tenth article is available locally at `/til/klassearrangement`. Its source
-and four image briefs are preserved in `klassearrangement.md`; the images and
-article-specific Open Graph image remain pending with the earlier image work.
+and four image briefs are preserved in `klassearrangement.md`. The scenarios and
+chat comparison illustrations now have WebP variants (390, 720 and 1440 px),
+intrinsic dimensions, alt text and lazy loading. The hero, result screenshot and
+article-specific Open Graph image remain pending. Prompts and asset paths are in
+`docs/design/CLASS-ARTICLE-IMAGES.md`.
 Public copy explains manual deadlines/reminders, date-only options and the
 convention of one response per family. The existing homepage FAQ is used instead
 of an unresolved `/faq` link. No new dependency or product feature was added.
@@ -68,5 +72,6 @@ and `git diff --check` passed. A bounded credential-pattern scan of the six task
 files found no matches. Safari walkthrough: guide index → class article →
 primary CTA → creation screen. Desktop and a 390 px iframe preview were visually
 checked. Browser console output, CI, real mobile devices and production were
-not verified. No commit or deployment was made; image/social-preview work is
-still outstanding. The shared project overview was updated and read back.
+not verified during that article-text check. The shared project overview was
+updated and read back. Subsequent commits, CI and the explicit decision to defer
+server installation are recorded in `docs/DEPLOYMENT.md`.

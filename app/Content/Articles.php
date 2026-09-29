@@ -32,6 +32,27 @@ final class Articles
             $link->setAttribute('class', 'button primary article-cta');
             $link->parentNode->setAttribute('class', 'article-cta-row');
         }
+        foreach ($document->getElementsByTagName('img') as $image) {
+            $src = $image->getAttribute('src');
+            if (! preg_match('~^/images/articles/[a-z0-9-]+\.webp$~D', $src) || ! is_file(public_path($src))) {
+                continue;
+            }
+            [$width, $height] = getimagesize(public_path($src));
+            $image->setAttribute('width', (string) $width);
+            $image->setAttribute('height', (string) $height);
+            $image->setAttribute('loading', 'lazy');
+            $image->setAttribute('decoding', 'async');
+            $variants = [];
+            foreach ([390, 720] as $variantWidth) {
+                $variant = substr($src, 0, -5).'-'.$variantWidth.'.webp';
+                if (is_file(public_path($variant))) {
+                    $variants[] = $variant.' '.$variantWidth.'w';
+                }
+            }
+            $variants[] = $src.' '.$width.'w';
+            $image->setAttribute('srcset', implode(', ', $variants));
+            $image->setAttribute('sizes', '(max-width: 699px) calc(100vw - 40px), (max-width: 1000px) calc(100vw - 330px), (max-width: 1244px) calc(100vw - 414px), 720px');
+        }
         $body = '';
         foreach ($document->documentElement->childNodes as $node) {
             $body .= $document->saveHTML($node);

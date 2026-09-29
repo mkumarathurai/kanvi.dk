@@ -11,6 +11,7 @@
 .article-layout { display: grid; grid-template-columns: minmax(0, 720px) 270px; gap: 80px; align-items: start; }
 .article-prose { min-width: 0; font-size: 17px; line-height: 1.8; overflow-wrap: break-word; }
 .article-prose p { margin: 0 0 18px; }
+.article-prose img { display: block; width: 100%; height: auto; margin: 28px 0 16px; border-radius: 16px; }
 .article-prose h2 { font-size: 28px; line-height: 1.25; letter-spacing: -.035em; font-weight: 700; margin: 64px 0 24px; scroll-margin-top: 32px; }
 .article-prose > h2:first-child { margin-top: 0; }
 .article-prose h3 { font-size: 21px; line-height: 1.4; font-weight: 650; margin: 36px 0 16px; }

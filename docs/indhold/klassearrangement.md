@@ -535,4 +535,5 @@ Speciallavet illustration med budskabet:
 - Date-only options, manual deadlines and reminders are explained explicitly.
 - One response per family is a coordination convention, not household identification.
 - The FAQ link points to the existing homepage FAQ until a standalone page exists.
-- The four image briefs remain pending alongside the earlier articles' images.
+- Scenarios and chat comparison illustrations are implemented; the hero and
+  product result screenshots remain pending alongside the earlier image work.

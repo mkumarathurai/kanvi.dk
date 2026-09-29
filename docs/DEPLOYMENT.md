@@ -59,6 +59,24 @@ article images remain outstanding; a successful deploy does not complete them.
 
 ## Current status
 
-Release preparation in progress. Production HTTPS responded 200 before release.
-The current production revision, CI outcome and deployment outcome are not yet
-verified.
+The three preparation commits were pushed to `main` through `0e84c74`.
+[Release CI passed](https://github.com/mkumarathurai/kanvi.dk/actions/runs/36603985842).
+An HTTP 200 from the production article URL returned only `Hello World :-)`, not
+Kanvi. Mathi confirmed that Kanvi has never been installed on this server yet.
+
+SSH alias `silanthi` connects as `mathi` on port 2222. The intended site user is
+`kanvi`, home `/home/kanvi`, without direct SSH access. PHP CLI is 8.4.24. Read-only
+inspection succeeded, but `sudo -n -u kanvi id` requires a password and the Kanvi
+directory is inaccessible to `mathi`. No site files, users, permissions, database
+or server configuration were changed.
+
+Mathi explicitly deferred server installation on 2026-09-29. Do not resume server
+installation or change access until asked. Resolve site-user execution access,
+site root, database choice, environment and launch requirements on resumption.
+
+Two class-article illustrations were subsequently implemented locally with WebP
+variants, lazy loading and intrinsic dimensions. The hero/product result images
+and social preview remain outstanding. Their new test failed before the change
+and then passed; the full PHP suite passed with 109 tests and 1,086 assertions.
+Pint, Vite and whitespace checks passed; both illustrations were inspected in the
+390 px Safari preview. These are editorial illustrations, not product screenshots.

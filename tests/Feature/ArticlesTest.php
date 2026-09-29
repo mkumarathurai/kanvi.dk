@@ -106,4 +106,30 @@ class ArticlesTest extends TestCase
         $this->assertSame(['Forside', 'Til', 'Klassearrangement'], array_column($schema['@graph'][1]['itemListElement'], 'name'));
         $this->assertSame(3, $xpath->query('//a[contains(@class,"article-cta")]')->length);
     }
+
+    public function test_class_article_illustrations_have_real_assets_dimensions_and_lazy_loading(): void
+    {
+        $response = $this->get('/til/klassearrangement')->assertOk();
+        $document = new DOMDocument;
+        @$document->loadHTML('<?xml encoding="utf-8" ?>'.$response->getContent());
+        $xpath = new DOMXPath($document);
+        $images = $xpath->query('//div[@class="article-prose"]//img');
+        $this->assertCount(2, $images);
+        foreach ($images as $image) {
+            $file = public_path($image->getAttribute('src'));
+            $this->assertFileExists($file);
+            [$width, $height, $type] = getimagesize($file);
+            $this->assertSame(IMAGETYPE_WEBP, $type);
+            $this->assertSame((string) $width, $image->getAttribute('width'));
+            $this->assertSame((string) $height, $image->getAttribute('height'));
+            $this->assertSame('lazy', $image->getAttribute('loading'));
+            $this->assertNotEmpty($image->getAttribute('alt'));
+            $this->assertNotEmpty($image->getAttribute('srcset'));
+            foreach (explode(',', $image->getAttribute('srcset')) as $candidate) {
+                [$src, $descriptor] = explode(' ', trim($candidate));
+                $this->assertSame((string) getimagesize(public_path($src))[0].'w', $descriptor);
+            }
+        }
+        $response->assertSee('Illustreret eksempel: 7. november passer 19 familier');
+    }
 }

@@ -194,6 +194,10 @@ Foreslå nogle datoer og lad alle svare samlet. Klokkeslættet aftaler I i beske
 
 Samme fremgangsmåde kan bruges til [møder og aktiviteter i en forening](/til/foreninger).
 
+**Én klasse. Mange ting der skal i kalenderen.**
+
+![Eksempler på datoafstemninger til aktiviteter i en skoleklasse: klassefest, forældreråd, sommerfest og fælles tur.](/images/articles/klassearrangement-brugsscenarier.webp)
+
 ## Skal alle familier kunne?
 
 Ikke altid.
@@ -242,6 +246,12 @@ En anden havde misforstået datoen.
 En tredje svarer i en anden beskedtråd.
 
 Det bliver hurtigt unødvendigt arbejde.
+
+**Mindre beskedjagt. Mere overblik.**
+
+![Sammenligning af en rodet klassechat og fire datoer med samlede svar i en illustreret Kanvi-oversigt.](/images/articles/klassechat-vs-kanvi.webp)
+
+*Illustreret eksempel: 7. november passer 19 familier, 14. november passer 17, 6. november passer 14 og 13. november passer 11.*
 
 ## Hold afstemningen enkel
 

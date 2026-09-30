@@ -10,6 +10,8 @@ use App\Domain\Polls\Models\AdminRecoveryLink;
 use App\Domain\Polls\Models\Poll;
 use App\Domain\Polls\Models\PollAuditEntry;
 use App\Http\PollParticipantCookie;
+use Illuminate\Console\Scheduling\Event;
+use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -137,6 +139,20 @@ class PollRetentionTest extends TestCase
 
         $this->assertNotNull($poll->last_activity_at);
         $this->assertTrue($poll->last_activity_at->isSameMinute(now()));
+    }
+
+    /**
+     * The command deletes data the privacy page promises to delete. If it ever
+     * falls out of the schedule, nothing breaks and nobody notices; the polls
+     * just quietly stay forever.
+     */
+    public function test_the_purge_is_scheduled_daily(): void
+    {
+        $purge = collect(app(Schedule::class)->events())
+            ->first(fn (Event $event) => str_contains($event->command ?? '', 'kanvi:purge-polls'));
+
+        $this->assertNotNull($purge, 'kanvi:purge-polls is not on the schedule.');
+        $this->assertSame('30 3 * * *', $purge->expression);
     }
 
     public function test_the_participant_cookie_expires_with_the_retention_window(): void

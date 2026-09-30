@@ -260,6 +260,8 @@ class ArticlesTest extends TestCase
         $response->assertSee('Hetzner')->assertSee('Tyskland')
             ->assertSee('Resend')->assertSee('USA')
             ->assertSee('EU-U.S. Data Privacy Framework');
+        // The server-side funnel events are disclosed; see ADR 0003.
+        $response->assertSee('tæller vores server tre ting');
         $this->assertFalse($response->headers->has('X-Robots-Tag'));
 
         $document = new DOMDocument;

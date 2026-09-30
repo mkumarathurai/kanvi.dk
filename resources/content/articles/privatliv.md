@@ -89,6 +89,11 @@ adgangsgendannelse indlæser ikke statistikken overhovedet. Vi gemmer heller ikk
 det, der står efter et spørgsmålstegn eller en havelåge i adressen, så et
 afstemningslink kan ikke havne i statistikken ved et uheld.
 
+Derudover tæller vores server tre ting: når en afstemning bliver oprettet, når den
+får sit første svar, og når der bliver valgt en endelig dato. Det er din browser
+ikke involveret i. Tællingen indeholder kun, hvad der skete, og intet om hvilken
+afstemning det var, hvad den hedder, eller hvem der svarede.
+
 ## Mails
 
 Kanvi sender ingen nyhedsbreve og ingen reklamer.

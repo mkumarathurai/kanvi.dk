@@ -40,8 +40,8 @@ Tre forsøg med backoff 30/120 sekunder bruges, mens linket stadig er gyldigt.
 **Produktion sender gennem Resend.** Serverens miljø sætter
 `KANVI_RECOVERY_MAILER=resend` og `RESEND_API_KEY`; nøglen findes kun dér. Den
 30. september 2026 blev en rigtig recovery-mail leveret, og engangslinket gav
-adgang én gang og blev afvist anden gang. Om mailen landede i indbakken eller i
-spam, er ikke registreret. Resend opbevarer data i USA; det står på
+adgang én gang og blev afvist anden gang. Gmail lagde mailen i indbakken, ikke i
+spam; andre udbydere er ikke afprøvet. Resend opbevarer data i USA; det står på
 privatlivssiden, og valget er bekræftet.
 
 Lokalt er mail slået fra. Log-/array-/failover-mailere må ikke bruges til recovery

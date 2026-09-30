@@ -42,8 +42,8 @@ Observed production evidence:
 
 State on 2026-09-30, end of day: recovery mail goes through Resend
 (`KANVI_RECOVERY_MAILER=resend`). A real recovery mail was delivered, and its
-one-time link granted access once and was refused the second time. Whether it
-reached the inbox rather than spam is not recorded. The Laravel scheduler runs
+one-time link granted access once and was refused the second time. Gmail placed
+it in the inbox, not spam; other providers are untested. The Laravel scheduler runs
 every minute from `/etc/cron.d/kanvi`, which drives the retention purge. CI runs
 the PHP suite on SQLite and MySQL 8.4. Work is tracked in Jira project KAN.
 

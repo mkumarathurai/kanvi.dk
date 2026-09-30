@@ -37,3 +37,9 @@ jobs:
       - run: npm test
       - run: npm run build
       - run: git diff --exit-code
+
+  deploy:
+    needs: verify
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && vars.DEPLOY_ENABLED == 'true'
+    uses: ./.github/workflows/deploy.yml
+    secrets: inherit

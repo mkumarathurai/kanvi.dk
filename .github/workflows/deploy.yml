@@ -1,0 +1,77 @@
+name: Deploy Kanvi
+
+# Called only after CI passes. Server installation is still deferred.
+on:
+  workflow_call:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: kanvi-production-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/main' && vars.DEPLOY_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: production
+    env:
+      DEPLOY_PATH: ${{ vars.DEPLOY_PATH }}
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+      SSH_PORT: ${{ secrets.SSH_PORT }}
+      SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+      RELEASE_ID: ${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: shivammathur/setup-php@b604ade2a87db23f8871b7182e69ec5e75effb45 # v2
+        with:
+          php-version: '8.4'
+          extensions: dom, gd, mbstring, pdo_mysql, pdo_sqlite
+          coverage: none
+          tools: composer:v2
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Build production release
+        run: |
+          composer install --no-dev --no-scripts --no-interaction --prefer-dist --optimize-autoloader --no-progress
+          npm ci
+          npm run build
+          printf '%s\n' "$RELEASE_ID" > public/deploy-revision.txt
+          tar --exclude='bootstrap/cache/*.php' --exclude='public/storage' --exclude='public/hot' \
+            --exclude='database/*.sqlite*' -czf "$RUNNER_TEMP/kanvi-release.tar.gz" \
+            app bootstrap config database public resources routes vendor artisan composer.json composer.lock scripts/deploy-release.sh
+      - name: Configure dedicated deployment SSH key
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+        run: |
+          set -euo pipefail
+          [[ "$SSH_HOST" =~ ^[a-zA-Z0-9][a-zA-Z0-9.-]*$ ]] || { echo 'Missing or invalid SSH_HOST'; exit 1; }
+          [[ "$SSH_USERNAME" =~ ^[a-z_][a-z0-9_-]*$ ]] || { echo 'Missing or invalid SSH_USERNAME'; exit 1; }
+          [[ "$SSH_PORT" =~ ^[0-9]{1,5}$ ]] && (( 10#$SSH_PORT >= 1 && 10#$SSH_PORT <= 65535 )) || { echo 'Missing or invalid SSH_PORT'; exit 1; }
+          [[ "$DEPLOY_PATH" =~ ^/[a-zA-Z0-9_./-]+$ && "$DEPLOY_PATH" != / && "$DEPLOY_PATH" != *..* ]] || { echo 'Missing or invalid DEPLOY_PATH'; exit 1; }
+          [[ -n "$SSH_PRIVATE_KEY" && -n "$SSH_KNOWN_HOSTS" ]] || { echo 'Missing deployment key or verified host keys'; exit 1; }
+          umask 077
+          mkdir -p "$HOME/.ssh"
+          printf '%s\n' "$SSH_PRIVATE_KEY" > "$HOME/.ssh/kanvi_deploy"
+          printf '%s\n' "$SSH_KNOWN_HOSTS" > "$HOME/.ssh/kanvi_known_hosts"
+      - name: Upload and activate release
+        run: |
+          set -euo pipefail
+          ssh_options=(-i "$HOME/.ssh/kanvi_deploy" -p "$SSH_PORT" -o BatchMode=yes -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile="$HOME/.ssh/kanvi_known_hosts" -o ConnectTimeout=15)
+          target="$SSH_USERNAME@$SSH_HOST"
+          release_path="$DEPLOY_PATH/releases/$RELEASE_ID"
+          ssh "${ssh_options[@]}" "$target" \
+            "set -eu; umask 027; test -f '$DEPLOY_PATH/shared/.env'; test -d '$DEPLOY_PATH/shared/storage'; mkdir '$release_path'; tar -xzf - -C '$release_path'" \
+            < "$RUNNER_TEMP/kanvi-release.tar.gz"
+          ssh "${ssh_options[@]}" "$target" \
+            "bash '$release_path/scripts/deploy-release.sh' '$DEPLOY_PATH' '$RELEASE_ID'"
+      - name: Remove runner SSH credentials
+        if: always()
+        run: rm -f "$HOME/.ssh/kanvi_deploy" "$HOME/.ssh/kanvi_known_hosts"

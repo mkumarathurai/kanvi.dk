@@ -1,5 +1,10 @@
 # Deployment record — 2026-09-29
 
+Update 2026-09-30: Mathi specified GitHub Actions with deployment secrets, using
+Invity as a reference. See [the prepared deployment workflow and prerequisites](GITHUB-ACTIONS-DEPLOYMENT.md).
+The repository workflow remains disabled by default. Server installation is
+still deferred; the historical observations below do not describe a live release.
+
 The user requested deployment of the current work, followed by continued article
 image work. This record separates repository delivery from production evidence.
 

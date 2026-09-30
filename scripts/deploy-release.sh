@@ -54,6 +54,9 @@ ln -s "$root/shared/.env" .env
 ln -s "$root/shared/storage" storage
 php vendor/composer/platform_check.php
 php artisan package:discover --ansi
+# CloudPanel serves *.js as static files, so publish Livewire's assets for each
+# release instead of depending on Laravel's dynamic JavaScript route.
+php artisan vendor:publish --tag=livewire:assets --force --no-interaction
 php artisan config:cache
 # A verified database backup and backward-compatible migrations are deployment
 # prerequisites. Never migrate:fresh, roll back schema, or regenerate APP_KEY.
@@ -69,5 +72,8 @@ sudo -n /usr/bin/systemctl reload php8.4-fpm
 curl --fail --silent --show-error --max-time 20 --retry 3 "https://kanvi.dk/up?release=$release" > /dev/null
 served="$(curl --fail --silent --show-error --max-time 20 --retry 3 "https://kanvi.dk/deploy-revision.txt?release=$release")"
 [[ "$served" == "$release" ]] || fail 'Production returned a different release'
+asset_hash="$(curl --fail --silent --show-error --max-time 20 --retry 3 "https://kanvi.dk/vendor/livewire/livewire.min.js?release=$release" | php -r 'echo hash("sha256", file_get_contents("php://stdin"));')"
+expected_hash="$(php -r 'echo hash_file("sha256", $argv[1]);' public/vendor/livewire/livewire.min.js)"
+[[ "$asset_hash" == "$expected_hash" ]] || fail 'Production Livewire asset does not match the release'
 php artisan queue:restart
 printf 'Activated and checked release %s\n' "$release"

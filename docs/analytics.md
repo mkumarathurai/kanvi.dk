@@ -14,7 +14,7 @@ til de to produktionsdomæner.
 Forside, oprettelsesside og kommende offentlige indholdssider med samme layout
 kan dermed måles. Afstemninger, resultater, deleskærme, administration og
 recovery-sider indlæser ikke trackeren. Mailtemplates er separate og indeholder
-ingen trackingkode. Der sendes ingen manuelle events eller formularfelter.
+ingen trackingkode. Browseren sender ingen manuelle events eller formularfelter.
 
 Query-parametre og URL-fragmenter er udeladt med `data-exclude-search` og
 `data-exclude-hash`. Scriptanmodningen bruger `referrerpolicy="no-referrer"`.
@@ -28,5 +28,16 @@ Featuretests dækker aktivering på offentlige sider i produktion, fravær lokal
 og fravær på private sider. Faktisk modtagelse i Umami skal verificeres efter
 deployment med et besøg på produktionsdomænet.
 
-Dette er basal sidestatistik. Produktkontraktens funnel-events, eksempelvis
-oprettet afstemning, første svar og valgt endelig dato, er endnu ikke implementeret.
+## Funnel-events
+
+Serveren sender tre events til Umamis `/api/send`: `poll-created`,
+`first-response` og `final-date-chosen`. De lægges i kø efter commit fra
+`CreatePoll`, `SubmitResponse` (kun første deltager på en afstemning) og
+`FinalizePoll`, og kun i produktion. Payloaden er fast: website-ID, hostname,
+URL `/`, sprog og eventnavn. Intet afstemnings-ID, titel, navn, token eller
+besøgendes IP forlader serveren. Beslutningen og begrundelsen står i
+[ADR 0003](adr/0003-server-side-funnel-events.md).
+
+Umami ignorerer anmodninger uden en browserlignende `User-Agent` og svarer
+alligevel med succes, så modtagelsen kan kun bevises ved at se eventet i Umami
+efter en gennemgang i produktion.

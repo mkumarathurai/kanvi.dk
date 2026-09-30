@@ -2,6 +2,7 @@
 
 namespace App\Actions\Polls;
 
+use App\Domain\Analytics\FunnelEvent;
 use App\Domain\Polls\Models\Participant;
 use App\Domain\Polls\Models\Poll;
 use App\Domain\Polls\Models\Response;
@@ -56,6 +57,10 @@ final class SubmitResponse
                     'display_name' => $changes['name']['value'],
                     'edit_token_hash' => hash('sha256', $token),
                 ]);
+                // Decided under the poll lock, so simultaneous first answers still count once.
+                if (Participant::withTrashed()->where('poll_id', $lockedPoll->id)->count() === 1) {
+                    FunnelEvent::FirstResponse->record();
+                }
             }
 
             $acks = [];

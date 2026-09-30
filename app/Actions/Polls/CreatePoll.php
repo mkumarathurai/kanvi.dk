@@ -2,6 +2,7 @@
 
 namespace App\Actions\Polls;
 
+use App\Domain\Analytics\FunnelEvent;
 use App\Domain\Polls\Models\Poll;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -44,6 +45,7 @@ final class CreatePoll
 
             $token = bin2hex(random_bytes(32));
             $access = $poll->adminAccess()->create(['token_hash' => hash('sha256', $token)]);
+            FunnelEvent::PollCreated->record();
 
             return new CreatedPoll($poll, $access, $token);
         });

@@ -2,6 +2,7 @@
 
 namespace App\Actions\Polls;
 
+use App\Domain\Analytics\FunnelEvent;
 use App\Domain\Polls\Models\Poll;
 
 final class FinalizePoll
@@ -15,6 +16,7 @@ final class FinalizePoll
             $locked->status = 'finalized';
             $locked->final_option_id = $option->id;
             $locked->finalized_at = now();
+            FunnelEvent::FinalDateChosen->record();
 
             return ['option_id' => $option->id];
         });

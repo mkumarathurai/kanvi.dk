@@ -10,4 +10,11 @@ return [
     // cookie expires on the same schedule, so edit access never outlives the data.
     // Decided 2026-09-30; see CLAUDE.md and the Knowledge Base project overview.
     'retention_months' => 12,
+
+    // Server-side funnel events; see docs/adr/0003-server-side-funnel-events.md.
+    'umami' => [
+        'endpoint' => 'https://stats.mathi.dev/api/send',
+        'website_id' => 'fa2c9fe6-7537-4afb-835c-f47f75a9d546',
+        'hostname' => 'kanvi.dk',
+    ],
 ];

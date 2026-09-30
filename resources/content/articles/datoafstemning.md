@@ -27,6 +27,8 @@ Du foreslår nogle datoer, sender et link til deltagerne og får svarene samlet 
 
 
 
+![Datoafstemning i Kanvi med flere mulige datoer](/images/articles/datoafstemning-kanvi.webp)
+
 ## Hvad er en datoafstemning?
 
 En datoafstemning er en enkel måde at finde ud af, hvornår flere mennesker kan mødes.
@@ -50,6 +52,8 @@ Når svarene er kommet ind, kan I vælge den endelige dato.
 ## Sådan laver du en datoafstemning
 
 Med Kanvi er ideen, at det skal være hurtigt nok til, at du ikke overvejer, om det egentlig bare er lettere at sende endnu en besked i gruppen.
+
+![Opret en datoafstemning og vælg mulige datoer i Kanvi](/images/articles/opret-datoafstemning.webp)
 
 ### 1. Skriv hvad I skal finde en dato til
 

@@ -121,14 +121,23 @@ class ArticlesTest extends TestCase
         $this->assertSame(3, $xpath->query('//a[contains(@class,"article-cta")]')->length);
     }
 
-    public function test_class_article_illustrations_have_real_assets_dimensions_and_lazy_loading(): void
+    public function test_every_article_image_has_real_assets_dimensions_and_lazy_loading(): void
     {
-        $response = $this->get('/til/klassearrangement')->assertOk();
-        $document = new DOMDocument;
-        @$document->loadHTML('<?xml encoding="utf-8" ?>'.$response->getContent());
-        $xpath = new DOMXPath($document);
-        $images = $xpath->query('//div[@class="article-prose"]//img');
-        $this->assertCount(2, $images);
+        $counts = [];
+        foreach (config('articles') as $key => $article) {
+            $document = new DOMDocument;
+            @$document->loadHTML('<?xml encoding="utf-8" ?>'.$this->get($article['path'])->assertOk()->getContent());
+            $xpath = new DOMXPath($document);
+            $images = $xpath->query('//div[@class="article-prose"]//img');
+            $counts[$key] = $images->length;
+            $this->assertImagesAreServable($images);
+        }
+        $this->assertEquals(['klassearrangement' => 2, 'datoafstemning' => 2],
+            array_filter($counts), 'The set of illustrated articles changed.');
+    }
+
+    private function assertImagesAreServable(\DOMNodeList $images): void
+    {
         foreach ($images as $image) {
             $file = public_path($image->getAttribute('src'));
             $this->assertFileExists($file);
@@ -144,7 +153,12 @@ class ArticlesTest extends TestCase
                 $this->assertSame((string) getimagesize(public_path($src))[0].'w', $descriptor);
             }
         }
-        $response->assertSee('Illustreret eksempel: 7. november passer 19 familier');
+    }
+
+    public function test_the_class_article_keeps_its_illustration_caption(): void
+    {
+        $this->get('/til/klassearrangement')->assertOk()
+            ->assertSee('Illustreret eksempel: 7. november passer 19 familier');
     }
 
     public function test_every_page_declares_its_own_sharing_image(): void

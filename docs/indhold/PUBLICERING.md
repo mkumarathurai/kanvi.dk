@@ -50,6 +50,26 @@ overblik; de øvrige illustrationer mangler. Billedbriefs er bevaret i oplæggen
 de offentlige sider. Tilføj de rigtige produktbilleder med dimensioner og alt-tekst
 senere; brug ikke fiktive UI-screenshots som dokumentation for produktet.
 
+## Produktbilleder
+
+Screenshots skal være af det rigtige produkt, aldrig en tegnet efterligning af
+brugerfladen. Fremgangsmåden, brugt til de to billeder i datoafstemningsartiklen
+den 30. september 2026:
+
+1. Opret en afstemning gennem den rigtige oprettelsesside med tydeligt fiktive
+   data og datoer i fremtiden.
+2. Læg fiktive deltagere og svar ind lokalt, så resultatet ser ud som en rigtig
+   afstemning med forskellige svar.
+3. Tag skærmbilledet i browseren, og flyt musen ud af billedet først.
+4. Beskær og skriv WebP-varianter i 1440, 720 og 390 px.
+
+`app/Content/Articles.php` finder selv varianterne, sætter `width`, `height`,
+`srcset`, `sizes` og `loading="lazy"`, når filnavnet følger mønsteret
+`/images/articles/<navn>.webp` med `-720` og `-390` ved siden af.
+
+Mobilvisningen mangler stadig. Chrome tillader ikke et vindue smallere end cirka
+500 px, så den skal tages på en anden måde end de to desktopbilleder.
+
 ## Kontrol
 
 `tests/Feature/ArticlesTest.php` kontrollerer alle ti sider, metadata, canonical,

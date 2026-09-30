@@ -3,17 +3,16 @@
 namespace Tests\Feature;
 
 use Symfony\Component\Process\Process;
+use Tests\Support\IsolatedDatabase;
 use Tests\TestCase;
 
 class ConcurrentResponsesTest extends TestCase
 {
+    use IsolatedDatabase;
+
     public function test_parallel_creation_and_reordered_retries_preserve_one_identity_and_latest_revision(): void
     {
-        $path = tempnam(sys_get_temp_dir(), 'kanvi-concurrency-');
-        $environment = [
-            'APP_ENV' => 'testing', 'DB_CONNECTION' => 'sqlite', 'DB_DATABASE' => $path,
-            'DB_URL' => '', 'CACHE_STORE' => 'array', 'SESSION_DRIVER' => 'array',
-        ];
+        $environment = $this->isolatedDatabaseEnvironment();
         $processes = [];
         try {
             $migrate = new Process([PHP_BINARY, 'artisan', 'migrate', '--force', '--no-interaction'], base_path(), $environment);
@@ -53,11 +52,7 @@ class ConcurrentResponsesTest extends TestCase
                     $process->stop();
                 }
             }
-            foreach ([$path, $path.'-wal', $path.'-shm', $path.'-journal'] as $file) {
-                if (is_file($file)) {
-                    unlink($file);
-                }
-            }
+            $this->dropIsolatedDatabase();
         }
     }
 }

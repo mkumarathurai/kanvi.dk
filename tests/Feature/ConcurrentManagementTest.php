@@ -3,15 +3,16 @@
 namespace Tests\Feature;
 
 use Symfony\Component\Process\Process;
+use Tests\Support\IsolatedDatabase;
 use Tests\TestCase;
 
 class ConcurrentManagementTest extends TestCase
 {
+    use IsolatedDatabase;
+
     public function test_removals_and_finalization_serialize_with_other_writes(): void
     {
-        $path = tempnam(sys_get_temp_dir(), 'kanvi-admin-concurrency-');
-        $environment = ['APP_ENV' => 'testing', 'DB_CONNECTION' => 'sqlite', 'DB_DATABASE' => $path,
-            'DB_URL' => '', 'CACHE_STORE' => 'array', 'SESSION_DRIVER' => 'array'];
+        $environment = $this->isolatedDatabaseEnvironment();
         $active = [];
         try {
             (new Process([PHP_BINARY, 'artisan', 'migrate', '--force', '--no-interaction'], base_path(), $environment))->mustRun();
@@ -62,11 +63,7 @@ class ConcurrentManagementTest extends TestCase
                     $process->stop();
                 }
             }
-            foreach ([$path, $path.'-wal', $path.'-shm', $path.'-journal'] as $file) {
-                if (is_file($file)) {
-                    unlink($file);
-                }
-            }
+            $this->dropIsolatedDatabase();
         }
     }
 }

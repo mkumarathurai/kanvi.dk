@@ -78,9 +78,9 @@ php artisan serve
 Åbn `http://127.0.0.1:8000`. Alternativt kan projektet køres via Laravel Herd.
 `composer run dev` starter Laravel, kø, logvisning og Vite til løbende udvikling.
 
-SQLite er lokal udviklings- og testdatabase. Valget mellem PostgreSQL og MySQL
-for drift er endnu ikke truffet. Databaseconstraints og samtidighedstests skal
-også verificeres på den valgte database, når de tilhørende slices implementeres.
+SQLite er lokal udviklings- og testdatabase. Produktionen kører MySQL. CI kører
+hele PHP-suiten mod begge, så databaseconstraints og samtidighedstests bliver
+verificeret på den motor, produktionen faktisk bruger.
 
 ## Verifikation
 
@@ -127,9 +127,10 @@ Cookien udløber sammen med afstemningens opbevaringsvindue på tolv måneder, s
 redigeringsadgang ikke overlever de data, den giver adgang til.
 
 Se [autosave-protokollen](docs/autosave.md) for felter, revisioner, adgang og fejl.
-SQLite bruger `IMMEDIATE`-transaktioner med ventetid ved låsning. På MySQL/PostgreSQL
+SQLite bruger `IMMEDIATE`-transaktioner med ventetid ved låsning. På MySQL
 låses poll-rækken; svar, status- og datohandlinger tager samme lås.
-Driftsdatabasen er fortsat ikke valgt eller testet i denne opsætning.
+Samtidighedstestene kører mod begge motorer i CI og opretter deres egen database,
+fordi de starter rigtige parallelle processer.
 
 ## Næste trin
 

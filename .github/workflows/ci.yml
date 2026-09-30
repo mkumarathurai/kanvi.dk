@@ -12,6 +12,8 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    env:
+      EXPECTED_DB_DRIVER: sqlite
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
@@ -38,8 +40,53 @@ jobs:
       - run: npm run build
       - run: git diff --exit-code
 
+  # The integrity guarantees are the product. They were only ever proved on
+  # SQLite, while production runs MySQL, and constraint behaviour differs
+  # between engines.
+  mysql:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      mysql:
+        image: mysql:8.4
+        env:
+          MYSQL_ROOT_PASSWORD: kanvi
+          MYSQL_DATABASE: kanvi_test
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -uroot -pkanvi"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=20
+    env:
+      EXPECTED_DB_DRIVER: mysql
+      DB_CONNECTION: mysql
+      DB_HOST: 127.0.0.1
+      DB_PORT: 3306
+      DB_DATABASE: kanvi_test
+      DB_USERNAME: root
+      DB_PASSWORD: kanvi
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: shivammathur/setup-php@b604ade2a87db23f8871b7182e69ec5e75effb45 # v2
+        with:
+          php-version: '8.4'
+          extensions: dom, gd, mbstring, pdo_mysql, pdo_sqlite
+          coverage: none
+          tools: composer:v2
+      - run: composer install --no-interaction --prefer-dist --no-progress
+      - name: Prepare isolated test environment
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+      # The concurrency tests create and drop their own database, so root is used.
+      - run: php artisan test --compact
+
   deploy:
-    needs: verify
+    needs: [verify, mysql]
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && vars.DEPLOY_ENABLED == 'true'
     uses: ./.github/workflows/deploy.yml
     secrets: inherit

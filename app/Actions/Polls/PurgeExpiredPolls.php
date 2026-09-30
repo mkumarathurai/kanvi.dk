@@ -42,8 +42,11 @@ final class PurgeExpiredPolls
     {
         DB::transaction(function () use ($poll) {
             // admin_recovery_links does not cascade from poll_admin_access, so it goes first.
+            // A finalized poll references its own option, which MySQL will not let the delete
+            // cascade through, so the reference is cleared first.
             // Everything else is removed by the database when the poll row is deleted.
             AdminRecoveryLink::whereIn('admin_access_id', $poll->adminAccess()->select('id'))->delete();
+            Poll::withTrashed()->whereKey($poll->id)->update(['final_option_id' => null]);
             Poll::withTrashed()->whereKey($poll->id)->forceDelete();
         }, 3);
     }

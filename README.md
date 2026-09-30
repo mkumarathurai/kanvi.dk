@@ -137,10 +137,11 @@ Konfiguration af mailtjeneste og offentlig origin til delingspreview. Statussen
 `archived` returnerer fortsat 404, men den er ikke en del af opbevaringspolitikken,
 og ingenting sætter den.
 
-Den endelige dato vises foreløbigt til alle med det offentlige link. Totaler og
-individuelle svar kræver fortsat deltager- eller adminadgang. Det er et eksplicit
-implementeringsvalg til produktgennemgang, ikke en ny godkendt produktbeslutning.
-Se [administrationskontrakten](docs/administration.md).
+Den endelige dato vises til alle med det offentlige link, også efter lukning.
+Totaler, deltagernavne og individuelle svar kræver fortsat deltager- eller
+adminadgang. Det er en vedtaget beslutning fra 30. september 2026; se
+[ADR 0002](docs/adr/0002-result-access-after-finalization.md) og
+[administrationskontrakten](docs/administration.md).
 
 Frameworkreferencer: [Laravel 12](https://laravel.com/docs/12.x/installation)
 og [Livewire 4](https://livewire.laravel.com/docs/4.x/components).

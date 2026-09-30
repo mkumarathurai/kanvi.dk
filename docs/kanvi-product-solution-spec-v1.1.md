@@ -1573,19 +1573,22 @@ Disse scenarier er acceptkriterier for de slices, der implementerer adfærden.
 
 ------------------------------------------------------------------------
 
-# 38. Resterende afklaringer før berørte slices implementeres
+# 38. Afklaringer: begge afgjort 30. september 2026
 
-Disse punkter er ikke vedtagne beslutninger og må ikke få tilfældige defaults i koden.
+Punkterne herunder stod som åbne afklaringer, der ikke måtte få tilfældige
+defaults i koden. Mathi har afgjort dem begge den 30. september 2026. De står
+tilbage her med beslutningen, så det kan ses, hvad der var åbent, og hvad der
+blev valgt.
 
-1. **Resultatadgang efter finalisering/lukning:** Eksisterende autoriserede
-   deltagere og arrangøren kan fortsat læse resultatet. Skal nye besøgende,
-   som aldrig nåede at svare, kunne se endelig dato, totaler og/eller
-   individuelle svar? De kan ikke længere låse resultatet op ved at svare.
-   **Foreløbigt implementeringsvalg til produktgennemgang:** Den valgte endelige
-   dato er offentlig for alle med linket, også efter lukning. Totaler, navne og
-   individuelle svar beholder adgangskravet. Lukning uden et endeligt valg viser
-   kun lukket-status til nye besøgende. Dette er eksplicit valgt under
-   implementeringen og afventer produktbekræftelse.
+1. **Resultatadgang efter finalisering/lukning: afklaret 30. september 2026.**
+   Spørgsmålet var, om en besøgende, der aldrig nåede at svare, skal kunne se
+   endelig dato, totaler eller individuelle svar, når afstemningen er lukket.
+   Mathi har bekræftet den kørende adfærd: den valgte endelige dato er offentlig
+   for alle med det offentlige link, også efter lukning, mens totaler,
+   deltagernavne og individuelle svar fortsat kræver deltager- eller adminadgang.
+   Lukning uden et endeligt valg viser kun lukket-status. Begrundelsen er, at et
+   delt link skal kunne fortælle gruppen, hvornår det bliver, uden at afsløre hvem
+   der svarede hvad. Se [ADR 0002](adr/0002-result-access-after-finalization.md).
 2. **Arkivering og retention: afklaret 30. september 2026.** Mathi har besluttet,
    at en afstemning slettes tolv måneder efter sidste aktivitet sammen med
    deltagernavne, svar, revisioner, adminadgang, auditspor og recovery-links.

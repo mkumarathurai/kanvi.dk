@@ -169,6 +169,45 @@ class PollResponsesTest extends TestCase
         return [['finalized'], ['closed'], ['archived']];
     }
 
+    /** The state the page hands the browser. Asserting on rendered HTML would also match the site footer. */
+    private function strangerState(): array
+    {
+        return $this->get(route('polls.show', $this->poll))->assertOk()->viewData('initial');
+    }
+
+    /** Decided 2026-09-30: a shared link may tell the group which day it is, never who answered what. */
+    #[DataProvider('finishedStatuses')]
+    public function test_a_stranger_sees_the_final_date_but_no_totals_or_names(string $status): void
+    {
+        $this->submit($this->payload());
+        $this->poll->update(['status' => $status, 'final_option_id' => $this->option, 'finalized_at' => now()]);
+
+        $state = $this->strangerState();
+
+        $this->assertSame($this->poll->fresh()->finalDateLabel(), $state['finalDate']);
+        $this->assertFalse($state['canSeeResults']);
+        $this->assertNull($state['participant']);
+        $this->getJson(route('polls.results', $this->poll))->assertForbidden();
+    }
+
+    public static function finishedStatuses(): array
+    {
+        return [['finalized'], ['closed']];
+    }
+
+    public function test_a_stranger_sees_no_date_on_a_poll_closed_without_one(): void
+    {
+        $this->submit($this->payload());
+        $this->poll->update(['status' => 'closed']);
+
+        $state = $this->strangerState();
+
+        $this->assertNull($state['finalDate']);
+        $this->assertFalse($state['isOpen']);
+        $this->assertFalse($state['canSeeResults']);
+        $this->getJson(route('polls.results', $this->poll))->assertForbidden();
+    }
+
     public function test_invalid_value_rejects_entire_batch(): void
     {
         $this->asParticipant()->postJson(route('polls.responses', $this->poll), $this->payload('yes'))->assertUnprocessable();

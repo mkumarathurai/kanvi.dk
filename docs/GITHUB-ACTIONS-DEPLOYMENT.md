@@ -2,17 +2,33 @@
 
 Prepared 2026-09-30 at Mathi's request, using Invity as a reference. **Server
 installation is still deferred.** This describes the prepared workflow, not an
-installed or verified production system. No server access or GitHub secrets
-have been created by this work.
+installed or verified production system. Mathi has now provisioned the dedicated
+SSH key and GitHub secrets using the setup guide; application installation is
+still deferred.
 
 Mathi subsequently authorized help with SSH access specifically: CloudPanel's
 site user is `kanvi` and must be added to the SSH allow list. Read-only inspection
 found `AllowUsers` in the main config and a Klogspot drop-in, both missing Kanvi.
 A separate `/etc/ssh/sshd_config.d/60-kanvi.conf` containing `AllowUsers kanvi`
-was proposed, followed by `sshd -t` and a reload of `ssh`. Adding an AllowUsers
-directive extends the list rather than replacing it. Applying it requires
-Mathi's interactive sudo authentication; application was not yet verified when
-this note was written. This limited access task does not authorize installation.
+was applied by Mathi, followed by a successful `sshd -t` and reload of `ssh`.
+The file and active SSH service were subsequently verified read-only. A login
+test as `kanvi` reached authentication but the existing key was rejected.
+The dedicated deployment key was subsequently installed by Mathi. This limited
+access task does not authorize installation.
+
+Follow [the Danish SSH and GitHub setup guide](DEPLOY-ADGANG.md) for the manual
+steps. The guide leaves deployment disabled.
+
+Access verification on 2026-09-30: login with the dedicated key succeeded as
+`kanvi`; the site directory exists and is writable; PHP CLI is 8.4.24. GitHub's
+`production` environment has the five expected secrets and allows only `main`.
+`DEPLOY_PATH` is `/home/kanvi/htdocs/kanvi.dk`; `DEPLOY_ENABLED` remains `false`.
+The first Actions connectivity test failed host-key verification. Replacing
+`SSH_KNOWN_HOSTS` with the public host key retrieved over the existing trusted
+SSH connection fixed it. The [read-only Actions test passed](https://github.com/mkumarathurai/kanvi.dk/actions/runs/36688253842),
+verifying the secrets together from a GitHub runner. [CI also passed](https://github.com/mkumarathurai/kanvi.dk/actions/runs/36684416009).
+No site files, database, services or production release were changed by these
+tests. Actual installation, FPM configuration, mail and queue checks remain open.
 
 ## Trigger and release flow
 

@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Domain\Polls\Services\RecoveryMail;
 use App\Mail\AdminRecoveryMail;
 use App\Mail\EventReminderMail;
 use App\Mail\InvitationMail;
@@ -15,8 +16,10 @@ use DOMDocument;
 use DOMXPath;
 use Illuminate\Mail\Mailer;
 use Illuminate\Mail\Transport\ArrayTransport;
+use Illuminate\Support\Facades\Mail;
 use InvalidArgumentException;
 use PHPUnit\Framework\Attributes\DataProvider;
+use Symfony\Component\Mailer\Transport\TransportInterface;
 use Tests\TestCase;
 
 class EmailDesignTest extends TestCase
@@ -96,6 +99,29 @@ class EmailDesignTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         new WelcomeMail('javascript:alert(1)');
+    }
+
+    /**
+     * The transport is only built when a mail is actually sent, so a missing SDK
+     * would first show up as a failed recovery mail in production, which is the
+     * one mail an organizer cannot do without.
+     */
+    public function test_the_resend_transport_can_be_built(): void
+    {
+        config(['services.resend.key' => 're_test_key']);
+
+        $transport = Mail::mailer('resend')->getSymfonyTransport();
+
+        $this->assertInstanceOf(TransportInterface::class, $transport);
+    }
+
+    public function test_recovery_mail_accepts_resend_and_still_refuses_the_log_transport(): void
+    {
+        config(['kanvi.recovery_mailer' => 'resend']);
+        $this->assertTrue(app(RecoveryMail::class)->enabled());
+
+        config(['kanvi.recovery_mailer' => 'log']);
+        $this->assertFalse(app(RecoveryMail::class)->enabled());
     }
 
     public function test_logo_is_a_high_resolution_png(): void

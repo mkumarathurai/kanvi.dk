@@ -96,6 +96,46 @@ login eller browserchallenge. Logoet har alt-teksten Kanvi ved blokerede billede
 `MAIL_FROM_NAME` skal være Kanvi, og afsenderadresse og transport skal konfigureres
 til domænet. Denne ændring aktiverer ikke maillevering eller en ny mailudbyder.
 
+## Produktionsopsætning: Resend
+
+Mathi valgte Resend den 30. september 2026. Afsendelse direkte fra serveren er
+valgt fra, fordi recovery-mailen er arrangørens eneste vej tilbage og ikke må
+ende i spam. `resend/resend-php` er en afhængighed af projektet, så transporten
+kan bygges; mails bliver først sendt, når miljøet herunder er sat.
+
+Mail er slået fra, indtil `KANVI_RECOVERY_MAILER` peger på en rigtig transport.
+`RecoveryMail::enabled()` afviser `log` med vilje, så adgangsgivende mails aldrig
+havner i en logfil.
+
+### Det der skal sættes
+
+I produktionsmiljøets `.env` (`DEPLOY_PATH/shared/.env` på serveren):
+
+```
+MAIL_MAILER=resend
+RESEND_API_KEY=<nøglen fra Resend>
+MAIL_FROM_ADDRESS=kanvi@kanvi.dk
+MAIL_FROM_NAME=Kanvi
+KANVI_RECOVERY_MAILER=resend
+```
+
+Nøglen hører hjemme i serverens miljøfil. Den må ikke i repositoryet, i Jira
+eller i knowledge basen.
+
+### DNS på kanvi.dk
+
+Resend oplyser de præcise værdier, når domænet tilføjes i deres kontrolpanel.
+Der skal tilføjes tre slags records: SPF, DKIM og DMARC. Uden dem bliver mailen
+sorteret som spam hos præcis de modtagere, der har mest brug for at få den.
+
+### Kontrol efter opsætning
+
+1. Bekræft at domænet står som verificeret i Resend.
+2. Registrer en mailadresse på en fiktiv afstemning i produktion.
+3. Bekræft at mailen ankommer, at engangslinket giver arrangøradgang, og at det
+   samme link afvises anden gang.
+4. Kontroller at køarbejderen behandler jobbet, og at der ikke ligger fejlede jobs.
+
 ## Rendering og kontrol
 
 Layoutet bruger præsentationstabeller, HTML-bredder, bgcolor og inline styles.

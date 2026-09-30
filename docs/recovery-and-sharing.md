@@ -37,16 +37,21 @@ redigeres til en generisk fejl, så adgangslinks ikke kopieres til fejllogs.
 UI'et siger “lagt klar til afsendelse”; det er ikke en leveringskvittering.
 Tre forsøg med backoff 30/120 sekunder bruges, mens linket stadig er gyldigt.
 
-**Mail er ikke aktiveret i den lokale installation.** Der er endnu ikke valgt en
-mailtjeneste. Log-/array-/failover-mailere må ikke bruges til recovery i drift.
-Ingen rigtige mails er sendt under udviklingen.
+**Produktion sender gennem Resend.** Serverens miljø sætter
+`KANVI_RECOVERY_MAILER=resend` og `RESEND_API_KEY`; nøglen findes kun dér. Den
+30. september 2026 blev en rigtig recovery-mail leveret, og engangslinket gav
+adgang én gang og blev afvist anden gang. Om mailen landede i indbakken eller i
+spam, er ikke registreret. Resend opbevarer data i USA; det står på
+privatlivssiden, og valget er bekræftet.
 
-Konfigurér eksempelvis SMTP via eksisterende MAIL_HOST, MAIL_PORT, MAIL_USERNAME,
-MAIL_PASSWORD og MAIL_FROM_ADDRESS, og sæt KANVI_RECOVERY_MAILER=smtp. Sæt APP_URL
-til den korrekte HTTPS-origin: mail-links og social metadata bruger den frem for
-requestens Host-header. Start en worker med `php artisan queue:work --tries=3`.
-Undlad rå tokens i proxy-/adgangslogs for /admin/* og /adgang/link/*.
-Tokens og maildata skal indgå i den endnu ikke vedtagne retention-politik.
+Lokalt er mail slået fra. Log-/array-/failover-mailere må ikke bruges til recovery
+i drift, og `RecoveryMail::enabled()` afviser dem. Sæt APP_URL til den korrekte
+HTTPS-origin: mail-links og social metadata bruger den frem for requestens
+Host-header. Start en worker med `php artisan queue:work --tries=3`. Undlad rå
+tokens i proxy-/adgangslogs for /admin/* og /adgang/link/*.
+
+Recovery-links og mailadresser slettes sammen med afstemningen tolv måneder efter
+sidste aktivitet; se [ADR 0001](adr/0001-poll-retention.md).
 
 ## Open Graph
 

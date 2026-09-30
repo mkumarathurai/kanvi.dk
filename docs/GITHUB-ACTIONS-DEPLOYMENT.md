@@ -6,8 +6,10 @@ Kanvi is installed and served over HTTPS. `DEPLOY_ENABLED=true`; pushes to
 `main` deploy automatically after CI passes. Environment restrictions allow
 only `main`. The PHP reload sudo rule and `Linger=yes` were verified, all seven
 migrations ran against MySQL, and the systemd user queue worker is running.
-CloudPanel's daily database backup cron is configured with seven-day retention;
-successful backup creation and restore are not yet verified.
+CloudPanel's server-wide cron in `/etc/cron.d/clp` backs up every database
+except `db1` and `db2` at 03:15 with seven-day retention, into
+`/home/kanvi/backups/databases`. On 2026-09-30 no dump existed yet, because the
+database was created that day. A restore is not yet verified; see KAN-7.
 
 The [first installation passed](https://github.com/mkumarathurai/kanvi.dk/actions/runs/36690370454)
 but browser verification found that CloudPanel returned 404 for Livewire's
@@ -38,11 +40,17 @@ Observed production evidence:
 - CI passed the full PHP suite (109 tests / 1,086 assertions), JavaScript tests,
   Pint and asset build. No new dependencies were added.
 
-Remaining acceptance: SMTP/recovery delivery is deliberately disabled pending
-configuration, backup restore has not been tested, analytics ingestion and
-Search Console submission are unverified. Load/concurrency testing on production
-MySQL and real mail-client acceptance also remain open. Jira linkage is still
-not established; this is not a claim of full shared Definition of Done compliance.
+State on 2026-09-30, end of day: recovery mail goes through Resend
+(`KANVI_RECOVERY_MAILER=resend`). A real recovery mail was delivered, and its
+one-time link granted access once and was refused the second time. Whether it
+reached the inbox rather than spam is not recorded. The Laravel scheduler runs
+every minute from `/etc/cron.d/kanvi`, which drives the retention purge. CI runs
+the PHP suite on SQLite and MySQL 8.4. Work is tracked in Jira project KAN.
+
+Remaining acceptance, each on its KAN ticket: backup restore (KAN-7), analytics
+ingestion and Search Console (KAN-13), and mail-client acceptance (KAN-16). Load
+on production MySQL is untested. This is not a claim of full shared Definition
+of Done compliance.
 
 Monitor HTTP errors, failed queues and database backups over the first 24 hours.
 For rollback use a verified compatible release, reload PHP and restart workers;

@@ -6,6 +6,9 @@ At the start of a new Kanvi session, read these before planning or editing:
 2. [Kanvi project overview](https://drive.google.com/file/d/1Fe-URgOMgkIXbZ5v6xawiORAYvPkTUKQ/view), including the complete decisions section.
 3. [Technical snapshot](docs/SNAPSHOT.md). Check its branch, HEAD and unfinished
    work against the current repository; preserve uncommitted changes.
+4. The [KAN board](https://mkumarathurai.atlassian.net/jira/software/c/projects/KAN/boards/575),
+   which holds the outstanding work. Commit trailers carry its keys; see
+   [CLAUDE.md](CLAUDE.md) for the convention and the historical exception.
 
 Use the Google Drive connector for the shared overview. Its current location is
 `Knowledge Base/01-Indbakke/Kanvi`, pending Mathi's choice of project area.

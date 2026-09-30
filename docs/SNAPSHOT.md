@@ -1,6 +1,6 @@
 # Kanvi session snapshot
 
-Project: Kanvi · Branch: `main` · HEAD: `14863b2` · Recorded: 2026-09-30 16:45 CEST, Europe/Copenhagen.
+Project: Kanvi · Branch: `main` · HEAD: `79a0301` · Recorded: 2026-09-30 17:30 CEST.
 
 The snapshot's own commit follows this one, so HEAD is one behind by design.
 
@@ -11,78 +11,77 @@ https://mkumarathurai.atlassian.net/jira/software/c/projects/KAN/boards/575
 
 ## 1. Where we are
 
-Kanvi is live at https://kanvi.dk and production serves this exact revision. The
-session began as a review of what Codex had built, turned into a Jira board, and
-then into a day of building: twelve tickets finished and deployed.
+Kanvi is live at https://kanvi.dk. The session began as a review of what Codex had
+built, turned into a Jira board, and then into a day of building. Twelve tickets are
+finished and deployed; six remain, and most of those need Mathi rather than code.
 
-The site gained a privacy page, an FAQ, a help centre, twelve-month retention,
-per-page sharing images and a MySQL job in CI. The sitemap went from 13 to 23
-public URLs. Production mail is now configured with Resend and the organizer's
-recovery option appears on the share screen.
+The site gained a privacy page, an FAQ, a help centre with seven guides,
+twelve-month retention, a sharing image per page, and a MySQL job in CI. The sitemap
+went from 13 public URLs to 23.
 
-Two production-only defects surfaced along the way, both invisible locally, and
-both are fixed. Retention now runs: Mathi created the CloudPanel cron job and the
-scheduler was verified on the server.
+Retention is the one that took a full chain to finish: decided, built, tested,
+deployed, and then proved to actually run on the server. Production mail is
+configured with Resend and the organizer's recovery option now appears on the share
+screen, but no mail has ever been sent, so delivery is unproven.
+
+Two production-only defects surfaced along the way. Both had been live since the
+features were written, both were invisible locally, and both are fixed.
 
 ## 2. What was done
 
-Eighteen commits, `0697a3a` through `14863b2`, each carrying its KAN key.
+Twenty-two commits, `0697a3a` through `79a0301`, each carrying its KAN key.
 
 - `0697a3a` KAN-17 · Jira convention and the decided product rules in `CLAUDE.md`.
 - `d8ea103` KAN-19 · Homepage trial poll shows participants, totals, unanswered.
 - `f2c0ac3` KAN-5 · Retention: delete twelve months after last activity.
-- `6cba0db` KAN-8 · Result access after closure recorded as decided.
+- `6cba0db` KAN-8 · Result access after closure recorded as decided, not provisional.
 - `980c634`, `89f35b9` KAN-4 · Privacy page, and honest wording while mail was off.
 - `4513bd3` KAN-9 · `/faq`; the homepage anchor stopgap retired everywhere.
 - `97bb029` KAN-10 · `/hjaelp` with seven task pages.
-- `9f511fb` KAN-15 · CI runs the PHP suite on SQLite and MySQL 8.4.
-- `a4280b9` KAN-12 · Sharing image per page.
+- `9f511fb` KAN-15 · CI runs the PHP suite on SQLite and on MySQL 8.4.
+- `a4280b9`, `5ec5673`, `6947140` KAN-12 · Sharing images, and the two defects below.
 - `5f11548` KAN-6 · Resend transport installed and pinned by tests.
 - `6620105` KAN-11 · Two real product screenshots in the date poll article.
-- `43e64a6`, `16119c0` KAN-18 · This file, rewritten against reality.
-- `5ec5673`, `6947140` KAN-12 · The two production defects in section 7.
-- `fc368bb`, `aeab5bc` KAN-21 · Controller, processors and the transfer to the US.
-- `5f4c95c`, `14863b2` KAN-18, KAN-20 · This file, and making a failed purge visible.
+- `fc368bb`, `aeab5bc` KAN-21 · Controller, processors, and the transfer to the US.
+- `14863b2` KAN-20 · A failed purge is logged; a test keeps it on the schedule.
+- `43e64a6`, `16119c0`, `5f4c95c`, `fc4c05a`, `79a0301` KAN-18 · This file.
 
 Server changes Mathi made, outside the repository: the production environment file
 now names Resend and `KANVI_RECOVERY_MAILER`, and a CloudPanel cron job runs
-`schedule:run` every minute. That cron command truncates its log rather than
-appending, so `shared/storage/logs/schedule.log` always holds exactly the most
-recent run. `/dev/null` was rejected: it would also hide a future
-`php: command not found` after a PHP upgrade, which is the failure this log
-proved useful for today.
+`schedule:run` every minute, truncating its log so it holds only the latest run.
 
 ## 3. Unfinished
 
-The working tree is clean, nothing is unpushed and there are no stashes. What is
+The working tree is clean, nothing is unpushed, there are no stashes. What is
 unfinished sits elsewhere:
 
 - **Mail is configured but never delivered.** The share screen offers the recovery
-  option, which proves the transport is accepted, but no real mail has been sent
-  and no recovery link has been redeemed. Sending one needs Mathi's say-so because
-  it is a real message to a real address. KAN-6.
-- **Two fictional polls sit in production.** `Mailtest 30. september - fiktive
-  data`, created this session to check that the mail field appeared, is open with
-  no responses. `Deploymenttest 30. september - fiktive data` from the previous
-  session is finalized. Neither has been cleaned up. Both are clearly marked.
+  option, which proves the transport is accepted, but no real mail has been sent and
+  no recovery link redeemed. Sending one needs Mathi's agreement: it is a real
+  message to a real address. KAN-6.
+- **Two fictional polls sit in production.** `Mailtest 30. september - fiktive data`,
+  created this session to check that the mail field appeared, is open with no
+  responses. `Deploymenttest 30. september - fiktive data` from the previous session
+  is finalized. Both are clearly marked as fictional. Neither is cleaned up.
 - **The local development database holds fictional polls** created for the article
   screenshots, including `Sommerfest med naboerne` with six participants. Harmless,
   but it is not a clean database.
-- **Article images.** Eight of ten articles still have none, and the mobile
-  screenshot could not be captured at all. KAN-11, with the reason in section 7.
-- **The Resend choice needs confirming.** See section 7.
+- **Article images.** Eight of ten articles have none, and the mobile screenshot
+  could not be captured at all. KAN-11, with the reason in section 7.
+- **The Resend choice needs confirming** now that its US storage is known. Section 7.
 
 ## 4. Next steps
 
 1. Send one real recovery mail and redeem it, with Mathi's agreement. Use the
-   fictional production poll that already exists. Confirm the link works once and
-   is refused the second time, then close KAN-6.
+   fictional production poll that already exists: open its share screen, register an
+   address, then confirm the link grants organizer access once and is refused the
+   second time. Closes KAN-6, the last launch blocker with code in it.
 
 2. Confirm or change Resend, now that its US storage is known. See section 7.
 
 3. Delete the two fictional production polls when they have served their purpose.
    There is no delete action in the product, so this is a database operation on the
-   server, and it is the only way to remove them before the retention window.
+   server. It is the only way to remove them before the retention window.
 
 4. Run the checks after any change. The full suite is inexpensive:
 
@@ -103,8 +102,11 @@ unfinished sits elsewhere:
 - The five mail clients. KAN-16.
 - How funnel events should be counted without breaking the published promise that
   private pages send nothing. Three options are written up on KAN-14.
-- Whether Kanvi moves out of the Knowledge Base inbox. He has confirmed Mathi ApS
-  as data controller, which points at the company area, but not the move itself.
+- Whether Kanvi moves out of the Knowledge Base inbox. He confirmed Mathi ApS as
+  data controller, which points at the company area, but not the move itself.
+
+He has shell access to the server as the `kanvi` site user, so the backup restore
+and the poll cleanup are reachable without going through CloudPanel's interface.
 
 ## 6. Decisions made, and why
 
@@ -114,17 +116,20 @@ The two written up as ADRs are in `docs/adr/`. `CLAUDE.md` carries the short for
   Chosen over six months and over a twelve-month archive with deletion at
   twenty-four. A year survives an annually recurring event; an archive step would
   have meant explaining two states and keeping data for two years. ADR 0001.
-- **After closure the final date is public; totals and names are not.** A shared
-  link has to be able to tell the group which day it is, because that is the moment
-  the link matters most. Who answered what is a different question. ADR 0002.
+- **After closure the final date is public; totals and names are not.** A shared link
+  has to be able to tell the group which day it is, because that is the moment the
+  link matters most. Who answered what is a different question. ADR 0002.
 - **Mail goes through Resend rather than the server.** The recovery mail is the
   organizer's only way back in, so deliverability beats having one less account.
 - **The work is deployed continuously.** Every finished ticket goes to `main` and
   publishes after green CI, with the browser check afterwards.
-- **Outstanding work lives on the KAN board, not in documents.** This file points
-  at it rather than restating it, so the two cannot drift apart.
+- **Outstanding work lives on the KAN board, not in documents.** This file points at
+  it rather than restating it, so the two cannot drift apart.
 - **The privacy page states the US transfer plainly** rather than softening it,
   because a page whose purpose is accuracy is the wrong place to be vague.
+- **The scheduler's cron job truncates its log rather than appending.** `/dev/null`
+  was rejected: it would also hide a future `php: command not found` after a PHP
+  upgrade, which is the failure this log proved useful for today.
 
 ## 7. Dead ends and corrections
 
@@ -138,8 +143,8 @@ The expensive half. Each of these cost time today.
 - **The release archive names its root files one by one.** With the path fixed, the
   renderer reached PHP and threw a 500, because `design-tokens.json` was never sent.
   The archive now includes it and the deploy script refuses a release without it.
-- **Resend stores data in the United States.** Its own DPA names Plus Five Five,
-  Inc. in San Francisco and states that processing takes place in the US, under the
+- **Resend stores data in the United States.** Its own DPA names Plus Five Five, Inc.
+  in San Francisco and states that processing takes place in the US, under the
   standard contractual clauses and the EU-U.S. Data Privacy Framework. Choosing a
   European sending region only changes where mail is dispatched from. This was not
   known when Resend was chosen, so the choice is worth revisiting rather than
@@ -153,9 +158,10 @@ The expensive half. Each of these cost time today.
   called Mathi passes for the wrong reason. Assert on the state the page was given.
 - **Chrome refuses a window narrower than about 500 px**, so the mobile screenshot
   could not be captured by resizing. It needs another method.
-- **CloudPanel's cron form has separate schedule fields.** Pasting a full crontab
-  line into the command box duplicates the five asterisks and breaks the job. The
-  command field takes the command alone.
+- **CloudPanel's cron form has separate schedule fields**, so the command box takes
+  the command alone; pasting a full crontab line duplicates the five asterisks and
+  breaks the job. The list has no edit action either, only Delete, so changing a
+  command means deleting the row and adding it again.
 - **Piping test output to `tail` hides the exit code**, so a chained `&& git push`
   ran on a failing suite. CI caught it and the deploy never ran. Check the suite's
   own exit code, not the pipeline's.
@@ -164,8 +170,8 @@ The expensive half. Each of these cost time today.
 
 - **A push is a deployment.** Nothing else gates it once CI is green.
 - Retention is driven by `polls.last_activity_at`, not `updated_at`. Saving a
-  response never touched the poll row. Every write path that locks the poll must
-  call `markActive()`, or a poll people are using will be deleted.
+  response never touched the poll row. Every write path that locks the poll must call
+  `markActive()`, or a poll people are using will be deleted.
 - A poll with no `last_activity_at` is never purged. That is deliberate: for an
   irreversible delete, "do not guess" is the safe direction.
 - `admin_recovery_links` does not cascade from `poll_admin_access`, so the purge
@@ -174,8 +180,8 @@ The expensive half. Each of these cost time today.
   one sitemap, separated by the `kind` key in `config/articles.php`. The guide tests
   demand three creation CTAs and nine headings; pages are not held to that.
 - `RecoveryMail::enabled()` refuses the `log` transport by design, so
-  `KANVI_RECOVERY_MAILER` must name a real one or mail stays off however the rest
-  is configured.
+  `KANVI_RECOVERY_MAILER` must name a real one or mail stays off however the rest is
+  configured.
 - Vite build output is gitignored; rebuild assets when CSS or JS changes.
 - `APP_URL` drives canonical URLs, the sitemap, sharing images and email assets.
 - Secrets live only in the server environment file. Never print or copy `.env`, raw
@@ -197,32 +203,33 @@ something older, a deployment failed and the Actions log says why.
 
 ## 10. Verification evidence
 
-Run at the time of writing, on `aeab5bc`:
+Run at the time of writing, on `79a0301`:
 
-- `php artisan test --compact`: 142 passed, 1 skipped, 1,465 assertions. The skip
-  is the driver guard, which only asserts when `EXPECTED_DB_DRIVER` is set.
+- `php artisan test --compact`: 143 passed, 1 skipped, 1,467 assertions. The skip is
+  the driver guard, which only asserts when `EXPECTED_DB_DRIVER` is set.
 - `npm test`: 38 passed. `vendor/bin/pint --test`: passed. `git diff --check`: clean.
-- CI run 36727086389 on this revision: `verify`, `mysql` and `deploy` all green.
-  The preceding run failed on a test assertion and never deployed; `aeab5bc` fixed it.
-- Production serves `aeab5bc`. `/privatliv` returns the controller details, both
-  processors and the transfer wording.
-- The production share screen offers the recovery mail field, which only renders
-  when a real mail transport is configured.
-- The scheduler runs. `shared/storage/logs/schedule.log` repeats `No scheduled
-  commands are ready to run.`, and `php artisan schedule:list` on the server
-  returns `30 3 * * *  php artisan kanvi:purge-polls`, next due in twelve hours.
-  That covers cron firing, `php` resolving on cron's PATH, the app booting and the
+- CI has been green on every push today, including the MySQL job, which runs the full
+  PHP suite against MySQL 8.4 with the seven-process concurrency test.
+- Production serves the current revision. `/privatliv`, `/faq` and `/hjaelp` return
+  200, the sitemap lists 23 URLs, and the generated sharing images return
+  `image/png`.
+- The production share screen offers the recovery mail field, which only renders when
+  a real mail transport is configured.
+- The scheduler runs. Its log repeats `No scheduled commands are ready to run.`, and
+  `php artisan schedule:list` on the server returns the purge with its next due time.
+  That covers cron firing, `php` resolving on cron's PATH, the app booting, and the
   command being registered.
 
-**Not verified:** mail actually being delivered, backup restore, analytics ingestion, Search Console, mail-client rendering, and
-behaviour under load on production MySQL. The cron job has not been observed
-surviving a deployment or a reboot; it runs from the `current` symlink, so it
-should follow a release without being touched, but that is reasoning, not a test.
+**Not verified:** mail actually being delivered, backup restore, analytics ingestion,
+Search Console, mail-client rendering, and behaviour under load on production MySQL.
+The cron job has not been observed surviving a deployment or a reboot; it runs from
+the `current` symlink, so it should follow a release untouched, but that is
+reasoning, not a test.
 
 ## 11. Skills for the next session
 
 - The user's `snapshot` skill for writing and resuming this file.
 - `writing-for-agents` when editing this file, `AGENTS.md` or `CLAUDE.md`.
 - Google Drive for the Knowledge Base overview; Atlassian for the KAN board.
-- Chrome browser automation for production walkthroughs. Note the window-width
-  limit in section 7 before planning a mobile capture.
+- Chrome browser automation for production walkthroughs. Note the window-width limit
+  in section 7 before planning a mobile capture.

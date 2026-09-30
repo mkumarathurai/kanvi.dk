@@ -1,7 +1,6 @@
 # Kanvi session snapshot
 
-Project: Kanvi · Branch: `main` · HEAD: `aeab5bcbca263832b80961cc0ae15871510fb272`
-Recorded: 2026-09-30 16:20 CEST, Europe/Copenhagen.
+Project: Kanvi · Branch: `main` · HEAD: `14863b2` · Recorded: 2026-09-30 16:45 CEST, Europe/Copenhagen.
 
 The snapshot's own commit follows this one, so HEAD is one behind by design.
 
@@ -14,7 +13,7 @@ https://mkumarathurai.atlassian.net/jira/software/c/projects/KAN/boards/575
 
 Kanvi is live at https://kanvi.dk and production serves this exact revision. The
 session began as a review of what Codex had built, turned into a Jira board, and
-then into a day of building: eleven tickets finished and deployed.
+then into a day of building: twelve tickets finished and deployed.
 
 The site gained a privacy page, an FAQ, a help centre, twelve-month retention,
 per-page sharing images and a MySQL job in CI. The sitemap went from 13 to 23
@@ -22,12 +21,12 @@ public URLs. Production mail is now configured with Resend and the organizer's
 recovery option appears on the share screen.
 
 Two production-only defects surfaced along the way, both invisible locally, and
-both are fixed. Retention is implemented but does not yet run: the CloudPanel cron
-job was created this session and has not been confirmed working.
+both are fixed. Retention now runs: Mathi created the CloudPanel cron job and the
+scheduler was verified on the server.
 
 ## 2. What was done
 
-Sixteen commits, `0697a3a` through `aeab5bc`, each carrying its KAN key.
+Eighteen commits, `0697a3a` through `14863b2`, each carrying its KAN key.
 
 - `0697a3a` KAN-17 · Jira convention and the decided product rules in `CLAUDE.md`.
 - `d8ea103` KAN-19 · Homepage trial poll shows participants, totals, unanswered.
@@ -41,8 +40,9 @@ Sixteen commits, `0697a3a` through `aeab5bc`, each carrying its KAN key.
 - `5f11548` KAN-6 · Resend transport installed and pinned by tests.
 - `6620105` KAN-11 · Two real product screenshots in the date poll article.
 - `43e64a6`, `16119c0` KAN-18 · This file, rewritten against reality.
-- `5ec5673`, `6947140` KAN-12 · The two production defects in section 8.
+- `5ec5673`, `6947140` KAN-12 · The two production defects in section 7.
 - `fc368bb`, `aeab5bc` KAN-21 · Controller, processors and the transfer to the US.
+- `5f4c95c`, `14863b2` KAN-18, KAN-20 · This file, and making a failed purge visible.
 
 Server changes Mathi made, outside the repository: the production environment file
 now names Resend and `KANVI_RECOVERY_MAILER`, and a CloudPanel cron job runs
@@ -53,11 +53,6 @@ now names Resend and `KANVI_RECOVERY_MAILER`, and a CloudPanel cron job runs
 The working tree is clean, nothing is unpushed and there are no stashes. What is
 unfinished sits elsewhere:
 
-- **The scheduler is unverified.** The cron job exists and its command is right,
-  but nobody has read `shared/storage/logs/schedule.log` yet. Until someone does,
-  we do not know that cron fires, that `php` resolves on cron's PATH, or that the
-  app boots. The privacy page and the FAQ both promise the twelve-month deletion,
-  so this is the gap that matters most. KAN-20.
 - **Mail is configured but never delivered.** The share screen offers the recovery
   option, which proves the transport is accepted, but no real mail has been sent
   and no recovery link has been redeemed. Sending one needs Mathi's say-so because
@@ -70,34 +65,26 @@ unfinished sits elsewhere:
   screenshots, including `Sommerfest med naboerne` with six participants. Harmless,
   but it is not a clean database.
 - **Article images.** Eight of ten articles still have none, and the mobile
-  screenshot could not be captured at all. KAN-11, with the reason in section 8.
+  screenshot could not be captured at all. KAN-11, with the reason in section 7.
 - **The Resend choice needs confirming.** See section 7.
+- **The cron log grows.** It uses `>>`, so it gains three lines a minute, about
+  25 MB a year. Changing it to a single `>` keeps only the most recent run.
+  `/dev/null` was rejected: it would also hide a future `php: command not found`
+  after a PHP upgrade, which is the failure this log is useful for.
 
 ## 4. Next steps
 
-1. Read the scheduler log. It is the one thing blocking a promise already published.
-   In CloudPanel's file manager, or over SSH as the site user:
-
-   ```sh
-   tail -n 20 /home/kanvi/htdocs/kanvi.dk/shared/storage/logs/schedule.log
-   ```
-
-   Expect `No scheduled commands are ready to run.` once a minute. If it says
-   `php: command not found`, put the full path to PHP in the cron command. Once it
-   is confirmed, change the redirect to `/dev/null` so the file stops growing by a
-   line a minute, and close KAN-20.
-
-2. Send one real recovery mail and redeem it, with Mathi's agreement. Use the
+1. Send one real recovery mail and redeem it, with Mathi's agreement. Use the
    fictional production poll that already exists. Confirm the link works once and
    is refused the second time, then close KAN-6.
 
-3. Confirm or change Resend, now that its US storage is known. See section 7.
+2. Confirm or change Resend, now that its US storage is known. See section 7.
 
-4. Delete the two fictional production polls when they have served their purpose.
+3. Delete the two fictional production polls when they have served their purpose.
    There is no delete action in the product, so this is a database operation on the
    server, and it is the only way to remove them before the retention window.
 
-5. Run the checks after any change. The full suite is inexpensive:
+4. Run the checks after any change. The full suite is inexpensive:
 
    ```sh
    php artisan test --compact
@@ -109,7 +96,6 @@ unfinished sits elsewhere:
 
 ## 5. Waiting on Mathi
 
-- The scheduler log, and the decision to keep or change the cron command.
 - Permission to send the test recovery mail.
 - Whether Resend stays, given that it stores data in the United States.
 - A tested backup restore on the server. KAN-7.
@@ -222,10 +208,16 @@ Run at the time of writing, on `aeab5bc`:
   processors and the transfer wording.
 - The production share screen offers the recovery mail field, which only renders
   when a real mail transport is configured.
+- The scheduler runs. `shared/storage/logs/schedule.log` repeats `No scheduled
+  commands are ready to run.`, and `php artisan schedule:list` on the server
+  returns `30 3 * * *  php artisan kanvi:purge-polls`, next due in twelve hours.
+  That covers cron firing, `php` resolving on cron's PATH, the app booting and the
+  command being registered.
 
-**Not verified:** the scheduler actually running, mail actually being delivered,
-backup restore, analytics ingestion, Search Console, mail-client rendering, and
-behaviour under load on production MySQL.
+**Not verified:** mail actually being delivered, backup restore, analytics ingestion, Search Console, mail-client rendering, and
+behaviour under load on production MySQL. The cron job has not been observed
+surviving a deployment or a reboot; it runs from the `current` symlink, so it
+should follow a release without being touched, but that is reasoning, not a test.
 
 ## 11. Skills for the next session
 

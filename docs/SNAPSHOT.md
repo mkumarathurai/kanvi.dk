@@ -70,6 +70,13 @@ mail-client rendering, and behaviour under load on production MySQL.
 - **Retention deletes data and nothing runs it yet.** `kanvi:purge-polls` is
   scheduled daily, but the server runs no scheduler, so the command never fires.
   That is KAN-20, and the privacy page promises the deletion.
+- **Anything generated at request time is invisible locally and broken in
+  production twice over.** The web server serves paths ending in an image, script
+  or style extension itself, so they never reach PHP: that is why no route may end
+  in one, and `RoutePathsTest` fails the build if one does. And the release
+  archive names its root files explicitly, so `design-tokens.json` was missing
+  until the deploy script started refusing a release without it. The poll link
+  preview had both defects from the day it was written.
 - `polls.last_activity_at` drives retention. Every write path that locks the poll
   must call `markActive()`. Saving a response never touched the poll row's
   `updated_at`, which is why retention does not use it.

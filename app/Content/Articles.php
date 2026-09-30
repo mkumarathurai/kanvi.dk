@@ -19,10 +19,17 @@ final class Articles
         return array_filter($this->all(), fn ($article) => $article['kind'] === 'guide');
     }
 
-    public function find(string $key): array
+    public function meta(string $key): array
     {
         $article = $this->all()[$key] ?? null;
         abort_unless($article, 404);
+
+        return $article;
+    }
+
+    public function find(string $key): array
+    {
+        $article = $this->meta($key);
 
         $markdown = file_get_contents(resource_path("content/articles/{$key}.md"));
         $html = Str::markdown($markdown, ['html_input' => 'strip', 'allow_unsafe_links' => false]);

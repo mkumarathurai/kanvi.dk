@@ -43,7 +43,8 @@ Canonical og sitemap bruger `APP_URL`, som skal være `https://kanvi.dk` i
 produktion. Private afstemninger og administrationssider er ikke med i sitemap;
 deres eksisterende noindex-beskyttelse er bevaret.
 
-De planlagte screenshots og artikel-specifikke `og:image` mangler fortsat.
+Hver side har sit eget `og:image` på `/deling/<nøgle>.png`, tegnet af den samme
+renderer som afstemningernes linkpreview. De planlagte screenshots mangler fortsat.
 Klasseartiklen har nu illustrationer til brugsscenarier og beskedtråd kontra
 overblik; de øvrige illustrationer mangler. Billedbriefs er bevaret i oplæggene, men vises ikke på
 de offentlige sider. Tilføj de rigtige produktbilleder med dimensioner og alt-tekst

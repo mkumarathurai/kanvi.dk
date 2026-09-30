@@ -18,6 +18,8 @@ Route::get('/sitemap.xml', [ArticleController::class, 'sitemap'])->name('sitemap
 foreach (config('articles') as $key => $article) {
     Route::get($article['path'], [ArticleController::class, 'show'])->defaults('article', $key)->name('articles.'.$key);
 }
+Route::get('/deling/{article}.png', [ArticleController::class, 'preview'])
+    ->whereIn('article', array_keys(config('articles')))->name('articles.preview');
 
 Route::middleware(PrivatePollHeaders::class)->group(function () {
     Route::get('/adgang/link/{token}', [PollRecoveryController::class, 'open'])->where('token', '[a-f0-9]{64}')->middleware('throttle:60,1')->name('recovery.open');

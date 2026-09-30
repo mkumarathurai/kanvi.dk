@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Content\Articles;
+use App\Domain\Polls\Services\PollPreview;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
 
@@ -67,8 +68,21 @@ class ArticleController extends Controller
                 'title' => $page['seo_title'],
                 'description' => $page['description'],
                 'canonical' => $articles->url($page['path']),
+                'image' => $articles->url('/deling/'.$article.'.png'),
                 'breadcrumbs' => $breadcrumbs,
             ],
+        ]);
+    }
+
+    /**
+     * The sharing image, drawn from the page title with the same renderer as poll
+     * previews. Without it every shared article previewed identically.
+     */
+    public function preview(string $article, Articles $articles, PollPreview $preview): Response
+    {
+        return response($preview->render($articles->meta($article)['title'], 'Læs på kanvi.dk'), 200, [
+            'Content-Type' => 'image/png',
+            'Cache-Control' => 'public, max-age=86400',
         ]);
     }
 

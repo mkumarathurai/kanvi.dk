@@ -4,7 +4,7 @@ namespace App\Domain\Polls\Services;
 
 final class PollPreview
 {
-    public function render(string $title): string
+    public function render(string $title, string $action = 'Svar på Kanvi'): string
     {
         $tokens = json_decode(file_get_contents(base_path('design-tokens.json')), true, flags: JSON_THROW_ON_ERROR)['brand'];
         $image = imagecreatetruecolor(1200, 630);
@@ -33,11 +33,14 @@ final class PollPreview
         }
         imagettftext($image, 25, 0, 80, 445, $color('navy'), $font, 'Find en dag, der passer gruppen.');
         imageline($image, 80, 488, 1120, 488, $color('border'));
-        imagettftext($image, 24, 0, 80, 553, $color('navy'), $font, 'Svar på Kanvi');
+        imagettftext($image, 24, 0, 80, 553, $color('navy'), $font, $action);
         imagesetthickness($image, 3);
-        imageline($image, 308, 542, 340, 542, $color('navy'));
-        imageline($image, 331, 533, 340, 542, $color('navy'));
-        imageline($image, 331, 551, 340, 542, $color('navy'));
+        // The arrow follows the action text, which differs between a poll and an article.
+        $box = imagettfbbox(24, 0, $font, $action);
+        $tip = 80 + ($box[2] - $box[0]) + 92;
+        imageline($image, $tip - 32, 542, $tip, 542, $color('navy'));
+        imageline($image, $tip - 9, 533, $tip, 542, $color('navy'));
+        imageline($image, $tip - 9, 551, $tip, 542, $color('navy'));
         imagefilledellipse($image, 1090, 547, 18, 18, $color('green'));
         ob_start();
         imagepng($image);

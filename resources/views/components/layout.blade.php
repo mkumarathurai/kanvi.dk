@@ -15,7 +15,14 @@
         <meta property="og:title" content="{{ $seo['title'] }}">
         <meta property="og:description" content="{{ $seo['description'] }}">
         <meta property="og:url" content="{{ $seo['canonical'] }}">
-        <meta name="twitter:card" content="summary">
+        @isset ($seo['image'])
+            <meta property="og:image" content="{{ $seo['image'] }}">
+            <meta property="og:image:type" content="image/png">
+            <meta property="og:image:width" content="1200">
+            <meta property="og:image:height" content="630">
+            <meta property="og:image:alt" content="{{ $seo['title'] }}">
+        @endisset
+        <meta name="twitter:card" content="{{ isset($seo['image']) ? 'summary_large_image' : 'summary' }}">
         @php
             $graph = [['@type' => 'WebPage', 'name' => $seo['title'], 'description' => $seo['description'], 'url' => $seo['canonical'], 'inLanguage' => 'da', 'publisher' => ['@type' => 'Organization', 'name' => 'Kanvi']]];
             if (isset($seo['breadcrumbs'])) {

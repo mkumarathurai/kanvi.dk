@@ -111,10 +111,11 @@ navne og svar ligger.
 
 **Resend** sender vores mails. Vælger du som arrangør at gemme en mailadresse,
 bliver den sendt til Resend, for at mailen kan komme frem. Resend drives af Plus
-Five Five, Inc. i USA, og selskabet opbevarer data i USA. Overførslen sker på
-grundlag af EU-Kommissionens standardkontraktbestemmelser og EU-U.S. Data Privacy
-Framework. Det gælder kun arrangørens mailadresse og indholdet af den mail, vi
-sender. Deltagernavne og svar forlader ikke serveren i Tyskland.
+Five Five, Inc. i USA, og selskabet opbevarer data i USA.
+Overførslen sker på grundlag af EU-Kommissionens standardkontraktbestemmelser
+og EU-U.S. Data Privacy Framework.
+Det gælder kun arrangørens mailadresse og indholdet af den mail, vi sender.
+Deltagernavne og svar forlader ikke serveren i Tyskland.
 
 ## Hvor længe vi gemmer det
 

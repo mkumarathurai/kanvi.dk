@@ -88,13 +88,15 @@ afstemningslink kan ikke havne i statistikken ved et uheld.
 
 Kanvi sender ingen nyhedsbreve og ingen reklamer.
 
-Som arrangør kan du vælge at gemme en mailadresse, så du kan få et nyt
-administrationslink, hvis du mister det. Vælger du det, bruger vi adressen til
-netop det og intet andet. Adgangslinket i mailen kan kun bruges én gang og udløber
-efter en halv time. Mailen bliver sendt gennem vores mailtjeneste Resend, som
-sender den på vores vegne.
+Lige nu sender Kanvi slet ingen mails, og vi beder dig derfor ikke om en
+mailadresse noget sted. Har du ikke givet os en, har vi ingen at gemme.
 
-Gemmer du ingen mailadresse, har vi ingen at gemme.
+Vi er ved at sætte en mailtjeneste op, så en arrangør kan vælge at gemme en
+adresse og få et nyt administrationslink, hvis linket bliver væk. Når det er på
+plads, bruger vi adressen til netop det og intet andet, adgangslinket i mailen kan
+kun bruges én gang, og det udløber efter en halv time. Mailen bliver sendt gennem
+mailtjenesten Resend, som sender den på vores vegne. Vi opdaterer denne tekst, når
+det er slået til.
 
 ## Hvor længe vi gemmer det
 

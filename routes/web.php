@@ -18,7 +18,9 @@ Route::get('/sitemap.xml', [ArticleController::class, 'sitemap'])->name('sitemap
 foreach (config('articles') as $key => $article) {
     Route::get($article['path'], [ArticleController::class, 'show'])->defaults('article', $key)->name('articles.'.$key);
 }
-Route::get('/deling/{article}.png', [ArticleController::class, 'preview'])
+// No file extension: the host serves .png as a static file, so such a path never
+// reaches PHP. See the regression test in RoutePathsTest.
+Route::get('/deling/{article}', [ArticleController::class, 'preview'])
     ->whereIn('article', array_keys(config('articles')))->name('articles.preview');
 
 Route::middleware(PrivatePollHeaders::class)->group(function () {
@@ -28,7 +30,7 @@ Route::middleware(PrivatePollHeaders::class)->group(function () {
     Route::get('/p/{poll}/adgang', [PollRecoveryController::class, 'show'])->name('recovery.request');
     Route::post('/p/{poll}/adgang', [PollRecoveryController::class, 'request'])->middleware('throttle:recovery-mail')->name('recovery.send');
     Route::post('/p/{poll}/recovery-mail', [PollRecoveryController::class, 'register'])->middleware('throttle:recovery-mail')->name('recovery.register');
-    Route::get('/p/{poll}/preview.png', PollPreviewController::class)->middleware('throttle:60,1')->name('polls.preview');
+    Route::get('/p/{poll}/preview', PollPreviewController::class)->middleware('throttle:60,1')->name('polls.preview');
     Route::get('/p/{poll}/administrer', [PollManagementController::class, 'show'])->name('polls.manage');
     Route::post('/p/{poll}/administrer/{action}', [PollManagementController::class, 'update'])
         ->whereIn('action', ['add', 'remove', 'finalize', 'reopen', 'close'])->name('polls.manage.update');

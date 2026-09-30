@@ -24,7 +24,7 @@ class PollPreviewTest extends TestCase
         ]);
         $response = $this->get(route('polls.show', $created->poll));
         $response->assertOk()->assertSee('property="og:title"', false)
-            ->assertSee('https://kanvi.example/p/'.$created->poll->public_id.'/preview.png', false)
+            ->assertSee('https://kanvi.example/p/'.$created->poll->public_id.'/preview', false)
             ->assertSee('&lt;script&gt;bad&lt;/script&gt;', false)
             ->assertDontSee('PrivatePerson')->assertDontSee($created->adminToken)
             ->assertHeader('X-Robots-Tag', 'noindex, nofollow');

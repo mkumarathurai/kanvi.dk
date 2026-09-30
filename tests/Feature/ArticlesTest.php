@@ -169,7 +169,7 @@ class ArticlesTest extends TestCase
             @$document->loadHTML('<?xml encoding="utf-8" ?>'.$this->get($article['path'])->assertOk()->getContent());
             $xpath = new DOMXPath($document);
             $image = $xpath->query('//meta[@property="og:image"]')->item(0)->getAttribute('content');
-            $this->assertSame(app(Articles::class)->url('/deling/'.$key.'.png'), $image);
+            $this->assertSame(app(Articles::class)->url('/deling/'.$key), $image);
             $this->assertSame('1200', $xpath->query('//meta[@property="og:image:width"]')->item(0)->getAttribute('content'));
             $this->assertSame('630', $xpath->query('//meta[@property="og:image:height"]')->item(0)->getAttribute('content'));
             $this->assertSame('summary_large_image', $xpath->query('//meta[@name="twitter:card"]')->item(0)->getAttribute('content'));
@@ -180,15 +180,15 @@ class ArticlesTest extends TestCase
 
     public function test_the_sharing_image_is_a_real_png_and_only_serves_configured_pages(): void
     {
-        $response = $this->get('/deling/faq.png')->assertOk()
+        $response = $this->get('/deling/faq')->assertOk()
             ->assertHeader('Content-Type', 'image/png')
             ->assertHeader('Cache-Control', 'max-age=86400, public');
 
         [$width, $height, $type] = getimagesizefromstring($response->getContent());
         $this->assertSame([1200, 630, IMAGETYPE_PNG], [$width, $height, $type]);
 
-        $this->get('/deling/ukendt.png')->assertNotFound();
-        $this->get('/deling/../privatliv.png')->assertNotFound();
+        $this->get('/deling/ukendt')->assertNotFound();
+        $this->get('/deling/../privatliv')->assertNotFound();
     }
 
     public static function helpPages(): array

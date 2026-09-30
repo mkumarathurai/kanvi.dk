@@ -68,7 +68,7 @@ class ArticleController extends Controller
                 'title' => $page['seo_title'],
                 'description' => $page['description'],
                 'canonical' => $articles->url($page['path']),
-                'image' => $articles->url('/deling/'.$article.'.png'),
+                'image' => $articles->url('/deling/'.$article),
                 'breadcrumbs' => $breadcrumbs,
             ],
         ]);

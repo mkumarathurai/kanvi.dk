@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Actions\Polls\ClosePoll;
 use App\Actions\Polls\CreatedPoll;
 use App\Actions\Polls\CreatePoll;
+use App\Actions\Polls\FinalizePoll;
 use App\Actions\Polls\SubmitResponse;
 use App\Domain\Polls\Models\AdminRecoveryLink;
 use App\Domain\Polls\Models\Poll;
@@ -91,6 +92,19 @@ class PollRetentionTest extends TestCase
         foreach (array_keys($tables) as $table) {
             $this->assertDatabaseCount($table, 0);
         }
+    }
+
+    public function test_a_finalized_poll_is_deleted_although_it_points_at_its_own_option(): void
+    {
+        $created = $this->poll();
+        app(FinalizePoll::class)->handle($created->poll, $created->adminAccess->id,
+            $created->poll->refresh()->management_version, $created->poll->options()->first()->id);
+        $this->lastActive($created->poll, now()->subMonths($this->window)->subDay());
+
+        $this->artisan('kanvi:purge-polls')->assertSuccessful();
+
+        $this->assertDatabaseCount('polls', 0);
+        $this->assertDatabaseCount('poll_options', 0);
     }
 
     public function test_answering_or_administering_a_poll_restarts_the_retention_clock(): void

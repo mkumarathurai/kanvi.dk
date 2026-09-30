@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Content\Articles;
 use DOMDocument;
 use DOMXPath;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class ArticlesTest extends TestCase
@@ -82,11 +83,18 @@ class ArticlesTest extends TestCase
         config(['app.url' => 'https://kanvi.dk']);
         $response = $this->get('/sitemap.xml')->assertOk()->assertHeader('Content-Type', 'application/xml; charset=UTF-8');
         $xml = simplexml_load_string($response->getContent());
-        $this->assertCount(15, $xml->url);
+        $this->assertCount(23, $xml->url);
         foreach (config('articles') as $article) {
             $response->assertSee('https://kanvi.dk'.$article['path']);
         }
-        $response->assertDontSee('/p/')->assertDontSee('/admin/')->assertDontSee('/adgang/')->assertDontSee('/opret');
+        // Exact URLs: /hjaelp/opret-afstemning belongs here and contains "/opret".
+        // Keys must not be preserved; every <url> shares the name and would collapse to one.
+        $urls = array_map('strval', iterator_to_array($xml->url, false));
+        $this->assertCount(23, $urls);
+        foreach (['/p/', '/admin/', '/adgang/'] as $private) {
+            $this->assertEmpty(array_filter($urls, fn ($url) => str_contains($url, $private)));
+        }
+        $this->assertNotContains('https://kanvi.dk/opret', $urls);
     }
 
     public function test_class_event_article_has_contextual_links_ctas_and_truthful_product_guidance(): void
@@ -137,6 +145,60 @@ class ArticlesTest extends TestCase
             }
         }
         $response->assertSee('Illustreret eksempel: 7. november passer 19 familier');
+    }
+
+    public static function helpPages(): array
+    {
+        return [['/hjaelp/opret-afstemning'], ['/hjaelp/stem'], ['/hjaelp/del-afstemning'],
+            ['/hjaelp/aendre-svar'], ['/hjaelp/vaelg-dato'], ['/hjaelp/rediger-afstemning'],
+            ['/hjaelp/slet-afstemning']];
+    }
+
+    #[DataProvider('helpPages')]
+    public function test_each_help_page_renders_with_its_own_metadata_and_breadcrumb(string $path): void
+    {
+        $response = $this->get($path)->assertOk();
+        $article = collect(config('articles'))->firstWhere('path', $path);
+
+        $document = new DOMDocument;
+        @$document->loadHTML('<?xml encoding="utf-8" ?>'.$response->getContent());
+        $xpath = new DOMXPath($document);
+        $this->assertSame(1, $xpath->query('//h1')->length);
+        $this->assertSame($article['title'], $xpath->query('//h1')->item(0)->textContent);
+        $this->assertSame(app(Articles::class)->url($path),
+            $xpath->query('//link[@rel="canonical"]')->item(0)->getAttribute('href'));
+        $schema = json_decode($xpath->query('//script[@type="application/ld+json"]')->item(0)->textContent, true, flags: JSON_THROW_ON_ERROR);
+        $this->assertSame(['Forside', 'Hjælp', $article['label']], array_column($schema['@graph'][1]['itemListElement'], 'name'));
+        $this->assertGreaterThan(1, $xpath->query('//div[@class="article-prose"]//h2')->length);
+    }
+
+    public function test_the_help_index_lists_every_help_page_and_the_privacy_page(): void
+    {
+        $index = $this->get('/hjaelp')->assertOk();
+
+        foreach (array_merge(array_column($this->helpPages(), 0), ['/privatliv']) as $path) {
+            $index->assertSee('href="'.url($path).'"', false);
+        }
+        $this->get('/hjaelp/ukendt')->assertNotFound();
+    }
+
+    public function test_help_pages_stay_out_of_the_guide_listings(): void
+    {
+        foreach (['/guides', '/til'] as $path) {
+            $document = new DOMDocument;
+            @$document->loadHTML('<?xml encoding="utf-8" ?>'.$this->get($path)->assertOk()->getContent());
+            $xpath = new DOMXPath($document);
+            $this->assertSame(0, $xpath->query('//*[contains(@class,"guide-card-grid")]//a[starts-with(@href,"'.url('/hjaelp').'")]')->length);
+        }
+    }
+
+    /** There is no delete button in the product, so the page must not invent one. */
+    public function test_the_deletion_help_page_matches_what_the_product_actually_offers(): void
+    {
+        $this->get('/hjaelp/slet-afstemning')->assertOk()
+            ->assertSee('Der er ikke en slet-knap i Kanvi')
+            ->assertSee('tolv måneder')
+            ->assertSee('mail@kanvi.dk');
     }
 
     public function test_the_privacy_page_names_the_controller_contact_retention_and_analytics(): void

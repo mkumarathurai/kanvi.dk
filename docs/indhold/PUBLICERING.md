@@ -26,7 +26,8 @@ Den offentlige tekst lover kun funktioner, der findes i produktet:
 - Svarfrister kommunikeres i beskeden til gruppen; afstemningen lukker ikke automatisk.
 - En neutral titel beskytter ikke adgang. Alle med det offentlige link kan åbne
   afstemningen, og linkpreview kan vise titlen.
-- FAQ-links peger foreløbigt på forsidens FAQ, fordi `/faq` ikke findes endnu.
+- FAQ-links peger på `/faq`, som blev udgivet 30. september 2026. Forsidens korte
+  FAQ er bevaret og linker videre til den fulde side.
 
 Doodles produktoversigt er linket som kilde i sammenligningsartiklen.
 
@@ -34,7 +35,8 @@ Doodles produktoversigt er linket som kilde i sammenligningsartiklen.
 
 Siderne har én H1, individuelle metadata, canonical URL, Open Graph-tekst,
 `WebPage`- og `BreadcrumbList`-data samt server-renderet hovedindhold.
-`/sitemap.xml` indeholder forsiden, begge oversigter og de ti artikler.
+`/sitemap.xml` indeholder forsiden, de tre oversigter, de ti artikler, `/faq`,
+`/privatliv` og de syv hjælpesider: 23 adresser i alt.
 `public/robots.txt` henviser til sitemap på produktionsdomænet.
 
 Canonical og sitemap bruger `APP_URL`, som skal være `https://kanvi.dk` i

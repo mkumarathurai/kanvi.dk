@@ -62,7 +62,7 @@
         </header>
         <main id="main">{{ $slot }}</main>
         <footer class="site-footer">
-            @unless ($private)<nav class="footer-content-links" aria-label="Mere om Kanvi"><a href="{{ route('articles.index') }}">Guides og inspiration</a><a href="{{ route('articles.situations') }}">Find en dag til …</a><a href="{{ route('articles.faq') }}">Spørgsmål og svar</a></nav>@endunless
+            @unless ($private)<nav class="footer-content-links" aria-label="Mere om Kanvi"><a href="{{ route('articles.index') }}">Guides og inspiration</a><a href="{{ route('articles.situations') }}">Find en dag til …</a><a href="{{ route('articles.faq') }}">Spørgsmål og svar</a><a href="{{ route('articles.help') }}">Hjælp</a></nav>@endunless
             {{-- Participants hand over their name on private pages, so this link belongs there too. --}}
             <nav class="footer-legal-links" aria-label="Privatliv og data"><a href="{{ route('articles.privatliv') }}">Privatliv og data</a></nav>
             <div lang="en">

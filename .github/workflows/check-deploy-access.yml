@@ -1,0 +1,53 @@
+name: Check deployment access
+
+# Read-only connectivity test; does not install or activate a release.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    environment: production
+    env:
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+      SSH_PORT: ${{ secrets.SSH_PORT }}
+      SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+      DEPLOY_PATH: ${{ vars.DEPLOY_PATH }}
+    steps:
+      - name: Prepare deployment credentials
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+        run: |
+          set -euo pipefail
+          [[ "$SSH_HOST" =~ ^[a-zA-Z0-9][a-zA-Z0-9.-]*$ ]]
+          [[ "$SSH_USERNAME" == kanvi ]]
+          [[ "$SSH_PORT" =~ ^[0-9]{1,5}$ ]] && (( 10#$SSH_PORT >= 1 && 10#$SSH_PORT <= 65535 ))
+          [[ "$DEPLOY_PATH" =~ ^/[a-zA-Z0-9_./-]+$ && "$DEPLOY_PATH" != / && "$DEPLOY_PATH" != *..* ]]
+          [[ -n "$SSH_PRIVATE_KEY" && -n "$SSH_KNOWN_HOSTS" ]]
+          umask 077
+          mkdir -p "$HOME/.ssh"
+          printf '%s\n' "$SSH_PRIVATE_KEY" > "$HOME/.ssh/kanvi_deploy"
+          printf '%s\n' "$SSH_KNOWN_HOSTS" > "$HOME/.ssh/kanvi_known_hosts"
+      - name: Verify SSH identity and site access without changing the server
+        run: |
+          set -euo pipefail
+          ssh -i "$HOME/.ssh/kanvi_deploy" -p "$SSH_PORT" \
+            -o BatchMode=yes -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes \
+            -o UserKnownHostsFile="$HOME/.ssh/kanvi_known_hosts" -o ConnectTimeout=15 \
+            "$SSH_USERNAME@$SSH_HOST" "bash -s -- '$DEPLOY_PATH'" <<'REMOTE'
+          set -euo pipefail
+          [[ "$(id -un)" == kanvi ]]
+          test -d "$1"
+          test -w "$1"
+          php -r 'if (PHP_VERSION_ID < 80400) { exit(1); } echo "PHP ".PHP_VERSION."\n";'
+          printf '%s\n' 'Verified: SSH host key, deployment key, site user and writable site directory.'
+          REMOTE
+      - name: Remove runner SSH credentials
+        if: always()
+        run: rm -f "$HOME/.ssh/kanvi_deploy" "$HOME/.ssh/kanvi_known_hosts"

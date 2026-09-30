@@ -6,6 +6,11 @@ gemt, hvem der kan se det, og hvornår det bliver slettet.
 
 Mathi ApS er dataansvarlig for Kanvi.
 
+Mathi ApS
+CVR 32890032
+Nygårdsvænget 25
+8370 Hadsten
+
 Har du spørgsmål til dine data, eller vil du have en afstemning slettet, så skriv
 til [mail@kanvi.dk](mailto:mail@kanvi.dk). Vi svarer så hurtigt vi kan.
 
@@ -88,15 +93,28 @@ afstemningslink kan ikke havne i statistikken ved et uheld.
 
 Kanvi sender ingen nyhedsbreve og ingen reklamer.
 
-Lige nu sender Kanvi slet ingen mails, og vi beder dig derfor ikke om en
-mailadresse noget sted. Har du ikke givet os en, har vi ingen at gemme.
+Deltagere bliver aldrig bedt om en mailadresse. Svarer du på en afstemning, har vi
+ingen adresse på dig og kan ikke skrive til dig.
 
-Vi er ved at sætte en mailtjeneste op, så en arrangør kan vælge at gemme en
-adresse og få et nyt administrationslink, hvis linket bliver væk. Når det er på
-plads, bruger vi adressen til netop det og intet andet, adgangslinket i mailen kan
-kun bruges én gang, og det udløber efter en halv time. Mailen bliver sendt gennem
-mailtjenesten Resend, som sender den på vores vegne. Vi opdaterer denne tekst, når
-det er slået til.
+Som arrangør kan du vælge at gemme en mailadresse, så du kan få et nyt
+administrationslink, hvis du mister det. Vælger du det, bruger vi adressen til
+netop det og intet andet. Adgangslinket i mailen kan kun bruges én gang og udløber
+efter en halv time. Gemmer du ingen adresse, har vi ingen at gemme.
+
+## Hvem behandler data for os
+
+Vi bruger to virksomheder til at drive Kanvi. Ingen af dem må bruge dine
+oplysninger til deres eget formål.
+
+**Hetzner** står for serveren. Den står i Tyskland, og det er dér, afstemninger,
+navne og svar ligger.
+
+**Resend** sender vores mails. Vælger du som arrangør at gemme en mailadresse,
+bliver den sendt til Resend, for at mailen kan komme frem. Resend drives af Plus
+Five Five, Inc. i USA, og selskabet opbevarer data i USA. Overførslen sker på
+grundlag af EU-Kommissionens standardkontraktbestemmelser og EU-U.S. Data Privacy
+Framework. Det gælder kun arrangørens mailadresse og indholdet af den mail, vi
+sender. Deltagernavne og svar forlader ikke serveren i Tyskland.
 
 ## Hvor længe vi gemmer det
 

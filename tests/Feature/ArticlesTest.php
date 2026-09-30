@@ -250,10 +250,16 @@ class ArticlesTest extends TestCase
         $response = $this->get('/privatliv')->assertOk();
 
         $response->assertSee('Mathi ApS')
+            ->assertSee('CVR 32890032')
             ->assertSee('mail@kanvi.dk')
             ->assertSee('tolv måneder')
             ->assertSee('Umami')
             ->assertDontSee('noindex');
+
+        // The processors and the transfer out of the EU are required disclosures.
+        $response->assertSee('Hetzner')->assertSee('Tyskland')
+            ->assertSee('Resend')->assertSee('USA')
+            ->assertSee('EU-U.S. Data Privacy Framework');
         $this->assertFalse($response->headers->has('X-Robots-Tag'));
 
         $document = new DOMDocument;

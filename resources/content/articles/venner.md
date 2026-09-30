@@ -424,4 +424,4 @@ Vælg den dato, der passer flest, prioritér de personer, der skal være med, el
 
 Vil du sammenligne værktøjer? Læs om Kanvi som et [enkelt alternativ til Doodle](/doodle-alternativ).
 
-Har du spørgsmål til selve Kanvi? Find svar i vores [spørgsmål og svar](/#spoergsmaal).
+Har du spørgsmål til selve Kanvi? Find svar i vores [spørgsmål og svar](/faq).

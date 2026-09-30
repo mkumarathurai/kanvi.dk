@@ -356,4 +356,4 @@ I kan vælge den dato, hvor flest nødvendige deltagere kan, eller lave en ny af
 
 Vil du sammenligne værktøjer? Læs om Kanvi som et [enkelt alternativ til Doodle](/doodle-alternativ).
 
-Har du spørgsmål til selve Kanvi? Find svar i vores [spørgsmål og svar](/#spoergsmaal).
+Har du spørgsmål til selve Kanvi? Find svar i vores [spørgsmål og svar](/faq).

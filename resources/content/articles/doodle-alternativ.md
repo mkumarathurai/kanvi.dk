@@ -252,4 +252,4 @@ Et link til en afstemning kan deles gennem den kanal, gruppen normalt bruger. De
 
 Vælg den dato, hvor flest relevante deltagere kan, eller opret en ny afstemning med nogle nye muligheder.
 
-Har du spørgsmål til selve Kanvi? Find svar i vores [spørgsmål og svar](/#spoergsmaal).
+Har du spørgsmål til selve Kanvi? Find svar i vores [spørgsmål og svar](/faq).

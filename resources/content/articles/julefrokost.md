@@ -390,4 +390,4 @@ Til de fleste julefrokoster vil nogle få realistiske muligheder være nok. Fire
 
 Vil du sammenligne værktøjer? Læs om Kanvi som et [enkelt alternativ til Doodle](/doodle-alternativ).
 
-Har du spørgsmål til selve Kanvi? Find svar i vores [spørgsmål og svar](/#spoergsmaal).
+Har du spørgsmål til selve Kanvi? Find svar i vores [spørgsmål og svar](/faq).

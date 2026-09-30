@@ -370,4 +370,4 @@ Ja. Linket kan deles direkte i den gruppechat, deltagerne allerede bruger.
 
 Vil du sammenligne værktøjer? Læs om Kanvi som et [enkelt alternativ til Doodle](/doodle-alternativ).
 
-Har du spørgsmål til selve Kanvi? Find svar i vores [spørgsmål og svar](/#spoergsmaal).
+Har du spørgsmål til selve Kanvi? Find svar i vores [spørgsmål og svar](/faq).

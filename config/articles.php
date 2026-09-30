@@ -94,6 +94,15 @@ return [
 
     // Informational pages. They share the article renderer, routes and sitemap,
     // but they are not guides and the guide index leaves them out.
+    'faq' => [
+        'path' => '/faq',
+        'title' => 'Spørgsmål og svar om Kanvi',
+        'seo_title' => 'Spørgsmål og svar | Kanvi',
+        'description' => 'Svar på det, folk oftest spørger om: konto, deling, ændring af svar, hvem der kan se hvad, og hvor længe en afstemning bliver gemt.',
+        'label' => 'Spørgsmål og svar',
+        'group' => 'Om Kanvi',
+        'kind' => 'page',
+    ],
     'privatliv' => [
         'path' => '/privatliv',
         'title' => 'Privatliv og data',

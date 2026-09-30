@@ -82,7 +82,7 @@ class ArticlesTest extends TestCase
         config(['app.url' => 'https://kanvi.dk']);
         $response = $this->get('/sitemap.xml')->assertOk()->assertHeader('Content-Type', 'application/xml; charset=UTF-8');
         $xml = simplexml_load_string($response->getContent());
-        $this->assertCount(14, $xml->url);
+        $this->assertCount(15, $xml->url);
         foreach (config('articles') as $article) {
             $response->assertSee('https://kanvi.dk'.$article['path']);
         }
@@ -101,7 +101,7 @@ class ArticlesTest extends TestCase
             ->assertDontSee('datoer eller tidspunkter')
             ->assertDontSee('BILLEDE')->assertDontSee('Filnavn:');
 
-        foreach (['/datoafstemning', '/find-en-dato', '/til/familien', '/til/foreninger', '/til/venner', '/doodle-alternativ', '/#spoergsmaal'] as $path) {
+        foreach (['/datoafstemning', '/find-en-dato', '/til/familien', '/til/foreninger', '/til/venner', '/doodle-alternativ', '/faq'] as $path) {
             $response->assertSee('href="'.$path.'"', false);
         }
 
@@ -168,6 +168,49 @@ class ArticlesTest extends TestCase
             $this->assertSame(0, $links->length, "The privacy page is listed in {$listing} on {$path}.");
         }
         $this->get('/sitemap.xml')->assertOk()->assertSee(app(Articles::class)->url('/privatliv'));
+    }
+
+    public function test_the_faq_page_answers_every_planned_question(): void
+    {
+        $response = $this->get('/faq')->assertOk();
+
+        foreach (['Hvad er Kanvi?', 'Er Kanvi gratis?', 'Skal jeg oprette en konto?',
+            'Skal deltagerne oprette en konto?', 'Hvordan deler jeg en afstemning?',
+            'Kan deltagerne ændre deres svar?', 'Kan jeg tilføje flere datoer senere?',
+            'Hvordan vælger jeg den endelige dato?', 'Kan jeg bruge Kanvi til en fest?',
+            'Kan en forening bruge Kanvi?', 'Kan jeg bruge Kanvi på mobilen?',
+            'Hvem kan se mine svar?', 'Hvor længe gemmes en afstemning?',
+            'Hvordan behandles mine data?'] as $question) {
+            $response->assertSee($question);
+        }
+
+        $document = new DOMDocument;
+        @$document->loadHTML('<?xml encoding="utf-8" ?>'.$response->getContent());
+        $xpath = new DOMXPath($document);
+        $this->assertSame(1, $xpath->query('//h1')->length);
+        $this->assertSame(app(Articles::class)->url('/faq'),
+            $xpath->query('//link[@rel="canonical"]')->item(0)->getAttribute('href'));
+        $this->assertSame(14, $xpath->query('//div[@class="article-prose"]//h2')->length);
+    }
+
+    /** The anchor was a stopgap while /faq did not exist. Nothing may point at it now. */
+    public function test_nothing_links_to_the_old_homepage_faq_anchor_any_more(): void
+    {
+        foreach (array_keys($this->guides()) as $key) {
+            $this->assertStringNotContainsString('/#spoergsmaal', app(Articles::class)->find($key)['html']);
+        }
+        foreach (['/', '/guides', '/til/klassearrangement'] as $path) {
+            $this->get($path)->assertOk()->assertSee('href="'.url('/faq').'"', false);
+        }
+    }
+
+    public function test_the_faq_answers_match_what_the_product_actually_does(): void
+    {
+        $this->get('/faq')->assertOk()
+            ->assertSee('Kanvi arbejder med hele dage')
+            ->assertSee('Afstemningen lukker ikke af sig selv')
+            ->assertSee('tolv måneder')
+            ->assertSee('gemmer ikke selve linket');
     }
 
     public function test_every_public_page_links_to_the_privacy_page(): void

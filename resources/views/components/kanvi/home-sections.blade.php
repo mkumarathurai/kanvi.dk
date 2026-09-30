@@ -45,7 +45,7 @@
     </section>
 
     <section class="home-faq" id="spoergsmaal" aria-labelledby="faq-heading">
-        <div><p class="section-kicker">Ofte stillede spørgsmål</p><h2 id="faq-heading">Har du <br>spørgsmål?</h2><p class="section-lead">Få hurtigt svar på det mest almindelige.</p></div>
+        <div><p class="section-kicker">Ofte stillede spørgsmål</p><h2 id="faq-heading">Har du <br>spørgsmål?</h2><p class="section-lead">Få hurtigt svar på det mest almindelige.</p><a class="text-link" href="{{ url('/faq') }}">Alle spørgsmål og svar →</a></div>
         <div class="faq-grid">
             @foreach ([['Skal jeg oprette en konto?', 'Nej. Du kan oprette en afstemning med det samme. Den browser, du opretter den i, får arrangøradgang. Gem administrationslinket, så du kan finde tilbage.'], ['Kan jeg ændre datoerne bagefter?', 'Ja. Som arrangør kan du tilføje og fjerne datoer, mens afstemningen er åben. Der skal altid være mindst to datoer at vælge imellem.'], ['Skal dem jeg inviterer have en konto?', 'Nej. De åbner linket, skriver deres navn og vælger Kan, Måske eller Kan ikke. Der er ingen app at installere.'], ['Kan deltagerne ændre deres svar?', 'Ja, mens afstemningen er åben. De åbner linket i den samme browser, som de svarede i. Det kræver, at browserdata ikke er blevet slettet.'], ['Koster det noget?', 'Nej. Det er gratis at oprette en afstemning og gratis at svare.'], ['Kan andre finde min afstemning på Google?', 'Kanvi beder søgemaskiner om ikke at vise afstemninger i søgeresultaterne. Alle med det offentlige link kan dog åbne afstemningen, så del det kun med dem, der skal være med.']] as [$question, $answer])
                 <details><summary>{{ $question }}<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><p>{{ $answer }}</p></details>
@@ -59,5 +59,5 @@
         <a class="button primary" href="{{ route('polls.create') }}">Opret en afstemning <span aria-hidden="true">→</span></a>
         <ul><li><x-kanvi.icon name="people" :size="18" />Ingen konto</li><li><x-kanvi.icon name="check" :size="18" />Gratis</li><li><x-kanvi.icon name="link" :size="18" />Del med et link</li></ul>
     </section>
-    <div class="home-brand-signoff"><a href="{{ route('home') }}" aria-label="Kanvi — forsiden"><x-kanvi.logo /></a><p>Lidt mindre planlægning. Lidt mere sammen.</p><a href="#spoergsmaal">Spørgsmål og svar</a></div>
+    <div class="home-brand-signoff"><a href="{{ route('home') }}" aria-label="Kanvi — forsiden"><x-kanvi.logo /></a><p>Lidt mindre planlægning. Lidt mere sammen.</p><a href="{{ url('/faq') }}">Spørgsmål og svar</a></div>
 </div>

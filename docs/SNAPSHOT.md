@@ -46,7 +46,11 @@ Eighteen commits, `0697a3a` through `14863b2`, each carrying its KAN key.
 
 Server changes Mathi made, outside the repository: the production environment file
 now names Resend and `KANVI_RECOVERY_MAILER`, and a CloudPanel cron job runs
-`schedule:run` every minute.
+`schedule:run` every minute. That cron command truncates its log rather than
+appending, so `shared/storage/logs/schedule.log` always holds exactly the most
+recent run. `/dev/null` was rejected: it would also hide a future
+`php: command not found` after a PHP upgrade, which is the failure this log
+proved useful for today.
 
 ## 3. Unfinished
 
@@ -67,10 +71,6 @@ unfinished sits elsewhere:
 - **Article images.** Eight of ten articles still have none, and the mobile
   screenshot could not be captured at all. KAN-11, with the reason in section 7.
 - **The Resend choice needs confirming.** See section 7.
-- **The cron log grows.** It uses `>>`, so it gains three lines a minute, about
-  25 MB a year. Changing it to a single `>` keeps only the most recent run.
-  `/dev/null` was rejected: it would also hide a future `php: command not found`
-  after a PHP upgrade, which is the failure this log is useful for.
 
 ## 4. Next steps
 

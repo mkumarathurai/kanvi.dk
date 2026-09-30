@@ -32,12 +32,16 @@ if [[ "$*" == *"$FAIL_COMMAND"* && -n "$FAIL_COMMAND" ]]; then exit 42; fi
 if [[ -n "$FAIL_HTTP" ]]; then exit 28; fi
 if [[ "$*" == *deploy-revision.txt* ]]; then printf '%s\\n' "$HEALTH_REVISION"; fi
 `, { mode: 0o755 });
+    writeFileSync(join(root, 'bin/sudo'), `#!/usr/bin/env bash
+printf '%s\\n' "sudo $*" >> "$DEPLOY_TEST_ROOT/commands"
+if [[ -n "$FAIL_RELOAD" ]]; then exit 43; fi
+`, { mode: 0o755 });
     return {
         root, next,
         run(extra = {}) {
             return spawnSync('bash', [script, root, release], {
                 encoding: 'utf8',
-                env: { ...process.env, PATH: join(root, 'bin') + ':' + process.env.PATH, DEPLOY_TEST_ROOT: root, FAIL_COMMAND: '', FAIL_HTTP: '', HEALTH_REVISION: release, ...extra },
+                env: { ...process.env, PATH: join(root, 'bin') + ':' + process.env.PATH, DEPLOY_TEST_ROOT: root, FAIL_COMMAND: '', FAIL_HTTP: '', FAIL_RELOAD: '', HEALTH_REVISION: release, ...extra },
             });
         },
     };
@@ -51,6 +55,7 @@ test('release activation keeps environment and persistent data outside the relea
     assert.equal(readFileSync(join(f.next, '.env'), 'utf8'), 'SERVER_ENV_MUST_SURVIVE');
     assert.equal(readFileSync(join(f.next, 'storage/persistent'), 'utf8'), 'saved response');
     assert.ok(readFileSync(join(f.root, 'commands'), 'utf8').includes('artisan queue:restart'));
+    assert.match(readFileSync(join(f.root, 'commands'), 'utf8'), /sudo -n \/usr\/bin\/systemctl reload php8.4-fpm/);
 });
 
 test('missing server environment stops before migration or activation', t => {
@@ -107,4 +112,10 @@ test('failed cache preparation never activates the candidate', t => {
     assert.equal(f.run({ FAIL_COMMAND: 'config:cache' }).status, 42);
     assert.equal(readlinkSync(join(f.root, 'current')), join(f.root, 'releases/old'));
     assert.doesNotMatch(readFileSync(join(f.root, 'commands'), 'utf8'), /migrate/);
+});
+
+test('failed FPM reload restores the previous code pointer and reports failure', t => {
+    const f = fixture(t);
+    assert.equal(f.run({ FAIL_RELOAD: 'yes' }).status, 43);
+    assert.equal(readlinkSync(join(f.root, 'current')), join(f.root, 'releases/old'));
 });

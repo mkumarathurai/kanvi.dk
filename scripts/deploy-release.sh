@@ -36,7 +36,10 @@ on_exit() {
         printf '%s\n' 'Activation failed; reverting code pointer. Database changes are not reverted.' >&2
         if [[ -n "$previous" ]]; then
             switch_to "$previous"
-            (cd "$previous" && php artisan queue:restart) || true
+            sudo -n /usr/bin/systemctl reload php8.4-fpm || printf '%s\n' 'Rollback requires manual PHP-FPM reload.' >&2
+            if [[ -f "$previous/artisan" ]]; then
+                (cd "$previous" && php artisan queue:restart) || true
+            fi
         else
             unlink "$root/current"
         fi
@@ -61,6 +64,7 @@ php artisan storage:link
 # view:cache/view:clear while the previous release still serves requests.
 switch_to "$next"
 activated=true
+sudo -n /usr/bin/systemctl reload php8.4-fpm
 
 curl --fail --silent --show-error --max-time 20 --retry 3 "https://kanvi.dk/up?release=$release" > /dev/null
 served="$(curl --fail --silent --show-error --max-time 20 --retry 3 "https://kanvi.dk/deploy-revision.txt?release=$release")"

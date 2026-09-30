@@ -1,5 +1,48 @@
 # Kanvi deployment through GitHub Actions
 
+## First installation preparation — 2026-09-30
+
+After asking to proceed toward deployment, Mathi created the database in
+CloudPanel. Server preparation then created `releases` and the shared storage
+directories as `kanvi`, plus `shared/.env` with mode 600. A fresh production
+application key was generated on the server without displaying it. Existing
+files were not overwritten. The placeholder site and web-root configuration
+were not changed.
+
+The environment uses the proposed database/user `kanvi` on local MySQL, but
+the password is intentionally empty pending Mathi's direct entry. These names
+and database access are not yet verified. Recovery mail remains disabled until
+SMTP is configured and checked. PHP 8.4 FPM is active. First deployment still
+requires verified database access, CloudPanel web-root/FPM setup and workers;
+`DEPLOY_ENABLED` has not been enabled. Earlier deferral notes below are historical.
+
+Follow-up verification: the user entered the password directly on the server.
+The repository's phpdotenv parser loaded it on-server, PDO connected successfully,
+`SELECT 1` passed, and the MySQL server reported version `8.4.7-7` with zero
+tables in `kanvi`. No credentials were printed. The temporary checker is under
+`/home/kanvi/tmp/kanvi-preflight-20260930`, outside the web root.
+
+An initial `releases/bootstrap/public` copy preserves the placeholder and
+`current` now points to it. The original `public` directory remains untouched.
+`kanvi.dk/current/public` is ready to select as Root Directory in CloudPanel.
+`/kanvi-setup-check.txt` will return `kanvi-release-root-ready` when that setting
+has taken effect; the marker exists only in the placeholder release.
+Mathi changed this setting in CloudPanel and the marker was verified over HTTPS.
+
+A systemd user unit was prepared at
+`/home/kanvi/.config/systemd/user/kanvi-worker.service`, enabled but not started.
+It runs `current/artisan queue:work` with a 60-second timeout, automatic restart,
+and a 90-second shutdown grace period. It will be started after installation.
+`loginctl enable-linger kanvi` is still required so it survives SSH logout.
+
+Deployment now reloads `php8.4-fpm` after switching the code pointer and on
+rollback. The dedicated sudoers rule must permit only
+`/usr/bin/systemctl reload php8.4-fpm`; it has not yet been installed. Tests for
+reload and failure rollback failed before implementation and now pass. This
+service is shared with other PHP 8.4 sites: reload is graceful, not a restart.
+
+## Earlier access preparation
+
 Prepared 2026-09-30 at Mathi's request, using Invity as a reference. **Server
 installation is still deferred.** This describes the prepared workflow, not an
 installed or verified production system. Mathi has now provisioned the dedicated

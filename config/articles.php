@@ -8,6 +8,7 @@ return [
         'description' => 'Leder du efter et enkelt alternativ til Doodle? Med Kanvi kan I hurtigt finde en dato, der passer gruppen. Opret en datoafstemning og del linket.',
         'label' => 'Doodle alternativ',
         'group' => 'Kom godt i gang',
+        'kind' => 'guide',
     ],
     'datoafstemning' => [
         'path' => '/datoafstemning',
@@ -16,6 +17,7 @@ return [
         'description' => 'Opret en enkel datoafstemning og find hurtigt den dag, der passer flest. Foreslå datoer, del linket og få alles svar samlet med Kanvi.',
         'label' => 'Datoafstemning',
         'group' => 'Kom godt i gang',
+        'kind' => 'guide',
     ],
     'find-en-dato' => [
         'path' => '/find-en-dato',
@@ -24,6 +26,7 @@ return [
         'description' => 'Skal I finde en dato, hvor flest muligt kan? Her får du en enkel metode til at finde en fælles dato uden endeløse beskeder frem og tilbage.',
         'label' => 'Find en dato',
         'group' => 'Kom godt i gang',
+        'kind' => 'guide',
     ],
     'julefrokost' => [
         'path' => '/til/julefrokost',
@@ -32,6 +35,7 @@ return [
         'description' => 'Skal I finde en dato til julefrokosten? Få en enkel metode til at samle alles svar og finde den dag, der passer flest.',
         'label' => 'Julefrokost',
         'group' => 'Vælg en anledning',
+        'kind' => 'guide',
     ],
     'bestyrelser' => [
         'path' => '/til/bestyrelser',
@@ -40,6 +44,7 @@ return [
         'description' => 'Skal bestyrelsen finde en dato til næste møde? Saml alles svar ét sted og find hurtigt den dag, der passer bedst.',
         'label' => 'Bestyrelser',
         'group' => 'Vælg en anledning',
+        'kind' => 'guide',
     ],
     'foreninger' => [
         'path' => '/til/foreninger',
@@ -48,6 +53,7 @@ return [
         'description' => 'Skal foreningen finde en dato til møde, arbejdsdag eller arrangement? Saml alles svar ét sted og find hurtigt den dag, der passer bedst.',
         'label' => 'Foreninger',
         'group' => 'Vælg en anledning',
+        'kind' => 'guide',
     ],
     'venner' => [
         'path' => '/til/venner',
@@ -56,6 +62,7 @@ return [
         'description' => 'Svært at finde en dag, hvor alle vennerne kan? Foreslå nogle datoer, del et link og find hurtigt den dag, der passer bedst.',
         'label' => 'Venner',
         'group' => 'Vælg en anledning',
+        'kind' => 'guide',
     ],
     'familien' => [
         'path' => '/til/familien',
@@ -64,6 +71,7 @@ return [
         'description' => 'Skal familien finde en fælles dato til fødselsdag, middag eller sammenkomst? Saml alles svar ét sted og find hurtigt den dag, der passer bedst.',
         'label' => 'Familien',
         'group' => 'Vælg en anledning',
+        'kind' => 'guide',
     ],
     'klassearrangement' => [
         'path' => '/til/klassearrangement',
@@ -72,6 +80,7 @@ return [
         'description' => 'Skal klassen finde en dato til klassefest, fælles aktivitet eller forældremøde? Saml familiers svar ét sted og find den dag, der passer bedst.',
         'label' => 'Klassearrangement',
         'group' => 'Vælg en anledning',
+        'kind' => 'guide',
     ],
     'polterabend' => [
         'path' => '/til/polterabend',
@@ -80,5 +89,18 @@ return [
         'description' => 'Skal I finde en dato til polterabend? Foreslå nogle muligheder, saml alles svar ét sted og find den dag, der passer bedst.',
         'label' => 'Polterabend',
         'group' => 'Vælg en anledning',
+        'kind' => 'guide',
+    ],
+
+    // Informational pages. They share the article renderer, routes and sitemap,
+    // but they are not guides and the guide index leaves them out.
+    'privatliv' => [
+        'path' => '/privatliv',
+        'title' => 'Privatliv og data',
+        'seo_title' => 'Privatliv og data | Kanvi',
+        'description' => 'Hvad Kanvi gemmer, hvem der kan se det, hvor længe det bliver gemt, og hvordan du får dine data slettet.',
+        'label' => 'Privatliv',
+        'group' => 'Om Kanvi',
+        'kind' => 'page',
     ],
 ];

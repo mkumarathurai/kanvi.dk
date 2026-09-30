@@ -63,6 +63,8 @@
         <main id="main">{{ $slot }}</main>
         <footer class="site-footer">
             @unless ($private)<nav class="footer-content-links" aria-label="Mere om Kanvi"><a href="{{ route('articles.index') }}">Guides og inspiration</a><a href="{{ route('articles.situations') }}">Find en dag til …</a><a href="{{ route('home') }}#spoergsmaal">Spørgsmål og svar</a></nav>@endunless
+            {{-- Participants hand over their name on private pages, so this link belongs there too. --}}
+            <nav class="footer-legal-links" aria-label="Privatliv og data"><a href="{{ route('articles.privatliv') }}">Privatliv og data</a></nav>
             <div lang="en">
             <p>Made with <span role="img" aria-label="love">❤️</span></p>
             <p>© {{ now()->year }} Mathi Kumarathurai. All rights reserved.</p>

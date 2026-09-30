@@ -19,7 +19,7 @@ class ArticleController extends Controller
 
         return view('articles.show', [
             'article' => $page,
-            'articles' => $articles->all(),
+            'articles' => $articles->guides(),
             'breadcrumbs' => $breadcrumbs,
             'seo' => [
                 'title' => $page['seo_title'],
@@ -38,7 +38,8 @@ class ArticleController extends Controller
         $description = 'Enkle guides til at finde en fælles dato med venner, familie, bestyrelse og forening. Få aftalen i kalenderen med Kanvi.';
 
         return view('articles.index', [
-            'articles' => array_filter($articles->all(), fn ($article) => ! $situations || str_starts_with($article['path'], '/til/')),
+            'articles' => array_filter($articles->all(), fn ($article) => $article['kind'] === 'guide'
+                && (! $situations || str_starts_with($article['path'], '/til/'))),
             'title' => $title,
             'seo' => ['title' => ($situations ? 'Anledninger' : 'Guides og inspiration').' | Kanvi', 'description' => $description, 'canonical' => $articles->url($path)],
         ]);

@@ -13,6 +13,12 @@ final class Articles
         return config('articles');
     }
 
+    /** The long SEO guides, without the informational pages that share this renderer. */
+    public function guides(): array
+    {
+        return array_filter($this->all(), fn ($article) => $article['kind'] === 'guide');
+    }
+
     public function find(string $key): array
     {
         $article = $this->all()[$key] ?? null;

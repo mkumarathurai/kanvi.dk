@@ -169,6 +169,13 @@ class PollResponsesTest extends TestCase
         return [['finalized'], ['closed'], ['archived']];
     }
 
+    /** A participant hands over their name here, so this is where the privacy link matters most. */
+    public function test_the_private_poll_page_links_to_the_privacy_page(): void
+    {
+        $this->get(route('polls.show', $this->poll))->assertOk()
+            ->assertSee('href="'.url('/privatliv').'"', false);
+    }
+
     /** The state the page hands the browser. Asserting on rendered HTML would also match the site footer. */
     private function strangerState(): array
     {

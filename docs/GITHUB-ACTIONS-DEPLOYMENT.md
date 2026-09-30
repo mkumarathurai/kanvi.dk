@@ -1,5 +1,56 @@
 # Kanvi deployment through GitHub Actions
 
+## Live deployment — 2026-09-30
+
+Kanvi is installed and served over HTTPS. `DEPLOY_ENABLED=true`; pushes to
+`main` deploy automatically after CI passes. Environment restrictions allow
+only `main`. The PHP reload sudo rule and `Linger=yes` were verified, all seven
+migrations ran against MySQL, and the systemd user queue worker is running.
+CloudPanel's daily database backup cron is configured with seven-day retention;
+successful backup creation and restore are not yet verified.
+
+The [first installation passed](https://github.com/mkumarathurai/kanvi.dk/actions/runs/36690370454)
+but browser verification found that CloudPanel returned 404 for Livewire's
+dynamic JavaScript URL. Pages rendered, but the creation form did not advance.
+The deploy script now publishes matching Livewire static assets on every
+release and verifies the served file's SHA-256 against the deployed file.
+Failure restores the previous code pointer. Two new regression assertions
+failed before the change; all 35 JavaScript tests then passed. The
+[automatic corrective deployment passed](https://github.com/mkumarathurai/kanvi.dk/actions/runs/36691308688)
+for application commit `b76ae9e197db13e7505c69ff86c6db4ce4e35ded`.
+
+Observed production evidence:
+
+- All 13 sitemap URLs returned 200 with real Kanvi content and HTTPS origins.
+- The class article has one H1 and the correct canonical URL.
+- CSS, application JavaScript and published Livewire JavaScript load correctly.
+- Chrome walkthrough: homepage title → two future dates → review → create →
+  share page → participant name → Kan/Måske → saved confirmation → correct
+  results → administration → select final date. The console was empty after
+  the fix, including on the participant/result/admin pages. A screenshot of
+  results with the empty console was captured in the conversation.
+- The fictional poll titled `Deploymenttest 30. september - fiktive data`
+  remains finalized in production, with one fictional participant and two
+  responses. No email was sent. No real user data was deleted or changed.
+- Poll responses include `X-Robots-Tag: noindex, nofollow` and
+  `Cache-Control: no-store, private`.
+- Queue worker remains active after automatic restart; no failed jobs reported.
+- CI passed the full PHP suite (109 tests / 1,086 assertions), JavaScript tests,
+  Pint and asset build. No new dependencies were added.
+
+Remaining acceptance: SMTP/recovery delivery is deliberately disabled pending
+configuration, backup restore has not been tested, analytics ingestion and
+Search Console submission are unverified. Load/concurrency testing on production
+MySQL and real mail-client acceptance also remain open. Jira linkage is still
+not established; this is not a claim of full shared Definition of Done compliance.
+
+Monitor HTTP errors, failed queues and database backups over the first 24 hours.
+For rollback use a verified compatible release, reload PHP and restart workers;
+do not restore an old database over newer responses. The initial pre-fix release
+has the Livewire asset defect, so prefer the corrected release for later rollback.
+
+The sections below retain the chronology of installation and earlier deferral.
+
 ## First installation preparation — 2026-09-30
 
 After asking to proceed toward deployment, Mathi created the database in

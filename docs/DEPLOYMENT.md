@@ -1,5 +1,11 @@
 # Deployment record — 2026-09-29
 
+Live status 2026-09-30: Kanvi has now been installed through GitHub Actions and
+the core creation/respond/result/finalization journey was verified in Chrome.
+Automatic deployments from `main` are enabled. See the current evidence and
+remaining mail/backup/analytics checks in [the deployment guide](GITHUB-ACTIONS-DEPLOYMENT.md#live-deployment--2026-09-30).
+The 2026-09-29 sections below are historical.
+
 Update 2026-09-30: Mathi specified GitHub Actions with deployment secrets, using
 Invity as a reference. See [the prepared deployment workflow and prerequisites](GITHUB-ACTIONS-DEPLOYMENT.md).
 The repository workflow remains disabled by default. Server installation is

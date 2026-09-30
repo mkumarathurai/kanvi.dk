@@ -1,5 +1,10 @@
 # Opsæt deployadgang til Kanvi
 
+**Opdatering 30. september 2026:** Adgang og første installation er gennemført.
+Automatisk deploy fra `main` er nu aktiveret, og kerneforløbet er kontrolleret
+i produktion. Trinene nedenfor er den oprindelige opsætningsvejledning; de skal
+ikke køres igen. Aktuel status findes i [deploydokumentationen](GITHUB-ACTIONS-DEPLOYMENT.md).
+
 Denne vejledning opsætter en særskilt SSH-nøgle og GitHub-secrets til det
 allerede forberedte workflow. Serverinstallationen og aktivering af deploy
 venter fortsat. `kanvi` er allerede føjet til serverens SSH AllowUsers-liste.

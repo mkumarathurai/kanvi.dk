@@ -43,6 +43,7 @@ final class RequestAdminRecovery
                 'register_email' => $authorizedAccessId !== null,
                 'expires_at' => now()->addMinutes(config('kanvi.recovery_minutes')),
             ]);
+            $locked->markActive()->save();
             SendAdminRecovery::dispatch($link->id, $token)->afterCommit();
         }, 3);
     }

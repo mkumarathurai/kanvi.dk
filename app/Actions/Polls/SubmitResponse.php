@@ -80,6 +80,7 @@ final class SubmitResponse
                 // Replayed/older mutations are acknowledged without writing again.
                 $acks[] = ['field' => $field, 'revision' => (int) $change['revision']];
             }
+            $lockedPoll->markActive()->save();
 
             return ['acknowledged' => $acks, 'participant' => $participant->fresh()->snapshot()];
         }, 3);

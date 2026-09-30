@@ -37,6 +37,7 @@ final class RedeemAdminRecovery
                 'action' => $link->register_email ? 'recovery_email_verified' : 'admin_access_recovered',
                 'details' => ['source_access_id' => $source->id],
             ]);
+            $poll->markActive()->save();
 
             return new CreatedPoll($poll, $access, $adminToken);
         }, 3);

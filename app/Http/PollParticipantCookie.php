@@ -30,8 +30,12 @@ final class PollParticipantCookie
 
     public function issue(Request $request, Poll $poll): Cookie
     {
-        // Laravel encrypts this HttpOnly cookie; JavaScript never receives the edit token.
-        return cookie($this->name($poll), bin2hex(random_bytes(32)), 60 * 24 * 365,
+        // The cookie expires with the poll's retention window, so edit access never
+        // outlives the data it unlocks. Laravel encrypts this HttpOnly cookie;
+        // JavaScript never receives the edit token.
+        $minutes = (int) now()->diffInMinutes(now()->addMonths((int) config('kanvi.retention_months')));
+
+        return cookie($this->name($poll), bin2hex(random_bytes(32)), $minutes,
             '/p/'.$poll->public_id, null, $request->isSecure(), true, false, 'lax');
     }
 }

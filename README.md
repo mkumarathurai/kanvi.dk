@@ -56,7 +56,9 @@ Forside → titel → multiselect-kalender → gennemgang → oprettelse → del
 - Open Graph-tags og PNG-preview med polltitel og brandmark, uden private svar.
 
 Mail-flowet er implementeret og testet, men faktisk afsendelse kræver valg og
-konfiguration af mailtjeneste. Retention er endnu ikke implementeret.
+konfiguration af mailtjeneste. Afstemninger slettes tolv måneder efter sidste
+aktivitet; se [ADR 0001](docs/adr/0001-poll-retention.md). Sletningen kræver, at
+serveren kører Laravels scheduler.
 [Selvhostet Umami](docs/analytics.md) er tilføjet til offentlige sider i produktion;
 private flows spores ikke, og produktets funnel-events afventer implementation.
 
@@ -121,7 +123,8 @@ Tokenets SHA-256-hash er identiteten i databasen; navne er ikke unikke.
 Cookien oprettes, når den åbne afstemning vises, men deltageren oprettes først
 sammen med første svar. Dermed kan tabte kvitteringer gentages uden dubletter.
 Browserdata skal bevares for at redigere; der er ikke deltager-recovery i v1.
-Cookiens foreløbige levetid er ét år og skal afstemmes med retention-politikken.
+Cookien udløber sammen med afstemningens opbevaringsvindue på tolv måneder, så
+redigeringsadgang ikke overlever de data, den giver adgang til.
 
 Se [autosave-protokollen](docs/autosave.md) for felter, revisioner, adgang og fejl.
 SQLite bruger `IMMEDIATE`-transaktioner med ventetid ved låsning. På MySQL/PostgreSQL
@@ -130,8 +133,9 @@ Driftsdatabasen er fortsat ikke valgt eller testet i denne opsætning.
 
 ## Næste trin
 
-Konfiguration af mailtjeneste og offentlig origin til delingspreview. Arkivering/retention kræver fortsat en produktbeslutning
-før lancering; arkiverede polls returnerer foreløbigt 404.
+Konfiguration af mailtjeneste og offentlig origin til delingspreview. Statussen
+`archived` returnerer fortsat 404, men den er ikke en del af opbevaringspolitikken,
+og ingenting sætter den.
 
 Den endelige dato vises foreløbigt til alle med det offentlige link. Totaler og
 individuelle svar kræver fortsat deltager- eller adminadgang. Det er et eksplicit

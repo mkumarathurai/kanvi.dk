@@ -1586,10 +1586,13 @@ Disse punkter er ikke vedtagne beslutninger og må ikke få tilfældige defaults
    individuelle svar beholder adgangskravet. Lukning uden et endeligt valg viser
    kun lukket-status til nye besøgende. Dette er eksplicit valgt under
    implementeringen og afventer produktbekræftelse.
-2. **Arkivering og retention:** Matrixen siger ingen/begrænset resultatadgang.
-   Den præcise offentlige visning, opbevaringstid, adgang for arrangøren og
-   endelig sletning skal fastlægges før offentlig lancering. Soft delete er
-   ikke i sig selv en retention-politik.
+2. **Arkivering og retention: afklaret 30. september 2026.** Mathi har besluttet,
+   at en afstemning slettes tolv måneder efter sidste aktivitet sammen med
+   deltagernavne, svar, revisioner, adminadgang, auditspor og recovery-links.
+   Sletningen er endelig, og der er ikke et arkivtrin. Sidste aktivitet er
+   oprettelse, et gemt svar, en arrangørhandling eller en recovery-anmodning.
+   Deltagerens cookie udløber i samme vindue. Punktet er dermed ikke længere
+   en åben afklaring. Se [ADR 0001](adr/0001-poll-retention.md).
 
 ### Præciseringer i denne revision til produktgennemgang
 

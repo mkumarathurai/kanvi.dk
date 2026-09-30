@@ -23,7 +23,7 @@ final class AdminPollMutation
             $before = ['status' => $locked->status, 'final_option_id' => $locked->final_option_id];
             $details = $change($locked);
             $locked->management_version++;
-            $locked->save();
+            $locked->markActive()->save();
             PollAuditEntry::create([
                 'poll_id' => $locked->id,
                 'admin_access_id' => $access->id,

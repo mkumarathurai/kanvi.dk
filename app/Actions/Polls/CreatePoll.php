@@ -28,14 +28,15 @@ final class CreatePoll
 
         return DB::transaction(function () use ($data) {
             // 96 bits of entropy; public IDs carry no administration rights.
-            $poll = Poll::create([
+            $poll = Poll::make([
                 'public_id' => bin2hex(random_bytes(12)),
                 'title' => $data['title'],
                 'type' => 'date',
                 'status' => 'open',
                 'timezone' => 'Europe/Copenhagen',
                 'locale' => 'da',
-            ]);
+            ])->markActive();
+            $poll->save();
 
             foreach ($data['dates'] as $index => $date) {
                 $poll->options()->create(['kind' => 'date', 'date_value' => $date, 'sort_order' => $index]);

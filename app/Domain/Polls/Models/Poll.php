@@ -16,7 +16,22 @@ class Poll extends Model
 
     protected function casts(): array
     {
-        return ['finalized_at' => 'immutable_datetime', 'management_version' => 'integer'];
+        return [
+            'finalized_at' => 'immutable_datetime',
+            'last_activity_at' => 'immutable_datetime',
+            'management_version' => 'integer',
+        ];
+    }
+
+    /**
+     * Retention is measured from this timestamp. Every write path that locks the
+     * poll must mark it, or the poll is deleted while people are still using it.
+     */
+    public function markActive(): static
+    {
+        $this->last_activity_at = now();
+
+        return $this;
     }
 
     public function finalOption(): BelongsTo

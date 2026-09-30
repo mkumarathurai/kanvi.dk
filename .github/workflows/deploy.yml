@@ -45,7 +45,7 @@ jobs:
           printf '%s\n' "$RELEASE_ID" > public/deploy-revision.txt
           tar --exclude='bootstrap/cache/*.php' --exclude='public/storage' --exclude='public/hot' \
             --exclude='database/*.sqlite*' -czf "$RUNNER_TEMP/kanvi-release.tar.gz" \
-            app bootstrap config database public resources routes vendor artisan composer.json composer.lock scripts/deploy-release.sh
+            app bootstrap config database public resources routes vendor artisan composer.json composer.lock design-tokens.json scripts/deploy-release.sh
       - name: Configure dedicated deployment SSH key
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}

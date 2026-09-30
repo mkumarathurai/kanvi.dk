@@ -21,6 +21,7 @@ function fixture(t, { previous = true, env = true } = {}) {
     writeFileSync(join(next, 'artisan'), '');
     writeFileSync(join(next, 'vendor/composer/platform_check.php'), '');
     writeFileSync(join(next, 'public/build/manifest.json'), '{}');
+    writeFileSync(join(next, 'design-tokens.json'), '{"brand":{}}');
     writeFileSync(join(next, 'public/deploy-revision.txt'), release + '\n');
     if (previous) symlinkSync(join(root, 'releases/old'), join(root, 'current'));
     writeFileSync(join(root, 'bin/php'), `#!/usr/bin/env bash
@@ -74,6 +75,17 @@ test('missing server environment stops before migration or activation', t => {
     assert.match(result.stderr, /must be provisioned first/);
     assert.equal(readlinkSync(join(f.root, 'current')), join(f.root, 'releases/old'));
     assert.equal(existsSync(join(f.root, 'commands')), false);
+});
+
+test('a release without the design tokens never activates', t => {
+    // The image renderer reads design-tokens.json at runtime from the project
+    // root. Leaving it out of the archive shipped a 500 instead of a preview.
+    const f = fixture(t);
+    rmSync(join(f.next, 'design-tokens.json'));
+    const result = f.run();
+    assert.notEqual(result.status, 0);
+    assert.match(result.stderr, /Incomplete release/);
+    assert.equal(readlinkSync(join(f.root, 'current')), join(f.root, 'releases/old'));
 });
 
 test('failed migration preserves the previous release', t => {

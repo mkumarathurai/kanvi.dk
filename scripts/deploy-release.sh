@@ -11,7 +11,10 @@ release="${2:?Release identifier required}"
 next="$root/releases/$release"
 [[ -f "$root/shared/.env" && -d "$root/shared/storage" ]] || fail 'Server environment and storage must be provisioned first'
 [[ ! -e "$root/current" || -L "$root/current" ]] || fail 'Current must be a symlink, never a real directory'
-[[ -f "$next/artisan" && -f "$next/vendor/composer/platform_check.php" && -f "$next/public/build/manifest.json" ]] || fail 'Incomplete release'
+# design-tokens.json is read at runtime by the image renderer and lives at the
+# project root, so it is easy to leave out of the release archive.
+[[ -f "$next/artisan" && -f "$next/vendor/composer/platform_check.php" \
+    && -f "$next/public/build/manifest.json" && -f "$next/design-tokens.json" ]] || fail 'Incomplete release'
 [[ "$(cat "$next/public/deploy-revision.txt")" == "$release" ]] || fail 'Release identity mismatch'
 [[ ! -e "$next/.env" && ! -L "$next/.env" && ! -e "$next/storage" && ! -L "$next/storage" ]] || fail 'Release already prepared; use a new run attempt'
 

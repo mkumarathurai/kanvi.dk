@@ -29,3 +29,43 @@ test('separate playgrounds do not share visitor choices and malformed choices ar
     assert.equal(second.canCount(0), 3);
     assert.equal(first.canCount(0), 4);
 });
+
+test('visible participant answers and totals agree before, during and after a trial response', () => {
+    const demo = createDemoPoll();
+    const checkTotals = () => {
+        const { count, options } = demo.results;
+        for (const option of options) {
+            assert.equal(option.people.length, count);
+            for (const value of ['can', 'maybe', 'cannot', 'unanswered']) {
+                assert.equal(option[value], option.people.filter(person => person.value === value).length);
+            }
+            assert.equal(option.can + option.maybe + option.cannot + option.unanswered, count);
+        }
+    };
+    assert.equal(demo.results.count, 5);
+    checkTotals();
+    demo.choose(0, 'maybe');
+    assert.equal(demo.results.count, 6);
+    assert.equal(demo.results.options[0].people.at(-1).name, 'Dig');
+    assert.equal(demo.results.options[0].people.at(-1).value, 'maybe');
+    assert.equal(demo.results.options[1].unanswered, 1);
+    checkTotals();
+    demo.choose(0, 'cannot');
+    demo.choose(1, 'can');
+    checkTotals();
+    demo.reset();
+    assert.equal(demo.results.count, 5);
+    assert.equal(demo.results.options[1].unanswered, 0);
+    checkTotals();
+});
+
+test('changing an answer updates the best date and preserves exact ties', () => {
+    const demo = createDemoPoll();
+    assert.deepEqual([0, 1, 2, 3, 4].filter(index => demo.isBest(index)), [1]);
+    demo.choose(0, 'can');
+    assert.deepEqual([0, 1, 2, 3, 4].filter(index => demo.isBest(index)), [1]);
+    demo.choose(1, 'cannot');
+    assert.deepEqual([0, 1, 2, 3, 4].filter(index => demo.isBest(index)), [0, 1]);
+    demo.choose(3, 'can');
+    assert.deepEqual([0, 1, 2, 3, 4].filter(index => demo.isBest(index)), [3]);
+});

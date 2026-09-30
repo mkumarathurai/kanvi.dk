@@ -12,17 +12,18 @@ https://mkumarathurai.atlassian.net/jira/software/c/projects/KAN/boards/575
 ## 1. Where we are
 
 Kanvi is live at https://kanvi.dk. The session began as a review of what Codex had
-built, turned into a Jira board, and then into a day of building. Twelve tickets are
-finished and deployed; six remain, and most of those need Mathi rather than code.
+built, turned into a Jira board, and then into a day of building. Thirteen tickets
+are finished and deployed. Five remain: four need Mathi rather than code, and one is
+the remaining article images.
 
 The site gained a privacy page, an FAQ, a help centre with seven guides,
 twelve-month retention, a sharing image per page, and a MySQL job in CI. The sitemap
 went from 13 public URLs to 23.
 
 Retention is the one that took a full chain to finish: decided, built, tested,
-deployed, and then proved to actually run on the server. Production mail is
-configured with Resend and the organizer's recovery option now appears on the share
-screen, but no mail has ever been sent, so delivery is unproven.
+deployed, and then proved to actually run on the server. Production mail went the
+same way: configured with Resend, and then a real recovery mail was requested from
+the share screen and arrived in a real inbox.
 
 Two production-only defects surfaced along the way. Both had been live since the
 features were written, both were invisible locally, and both are fixed.
@@ -55,10 +56,12 @@ now names Resend and `KANVI_RECOVERY_MAILER`, and a CloudPanel cron job runs
 The working tree is clean, nothing is unpushed, there are no stashes. What is
 unfinished sits elsewhere:
 
-- **Mail is configured but never delivered.** The share screen offers the recovery
-  option, which proves the transport is accepted, but no real mail has been sent and
-  no recovery link redeemed. Sending one needs Mathi's agreement: it is a real
-  message to a real address. KAN-6.
+- **The recovery link has never been redeemed in production.** Delivery is proved,
+  but nobody has confirmed that the one-time link grants organizer access and is
+  refused the second time, nor whether the mail landed in the inbox or in spam.
+  KAN-6 was closed on Mathi's approval with both unrecorded; the ticket says so.
+  The logic is covered by `PollRecoveryTest`, so what is untested is that chain
+  running through a real mail, where the token, the queue and the expiry meet.
 - **Two fictional polls sit in production.** `Mailtest 30. september - fiktive data`,
   created this session to check that the mail field appeared, is open with no
   responses. `Deploymenttest 30. september - fiktive data` from the previous session
@@ -72,18 +75,13 @@ unfinished sits elsewhere:
 
 ## 4. Next steps
 
-1. Send one real recovery mail and redeem it, with Mathi's agreement. Use the
-   fictional production poll that already exists: open its share screen, register an
-   address, then confirm the link grants organizer access once and is refused the
-   second time. Closes KAN-6, the last launch blocker with code in it.
+1. Confirm or change Resend, now that its US storage is known. See section 7.
 
-2. Confirm or change Resend, now that its US storage is known. See section 7.
-
-3. Delete the two fictional production polls when they have served their purpose.
+2. Delete the two fictional production polls when they have served their purpose.
    There is no delete action in the product, so this is a database operation on the
    server. It is the only way to remove them before the retention window.
 
-4. Run the checks after any change. The full suite is inexpensive:
+3. Run the checks after any change. The full suite is inexpensive:
 
    ```sh
    php artisan test --compact
@@ -95,7 +93,6 @@ unfinished sits elsewhere:
 
 ## 5. Waiting on Mathi
 
-- Permission to send the test recovery mail.
 - Whether Resend stays, given that it stores data in the United States.
 - A tested backup restore on the server. KAN-7.
 - Umami ingestion and Search Console, both of which need his accounts. KAN-13.
@@ -214,13 +211,15 @@ Run at the time of writing, on `79a0301`:
   200, the sitemap lists 23 URLs, and the generated sharing images return
   `image/png`.
 - The production share screen offers the recovery mail field, which only renders when
-  a real mail transport is configured.
+  a real mail transport is configured, and a recovery mail requested from it reached
+  a real inbox. Resend accepted the message and the queue worker processed the job.
 - The scheduler runs. Its log repeats `No scheduled commands are ready to run.`, and
   `php artisan schedule:list` on the server returns the purge with its next due time.
   That covers cron firing, `php` resolving on cron's PATH, the app booting, and the
   command being registered.
 
-**Not verified:** mail actually being delivered, backup restore, analytics ingestion,
+**Not verified:** the recovery link being redeemed and then refused, whether the mail
+avoided the spam folder, backup restore, analytics ingestion,
 Search Console, mail-client rendering, and behaviour under load on production MySQL.
 The cron job has not been observed surviving a deployment or a reboot; it runs from
 the `current` symlink, so it should follow a release untouched, but that is

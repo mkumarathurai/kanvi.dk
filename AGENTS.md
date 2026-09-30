@@ -10,8 +10,8 @@ At the start of a new Kanvi session, read these before planning or editing:
    which holds the outstanding work. Commit trailers carry its keys; see
    [CLAUDE.md](CLAUDE.md) for the convention and the historical exception.
 
-Use the Google Drive connector for the shared overview. Its current location is
-`Knowledge Base/01-Indbakke/Kanvi`, pending Mathi's choice of project area.
+Use the Google Drive connector for the shared overview. It lives in
+`Knowledge Base/02-Projekter/Mathi ApS/Kanvi`.
 If Drive is unavailable, state that limitation and use the local snapshot;
 do not claim to have synchronized the Knowledge Base.
 

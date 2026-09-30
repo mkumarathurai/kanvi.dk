@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Actions\Polls\CreatePoll;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Queue;
 use Tests\TestCase;
 
 class AnalyticsTest extends TestCase
@@ -36,6 +37,8 @@ class AnalyticsTest extends TestCase
     public function test_private_poll_and_recovery_pages_never_load_the_tracker(): void
     {
         $this->app['env'] = 'production';
+        // Creating a poll in production queues a funnel event; this test is about the page tracker only.
+        Queue::fake();
         $created = app(CreatePoll::class)->handle('Privat sommerfest', [now()->addDays(10)->toDateString(), now()->addDays(11)->toDateString()]);
 
         $this->get(route('polls.show', $created->poll))->assertOk()->assertDontSee('stats.mathi.dev');

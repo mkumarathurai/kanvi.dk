@@ -173,7 +173,7 @@ HTML-previews bruger en lokal kopi af logoet. EML bruger den konfigurerede
 
 | Klient | Status |
 | --- | --- |
-| Gmail desktop | Afventer testdestination og klientkontrol |
+| Gmail desktop | Delvist bestået 2026-10-01: recovery-mailen fra 30/9 (template uændret siden) kontrolleret i Gmail web, lys tilstand med billeder til — preheader, logo, titel, grøn CTA og footer korrekte. Billeder fra og dark mode udestår; kræver ændring af kontoindstillinger sammen med Mathi |
 | Gmail mobil | Afventer testdestination og klientkontrol |
 | Apple Mail på macOS | Afventer klientkontrol |
 | Outlook (inkl. klassisk Windows) | Afventer testdestination og klientkontrol |

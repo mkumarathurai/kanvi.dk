@@ -8,8 +8,9 @@ only `main`. The PHP reload sudo rule and `Linger=yes` were verified, all seven
 migrations ran against MySQL, and the systemd user queue worker is running.
 CloudPanel's server-wide cron in `/etc/cron.d/clp` backs up every database
 except `db1` and `db2` at 03:15 with seven-day retention, into
-`/home/kanvi/backups/databases`. On 2026-09-30 no dump existed yet, because the
-database was created that day. A restore is not yet verified; see KAN-7.
+`/home/kanvi/backups/databases`. A restore was verified on 2026-10-01; the
+nightly cron run is not yet proven to produce dumps. See
+"Database backup and restore" below and KAN-7.
 
 The [first installation passed](https://github.com/mkumarathurai/kanvi.dk/actions/runs/36690370454)
 but browser verification found that CloudPanel returned 404 for Livewire's
@@ -260,6 +261,65 @@ For manual rollback, identify the previously verified release, atomically
 replace `current` with a symlink to it, restart its queue workers and repeat
 HTTPS/functional checks. First confirm schema compatibility. Never restore an
 old database over new participant responses as an automatic code rollback.
+
+## Database backup and restore — verified 2026-10-01
+
+A CloudPanel-produced dump of the production database was restored into a
+scratch database and matched production exactly: 17 tables, 8 migration rows,
+and identical row counts in `polls`, `poll_options`, `participants` and
+`responses`. The scratch database was deleted afterwards.
+
+Restore procedure, run as a sudo-capable user on the server:
+
+1. Find the newest dump:
+
+   ```sh
+   sudo find /home/kanvi/backups/databases/kanvi -type f -name '*.sql.gz' | sort | tail -5
+   ```
+
+2. Create a scratch database through CloudPanel. Never restore over `kanvi`.
+   Use a throwaway password; the command line lands in shell history:
+
+   ```sh
+   sudo clpctl db:add --domainName=kanvi.dk --databaseName=kanvi-restore-test \
+     --databaseUserName=kanvi-restore-test --databaseUserPassword='<throwaway>'
+   ```
+
+3. Import the dump:
+
+   ```sh
+   sudo clpctl db:import --databaseName=kanvi-restore-test --file=<dump>.sql.gz
+   ```
+
+4. Inspect: `SHOW TABLES` and row counts as the scratch user, then compare with
+   production via `php artisan db:show --counts` as `kanvi` in
+   `~/htdocs/kanvi.dk/current`. Query counts only; never select participant
+   data into a terminal or transcript.
+
+5. Delete the scratch database:
+
+   ```sh
+   sudo clpctl db:delete --databaseName=kanvi-restore-test
+   ```
+
+Findings from the verification, both discovered 2026-10-01:
+
+- The `kanvi` database was registered under the wrong CloudPanel site
+  (`klogspot.dk`), so dumps went to `/home/klogspot/backups`. Fixed by setting
+  the database's `site_id` to the `kanvi.dk` site in CloudPanel's SQLite
+  database (`/home/clp/htdocs/app/data/db.sq3`; pre-change copy kept as
+  `db.sq3.bak-20261001` beside it). The stray dump directory was deleted.
+- The nightly 03:15 cron run started on 2026-09-30 and 2026-10-01 but produced
+  no dumps for any site, while the same command run manually as the `clp` user
+  succeeds — including with a cron-like minimal environment. The cron line's
+  `&> /dev/null` was replaced with `>> /home/clp/db-backup-cron.log 2>&1`
+  (pre-change copy kept as `/etc/cron.d/clp.bak-20261001`) so the next run
+  records its output. Check the log and the dump directory after the next
+  03:15 run before closing KAN-7. A CloudPanel update may overwrite
+  `/etc/cron.d/clp` and remove the logging.
+
+Note that `clpctl db:backup` is only defined when run as the `clp` user
+(`sudo -u clp clpctl db:backup ...`); as root the command does not exist.
 
 ## Verification and remaining acceptance
 

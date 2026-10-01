@@ -26,7 +26,7 @@ Med en [datoafstemning](/datoafstemning) foreslår I nogle relevante datoer, sen
 
 [Find dato til næste bestyrelsesmøde](/opret)
 
-
+![Datoafstemning til bestyrelsesmøde med flere mulige mødedatoer](/images/articles/bestyrelsesmoede-datoafstemning.webp)
 
 
 ## Hvorfor er det så svært at finde en mødedato?
@@ -137,7 +137,7 @@ Måske findes der ingen dato, der passer alle.
 
 Det bliver hurtigt synligt.
 
-
+![Oversigt der viser hvilken dato der passer bedst til bestyrelsen](/images/articles/bedste-dato-bestyrelsesmoede.webp)
 
 
 ## Skal alle bestyrelsesmedlemmer kunne deltage?

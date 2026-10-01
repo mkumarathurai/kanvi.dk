@@ -32,7 +32,7 @@ Når 10, 15 eller 20 mennesker skal finde en fælles dag, er en [datoafstemning]
 
 [Find en dato til polterabenden](/opret)
 
-
+![Datoafstemning til at finde en fælles dato til polterabend](/images/articles/polterabend-datoafstemning.webp)
 
 
 ## Datoen er det første, der skal på plads
@@ -155,7 +155,7 @@ Det er helt normalt.
 
 Målet er at finde den bedste løsning for gruppen.
 
-
+![Oversigt der viser hvilken dato der passer flest deltagere til polterabend](/images/articles/bedste-dato-polterabend.webp)
 
 
 ## Hvad hvis alle ikke kan?

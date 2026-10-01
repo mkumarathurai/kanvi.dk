@@ -132,8 +132,17 @@ class ArticlesTest extends TestCase
             $counts[$key] = $images->length;
             $this->assertImagesAreServable($images);
         }
-        $this->assertEquals(['klassearrangement' => 4, 'datoafstemning' => 3],
-            array_filter($counts), 'The set of illustrated articles changed.');
+        $this->assertEquals([
+            'klassearrangement' => 4,
+            'datoafstemning' => 3,
+            'venner' => 3,
+            'familien' => 3,
+            'polterabend' => 2,
+            'foreninger' => 2,
+            'bestyrelser' => 2,
+            'find-en-dato' => 2,
+            'julefrokost' => 2,
+        ], array_filter($counts), 'The set of illustrated articles changed.');
     }
 
     private function assertImagesAreServable(\DOMNodeList $images): void

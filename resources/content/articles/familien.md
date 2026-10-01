@@ -30,7 +30,7 @@ Her kan en [datoafstemning](/datoafstemning) gøre det meget lettere.
 
 [Find en dato med familien](/opret)
 
-
+![Datoafstemning til at finde en fælles dag med familien](/images/articles/familie-datoafstemning.webp)
 
 
 ## Hvorfor bliver familieaftaler hurtigt svære?
@@ -140,6 +140,8 @@ Andre skal måske lige tjekke:
 
 Når afstemningen ligger samlet, kan alle svare, når de har overblikket.
 
+![Familie svarer på mulige datoer i en Kanvi-afstemning](/images/articles/familie-stemmer-paa-dato.webp)
+
 
 ### 5. Vælg den bedste dato
 
@@ -152,7 +154,7 @@ Når svarene er kommet ind, kan I se:
 
 Så bliver beslutningen lettere.
 
-
+![Oversigt der viser hvilken dato der passer flest i familien](/images/articles/bedste-familiedato.webp)
 
 
 ## Fødselsdage

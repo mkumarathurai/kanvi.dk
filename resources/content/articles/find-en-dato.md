@@ -32,6 +32,8 @@ Heldigvis kan det gøres langt enklere.
 
 [Find en dato med Kanvi](/opret)
 
+![Find en dato der passer alle med en fælles datoafstemning](/images/articles/find-en-dato-der-passer-alle.webp)
+
 ## Den nemmeste metode: Giv gruppen nogle konkrete valgmuligheder
 
 Den største fejl er ofte at stille spørgsmålet for åbent.
@@ -156,7 +158,7 @@ Så er et bedre spørgsmål:
 
 Hvis 22 kan den ene dag og 17 den anden, har I pludselig et ret godt grundlag for beslutningen.
 
-
+![Oversigt der viser hvilken dato der passer flest deltagere](/images/articles/find-bedste-dato.webp)
 
 
 ## Hvad hvis alle ikke kan den samme dag?

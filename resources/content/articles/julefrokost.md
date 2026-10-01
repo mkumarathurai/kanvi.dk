@@ -30,7 +30,7 @@ Og helst uden 74 beskeder frem og tilbage.
 
 [Find en dato til julefrokosten](/opret)
 
-
+![Datoafstemning til julefrokost med flere mulige datoer](/images/articles/julefrokost-datoafstemning.webp)
 
 
 ## Start med datoen – ikke detaljerne
@@ -180,6 +180,8 @@ Hvis alle kan den samme dag, er det nemt.
 Hvis ikke, kan I vælge den dato, hvor flest kan.
 
 Det behøver ikke være mere kompliceret.
+
+![Resultat af datoafstemning der viser den bedste dato til julefrokost](/images/articles/bedste-dato-julefrokost.webp)
 
 
 ## Hvor tidligt bør man planlægge julefrokosten?

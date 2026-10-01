@@ -40,7 +40,7 @@ Foreslå nogle datoer, del linket og få alle svar samlet ét sted.
 
 [Find en dato i foreningen](/opret)
 
-
+![Datoafstemning til arbejdsdag i en forening](/images/articles/forening-datoafstemning.webp)
 
 
 ## Foreninger har mange datoer, der skal gå op
@@ -172,7 +172,7 @@ Når svarene er kommet ind, kan arrangøren se:
 
 Det giver et langt bedre beslutningsgrundlag end at bladre gennem en gammel mailtråd.
 
-
+![Oversigt der viser hvilken dato der passer flest medlemmer i en forening](/images/articles/bedste-dato-forening.webp)
 
 
 ## Bestyrelsesmøder

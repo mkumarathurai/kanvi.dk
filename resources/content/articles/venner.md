@@ -36,7 +36,7 @@ Og i stedet spørge:
 
 [Find en dag med vennerne](/opret)
 
-
+![Datoafstemning til at finde en fælles dag med venner](/images/articles/find-dato-med-venner.webp)
 
 
 ## Hvorfor er det så svært at finde en dag?
@@ -171,7 +171,7 @@ Ingen skal læse 40 gamle beskeder for at forstå, hvilke forslag der stadig gæ
 
 Alle ser det samme.
 
-
+![Venner svarer på mulige datoer i en Kanvi-afstemning](/images/articles/venner-stemmer-paa-dato.webp)
 
 
 ## Vælg den dag, der passer bedst
@@ -187,6 +187,8 @@ Det kommer an på situationen.
 En afstemning træffer ikke beslutningen for jer.
 
 Den viser bare tydeligt, hvordan mulighederne ser ud.
+
+![Oversigt der viser hvilken dato der passer flest venner](/images/articles/bedste-dato-med-venner.webp)
 
 
 ## Hvad hvis ingen dato passer alle?

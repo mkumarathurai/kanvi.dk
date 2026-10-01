@@ -180,3 +180,17 @@ numbers. Small caption "Eksempel" bottom right.
 
 File: `public/images/articles/julefrokost-fredag-eller-loerdag.webp`
 Alt: `Afstemning om julefrokost fredag eller lørdag`
+
+### julefrokost — chat vs. Kanvi
+
+Use case: infographic-diagram. Two equal panels.
+Left panel labeled exactly "Julefrokost i gruppechatten": six overlapping
+message slips with these exact phrases: "3. december?", "Kan ikke.", "10.?",
+"Måske.", "17.?", "Der har vi allerede noget.".
+Right panel labeled exactly "Julefrokost i Kanvi": four date rows, labels
+exactly "Fre. 4. december", "Lør. 5. december", "Fre. 11. december",
+"Lør. 12. december"; totals exactly "7 kan", "9 kan", "6 kan", "8 kan";
+second row highlighted.
+
+File: `public/images/articles/julefrokost-chat-vs-kanvi.webp`
+Alt: `Planlægning af julefrokost i gruppechat sammenlignet med Kanvi`

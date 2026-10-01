@@ -132,7 +132,7 @@ class ArticlesTest extends TestCase
             $counts[$key] = $images->length;
             $this->assertImagesAreServable($images);
         }
-        $this->assertEquals(['klassearrangement' => 2, 'datoafstemning' => 2],
+        $this->assertEquals(['klassearrangement' => 4, 'datoafstemning' => 3],
             array_filter($counts), 'The set of illustrated articles changed.');
     }
 

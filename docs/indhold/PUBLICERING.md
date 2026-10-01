@@ -67,8 +67,13 @@ den 30. september 2026:
 `srcset`, `sizes` og `loading="lazy"`, når filnavnet følger mønsteret
 `/images/articles/<navn>.webp` med `-720` og `-390` ved siden af.
 
-Mobilvisningen mangler stadig. Chrome tillader ikke et vindue smallere end cirka
-500 px, så den skal tages på en anden måde end de to desktopbilleder.
+Mobilbilleder tages med Chrome DevTools' enhedsemulering (390 px bredde,
+devicePixelRatio 3), ikke ved at gøre vinduet smallere — Chrome tillader ikke et
+vindue under cirka 500 px. Brugt 1. oktober 2026 til mobilbilledet i
+datoafstemningsartiklen og klasseartiklens hero. Før skuddet: skjul scrollbaren
+og slå hover-tilstande fra med injiceret CSS, og fjern fokusringen ved at blure
+det aktive element. Beskær topforankret med `cwebp -crop`, ikke `sips -c`, som
+beskærer centreret.
 
 ## Kontrol
 

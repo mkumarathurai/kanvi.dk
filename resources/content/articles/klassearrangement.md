@@ -30,6 +30,8 @@ En [datoafstemning](/datoafstemning) kan gøre den del meget lettere.
 
 [Find en dato til klassearrangementet](/opret)
 
+![Datoafstemning til at finde en dato til klassearrangement](/images/articles/klassearrangement-datoafstemning.webp)
+
 ## Mange familier betyder mange kalendere
 
 Et klassearrangement involverer sjældent kun børnene.
@@ -134,6 +136,8 @@ Når svarene er kommet ind, kan arrangørerne se:
 - om der skal findes nye muligheder
 
 Det giver et bedre grundlag for beslutningen end en lang beskedtråd.
+
+![Oversigt der viser hvilken dato der passer flest familier til klassearrangement](/images/articles/bedste-dato-klassearrangement.webp)
 
 ## Klassefest
 

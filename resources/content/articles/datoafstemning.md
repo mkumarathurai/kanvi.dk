@@ -121,7 +121,7 @@ Svarene ligger struktureret.
 
 Ikke som 17 forskellige beskeder skrevet over tre dage.
 
-
+![Deltager svarer på datoer i en Kanvi datoafstemning på mobilen](/images/articles/stem-paa-dato-mobil.webp)
 
 
 ### 5. Se hvilken dato der passer bedst

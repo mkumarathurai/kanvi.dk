@@ -158,6 +158,21 @@ Alt: `Datoer fra mail og beskeder samlet i en Kanvi-afstemning`
 Generated 2026-10-02 in ChatGPT. The message slips were moved from the 4th
 and 11th to the 5th and 12th to match the corrected May dates.
 
+## bestyrelser — flere situationer i foreningen
+
+Use case: infographic-diagram. Three small poll cards labeled exactly
+"Bestyrelsesmøde", "Arbejdsdag", "Sommerfest", each with a tiny calendar icon
+and three short tally bars, connected by soft hand-drawn arrows that all point
+into one larger calm overview card with four date rows and a small green check.
+No readable numbers anywhere.
+
+Files: `public/images/articles/forening-find-dato.webp`, with `-720` and `-390` variants.
+Alt: `Datoafstemninger til bestyrelsesmøde og aktiviteter i en forening`
+
+Generated 2026-10-02 in ChatGPT. It spelled the first label "Bestyrrelsesmøde"
+twice, so the extra "r" was cut out of the original by removing its pixel
+columns and shifting the rest of the word left; no new text was drawn.
+
 ## Planned prompts — written 2026-10-01, not generated yet
 
 Shared style for every prompt below (repeat it verbatim after the primary
@@ -173,17 +188,6 @@ wording legible at 720 px display width. Horizontal 16:9.
 Where a panel shows date rows with totals, use four neatly aligned rows with
 clean horizontal green tally bars, one row softly highlighted as best, and a
 small caption "Eksempel" below the panel.
-
-### bestyrelser — flere situationer i foreningen
-
-Use case: infographic-diagram. Three small poll cards labeled exactly
-"Bestyrelsesmøde", "Arbejdsdag", "Sommerfest", each with a tiny calendar icon
-and three short tally bars, connected by soft hand-drawn arrows that all point
-into one larger calm overview card with four date rows and a small green check.
-No readable numbers anywhere.
-
-File: `public/images/articles/forening-find-dato.webp`
-Alt: `Datoafstemninger til bestyrelsesmøde og aktiviteter i en forening`
 
 ### find-en-dato — få valgmuligheder
 

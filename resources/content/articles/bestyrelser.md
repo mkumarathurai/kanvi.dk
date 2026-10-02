@@ -282,7 +282,9 @@ De samme mennesker møder det samme problem:
 
 En datoafstemning kan bruges på præcis samme måde.
 
+**En enkel måde at finde datoer i foreningen.**
 
+![Datoafstemninger til bestyrelsesmøde og aktiviteter i en forening](/images/articles/forening-find-dato.webp)
 
 
 ## Når datoen er valgt

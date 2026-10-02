@@ -311,7 +311,11 @@ Og brug en afstemning til:
 
 > Hvornår?
 
+**Mindre kalenderkaos. Mere julefrokost.**
 
+![Planlægning af julefrokost i gruppechat sammenlignet med Kanvi](/images/articles/julefrokost-chat-vs-kanvi.webp)
+
+*Illustreret eksempel: lørdag 5. december passer 9, lørdag 12. december passer 8, fredag 4. december passer 7 og fredag 11. december passer 6.*
 
 
 ## Når datoen er fundet

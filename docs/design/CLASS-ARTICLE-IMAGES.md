@@ -201,6 +201,22 @@ Alt: `Afstemning om julefrokost fredag eller lørdag`
 Generated 2026-10-02 in ChatGPT, with the added instruction that the calendar
 cards carry no dates.
 
+## julefrokost — chat vs. Kanvi
+
+Use case: infographic-diagram. Two equal panels.
+Left panel labeled exactly "Julefrokost i gruppechatten": six overlapping
+message slips with these exact phrases: "3. december?", "Kan ikke.", "10.?",
+"Måske.", "17.?", "Der har vi allerede noget.".
+Right panel labeled exactly "Julefrokost i Kanvi": four date rows, labels
+exactly "Fre. 4. december", "Lør. 5. december", "Fre. 11. december",
+"Lør. 12. december"; totals exactly "7 kan", "9 kan", "6 kan", "8 kan";
+second row highlighted.
+
+Files: `public/images/articles/julefrokost-chat-vs-kanvi.webp`, with `-720` and `-390` variants.
+Alt: `Planlægning af julefrokost i gruppechat sammenlignet med Kanvi`
+
+Generated 2026-10-02 in ChatGPT.
+
 ## Planned prompts — written 2026-10-01, not generated yet
 
 Shared style for every prompt below (repeat it verbatim after the primary
@@ -216,20 +232,6 @@ wording legible at 720 px display width. Horizontal 16:9.
 Where a panel shows date rows with totals, use four neatly aligned rows with
 clean horizontal green tally bars, one row softly highlighted as best, and a
 small caption "Eksempel" below the panel.
-
-### julefrokost — chat vs. Kanvi
-
-Use case: infographic-diagram. Two equal panels.
-Left panel labeled exactly "Julefrokost i gruppechatten": six overlapping
-message slips with these exact phrases: "3. december?", "Kan ikke.", "10.?",
-"Måske.", "17.?", "Der har vi allerede noget.".
-Right panel labeled exactly "Julefrokost i Kanvi": four date rows, labels
-exactly "Fre. 4. december", "Lør. 5. december", "Fre. 11. december",
-"Lør. 12. december"; totals exactly "7 kan", "9 kan", "6 kan", "8 kan";
-second row highlighted.
-
-File: `public/images/articles/julefrokost-chat-vs-kanvi.webp`
-Alt: `Planlægning af julefrokost i gruppechat sammenlignet med Kanvi`
 
 ### hvor-mange-datoer — for få, tilpas, for mange (hero)
 

@@ -307,6 +307,10 @@ Igen:
 
 **Flest er ikke altid det samme som bedst.**
 
+**Den bedste dato er ikke altid den med det største tal.**
+
+![Sammenligning af antal deltagere og vigtige deltagere ved valg af dato](/images/articles/flest-vs-vigtigste-deltagere.webp)
+
 ## Hvornår bør man starte helt forfra?
 
 Det giver mening at tage en ny runde, hvis:

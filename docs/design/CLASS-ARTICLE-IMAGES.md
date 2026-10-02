@@ -217,6 +217,24 @@ Alt: `Planlægning af julefrokost i gruppechat sammenlignet med Kanvi`
 
 Generated 2026-10-02 in ChatGPT.
 
+## hvor-mange-datoer — for få, tilpas, for mange (hero)
+
+Use case: infographic-diagram. Three equal columns.
+Left column labeled exactly "2 datoer": two calm date rows, caption exactly
+"For få?".
+Middle column labeled exactly "5 datoer": five clear date rows with short
+green tally bars, visually calm and balanced, caption exactly "God balance".
+Right column labeled exactly "18 datoer": one long cramped list of eighteen
+thin unreadable date lines, caption exactly "For meget?".
+The middle column reads as the obvious, easy choice.
+
+Files: `public/images/articles/hvor-mange-datoer-afstemning.webp`, with `-720` and `-390` variants.
+Alt: `Eksempel på hvor mange datoer man kan foreslå i en datoafstemning`
+
+Generated 2026-10-02 in ChatGPT. The right column came out with 19 rows under
+the "18 datoer" label; the bottom row was painted over with background
+copied from just below it, leaving exactly 18.
+
 ## Planned prompts — written 2026-10-01, not generated yet
 
 Shared style for every prompt below (repeat it verbatim after the primary
@@ -232,20 +250,6 @@ wording legible at 720 px display width. Horizontal 16:9.
 Where a panel shows date rows with totals, use four neatly aligned rows with
 clean horizontal green tally bars, one row softly highlighted as best, and a
 small caption "Eksempel" below the panel.
-
-### hvor-mange-datoer — for få, tilpas, for mange (hero)
-
-Use case: infographic-diagram. Three equal columns.
-Left column labeled exactly "2 datoer": two calm date rows, caption exactly
-"For få?".
-Middle column labeled exactly "5 datoer": five clear date rows with short
-green tally bars, visually calm and balanced, caption exactly "God balance".
-Right column labeled exactly "18 datoer": one long cramped list of eighteen
-thin unreadable date lines, caption exactly "For meget?".
-The middle column reads as the obvious, easy choice.
-
-File: `public/images/articles/hvor-mange-datoer-afstemning.webp`
-Alt: `Eksempel på hvor mange datoer man kan foreslå i en datoafstemning`
 
 ### hvor-mange-datoer — antal efter arrangement
 

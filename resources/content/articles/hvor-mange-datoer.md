@@ -20,6 +20,9 @@ Det giver gruppen noget at vælge imellem uden at gøre afstemningen unødvendig
 
 [Opret en datoafstemning](/opret)
 
+![Eksempel på hvor mange datoer man kan foreslå i en datoafstemning](/images/articles/hvor-mange-datoer-afstemning.webp)
+
+
 ## Hvorfor ikke bare foreslå hele kalenderen?
 
 Forestil dig, at du modtager denne besked:

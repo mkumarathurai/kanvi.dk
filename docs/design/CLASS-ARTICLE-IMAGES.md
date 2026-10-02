@@ -302,6 +302,26 @@ Alt: `Sammenligning af antal deltagere og vigtige deltagere ved valg af dato`
 Generated 2026-10-02 in ChatGPT without the headline; it is page text above
 the image.
 
+## datoafstemning — gruppechat vs. Kanvi (not generated yet)
+
+Written 2026-10-02: the brief in `docs/indhold/datoafstemning.md` asks for this
+image, but no prompt was written on 2026-10-01, so it was missing from the
+round. The poll dates are February 2026, so "hvad med 14." in the chat points
+at the winning Saturday.
+
+Use case: infographic-diagram. Two equal panels.
+Left panel labeled exactly "Gruppechatten": five overlapping message slips with
+these exact phrases: "Jeg kan fredag", "ikke fredag 😬", "hvad med 14.",
+"kan kun efter 18", "Vent, mente du denne fredag?".
+Right panel labeled exactly "Kanvi": four date rows, labels exactly
+"Fre. 6. februar", "Lør. 7. februar", "Fre. 13. februar", "Lør. 14. februar";
+totals exactly "5 kan", "6 kan", "4 kan", "8 kan"; fourth row highlighted.
+Smooth, continuous bars proportional to the totals, and a small caption
+"Eksempel" below the panel. No headline.
+
+Files: `public/images/articles/gruppechat-vs-datoafstemning.webp`, with `-720` and `-390` variants.
+Alt: `Sammenligning af gruppechat og en overskuelig datoafstemning`
+
 ## Shared style and lessons
 
 Shared style for every prompt written 2026-10-01 (repeat it verbatim after

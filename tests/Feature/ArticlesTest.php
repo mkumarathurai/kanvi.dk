@@ -247,6 +247,34 @@ class ArticlesTest extends TestCase
         $this->assertSame(count($images), count(array_unique($images)), 'Two pages share a sharing image.');
     }
 
+    public function test_the_homepage_and_listings_declare_their_own_sharing_image(): void
+    {
+        $pages = ['/' => 'forside', '/guides' => 'guides', '/til' => 'til', '/hjaelp' => 'hjaelp', '/artikler' => 'artikler'];
+        foreach ($pages as $path => $key) {
+            $document = new DOMDocument;
+            @$document->loadHTML('<?xml encoding="utf-8" ?>'.$this->get($path)->assertOk()->getContent());
+            $xpath = new DOMXPath($document);
+            $meta = fn (string $query) => $xpath->query($query)->item(0)?->getAttribute('content');
+
+            $this->assertSame(app(Articles::class)->url('/deling/'.$key), $meta('//meta[@property="og:image"]'), $path);
+            $this->assertSame(app(Articles::class)->url($path), $meta('//meta[@property="og:url"]'), $path);
+            $this->assertNotEmpty($meta('//meta[@property="og:title"]'), $path);
+            $this->assertNotEmpty($meta('//meta[@property="og:description"]'), $path);
+            $this->assertSame('summary_large_image', $meta('//meta[@name="twitter:card"]'), $path);
+
+            [$width, $height, $type] = getimagesizefromstring($this->get('/deling/'.$key)->assertOk()->getContent());
+            $this->assertSame([1200, 630, IMAGETYPE_PNG], [$width, $height, $type], $key);
+        }
+    }
+
+    public function test_the_homepage_keeps_its_title_and_gains_a_canonical_link(): void
+    {
+        $this->get('/')->assertOk()
+            ->assertSee('<title>Find en dag, der passer alle · Kanvi</title>', false)
+            ->assertSee('<link rel="canonical" href="'.app(Articles::class)->url('/').'">', false);
+        $this->get('/opret')->assertOk()->assertDontSee('property="og:image"', false);
+    }
+
     public function test_the_sharing_image_is_a_real_png_and_only_serves_configured_pages(): void
     {
         $response = $this->get('/deling/faq')->assertOk()

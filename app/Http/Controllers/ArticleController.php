@@ -94,13 +94,31 @@ class ArticleController extends Controller
         ]);
     }
 
+    /** The homepage's sharing image, served beside the article ones at /deling/forside. */
+    public const HOME_SHARE = ['key' => 'forside', 'title' => 'Find en dag, der passer alle', 'action' => 'Opret på kanvi.dk'];
+
+    /** Every key /deling/{page} answers: the articles, the homepage and the listings. */
+    public static function shareKeys(): array
+    {
+        return [...array_keys(config('articles')), self::HOME_SHARE['key'],
+            ...array_map(fn ($index) => ltrim($index['path'], '/'), array_values(self::INDEXES))];
+    }
+
     /**
      * The sharing image, drawn from the page title with the same renderer as poll
-     * previews. Without it every shared article previewed identically.
+     * previews. Without it every shared page previewed identically, and the
+     * homepage and listings showed no image at all.
      */
     public function preview(string $article, Articles $articles, PollPreview $preview): Response
     {
-        return response($preview->render($articles->meta($article)['title'], 'Læs på kanvi.dk'), 200, [
+        $index = collect(self::INDEXES)->first(fn ($candidate) => ltrim($candidate['path'], '/') === $article);
+        [$title, $action] = match (true) {
+            $article === self::HOME_SHARE['key'] => [self::HOME_SHARE['title'], self::HOME_SHARE['action']],
+            $index !== null => [$index['heading'], 'Læs på kanvi.dk'],
+            default => [$articles->meta($article)['title'], 'Læs på kanvi.dk'],
+        };
+
+        return response($preview->render($title, $action), 200, [
             'Content-Type' => 'image/png',
             'Cache-Control' => 'public, max-age=86400',
         ]);
@@ -118,6 +136,7 @@ class ArticleController extends Controller
                 'title' => $index['seo_title'],
                 'description' => $index['description'],
                 'canonical' => $articles->url($index['path']),
+                'image' => $articles->url('/deling/'.ltrim($index['path'], '/')),
             ],
         ]);
     }

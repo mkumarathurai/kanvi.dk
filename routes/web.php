@@ -22,7 +22,7 @@ foreach (config('articles') as $key => $article) {
 // No file extension: the host serves .png as a static file, so such a path never
 // reaches PHP. See the regression test in RoutePathsTest.
 Route::get('/deling/{article}', [ArticleController::class, 'preview'])
-    ->whereIn('article', array_keys(config('articles')))->name('articles.preview');
+    ->whereIn('article', ArticleController::shareKeys())->name('articles.preview');
 
 Route::middleware(PrivatePollHeaders::class)->group(function () {
     Route::get('/adgang/link/{token}', [PollRecoveryController::class, 'open'])->where('token', '[a-f0-9]{64}')->middleware('throttle:60,1')->name('recovery.open');

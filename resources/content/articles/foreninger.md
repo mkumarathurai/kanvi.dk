@@ -299,6 +299,8 @@ Afstemningen giver jer data.
 
 Foreningen træffer beslutningen.
 
+Læs også, [hvad I gør, hvis ingen dato passer alle](/artikler/ingen-dato-passer-alle).
+
 
 ## Mail, Facebook eller datoafstemning?
 

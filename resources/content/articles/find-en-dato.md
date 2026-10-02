@@ -367,7 +367,7 @@ Vælg nogle konkrete datoer og lad alle deltagere tage stilling til de samme mul
 
 ### Hvad gør man, hvis ingen dato passer alle?
 
-Vælg den dato, hvor flest relevante deltagere kan, eller lav en ny runde med andre muligheder.
+Vælg den dato, hvor flest relevante deltagere kan, eller lav en ny runde med andre muligheder. Læs også, [hvad I gør, hvis ingen dato passer alle](/artikler/ingen-dato-passer-alle).
 
 ### Hvor mange datoer bør man foreslå?
 

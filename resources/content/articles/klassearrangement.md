@@ -335,7 +335,7 @@ Skriv en tydelig svarfrist i beskeden til familierne og send selv en kort påmin
 
 ### Hvad hvis ingen dato passer godt?
 
-Så kan arrangørerne foreslå nye muligheder og tage en ny runde.
+Så kan arrangørerne foreslå nye muligheder og tage en ny runde. Læs også, [hvad I gør, hvis ingen dato passer alle](/artikler/ingen-dato-passer-alle).
 
 Vil du sammenligne værktøjer? Læs om Kanvi som et [enkelt alternativ til Doodle](/doodle-alternativ).
 

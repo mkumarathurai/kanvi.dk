@@ -259,6 +259,8 @@ Hvis ingen af mulighederne fungerer godt, kan I foreslå nogle nye datoer.
 
 Det er stadig bedre end at fortsætte med løse forslag i en gruppechat.
 
+Læs også, [hvad I gør, hvis ingen dato passer alle](/artikler/ingen-dato-passer-alle).
+
 
 ## Familiechatten kan stadig bruges
 

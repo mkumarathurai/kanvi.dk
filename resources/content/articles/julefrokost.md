@@ -264,6 +264,8 @@ Kanvi giver overblikket.
 
 Beslutningen er stadig jeres.
 
+Læs også, [hvad I gør, hvis ingen dato passer alle](/artikler/ingen-dato-passer-alle).
+
 
 
 

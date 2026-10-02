@@ -172,6 +172,8 @@ Hvis ingen dato passer hele bestyrelsen, kan I:
 
 Det vigtigste er, at I har et samlet overblik at træffe beslutningen ud fra.
 
+Læs også, [hvad I gør, hvis ingen dato passer alle](/artikler/ingen-dato-passer-alle).
+
 
 ## Mailtråd eller datoafstemning?
 

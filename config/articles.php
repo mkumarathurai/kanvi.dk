@@ -103,6 +103,16 @@ return [
         'kind' => 'guide',
         'published' => '2026-10-02',
     ],
+    'ingen-dato-passer-alle' => [
+        'path' => '/artikler/ingen-dato-passer-alle',
+        'title' => 'Hvad gør man, hvis ingen dato passer alle?',
+        'seo_title' => 'Hvad gør man, hvis ingen dato passer alle? | Kanvi',
+        'description' => 'Ingen af datoerne passer alle? Få en enkel metode til at vælge den bedste dato, prioritere deltagere eller tage en ny runde.',
+        'label' => 'Hvad gør man, hvis ingen dato passer alle?',
+        'group' => 'Gode råd',
+        'kind' => 'guide',
+        'published' => '2026-10-02',
+    ],
 
     // Task-oriented help pages. /hjaelp lists them.
     'hjaelp-opret-afstemning' => [

@@ -204,6 +204,8 @@ Hvis to datoer ligger tæt, kan arrangøren derefter tage den endelige beslutnin
 
 Det vigtigste er, at beslutningen bliver truffet på baggrund af et samlet overblik i stedet for en lang række beskeder.
 
+Læs også, [hvad I gør, hvis ingen dato passer alle](/artikler/ingen-dato-passer-alle).
+
 
 ## Fra “Hvornår kan I?” til “Så er det den 14.”
 

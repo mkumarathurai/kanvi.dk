@@ -215,6 +215,8 @@ Det er stadig menneskerne, der beslutter.
 
 Kanvi giver bare overblikket.
 
+Læs også, [hvad I gør, hvis ingen dato passer alle](/artikler/ingen-dato-passer-alle).
+
 
 ## Hvornår kan man bruge en datoafstemning?
 

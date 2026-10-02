@@ -4,7 +4,7 @@ De ti leverede artikler er implementeret på det lokale site den 29. september
 2026. Ændringen er ikke i sig selv en deployment til produktion.
 
 Forsiden linker til alle guides. `/guides` samler dem, `/til` samler de syv
-situationssider, og `/artikler` samler rådgivningsartiklerne (den første er
+situationssider, og `/artikler` samler rådgivningsartiklerne (de to første er
 udgivet 2. oktober 2026). Navigation og footer linker til oversigterne.
 
 ## Redigering
@@ -36,8 +36,8 @@ Doodles produktoversigt er linket som kilde i sammenligningsartiklen.
 
 Siderne har én H1, individuelle metadata, canonical URL, Open Graph-tekst,
 `WebPage`- og `BreadcrumbList`-data samt server-renderet hovedindhold.
-`/sitemap.xml` indeholder forsiden, de fire oversigter, de elleve artikler,
-`/faq`, `/privatliv` og de syv hjælpesider: 25 adresser i alt.
+`/sitemap.xml` indeholder forsiden, de fire oversigter, de tolv artikler,
+`/faq`, `/privatliv` og de syv hjælpesider: 26 adresser i alt.
 `public/robots.txt` henviser til sitemap på produktionsdomænet.
 
 Canonical og sitemap bruger `APP_URL`, som skal være `https://kanvi.dk` i

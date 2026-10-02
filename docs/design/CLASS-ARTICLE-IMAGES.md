@@ -237,3 +237,26 @@ det at finde datoen."
 
 File: `public/images/articles/faa-vs-mange-datoer.webp`
 Alt: `Sammenligning af en stor og en enkel datoafstemning`
+
+### ingen-dato-passer-alle — næsten alle kan
+
+Use case: infographic-diagram. Nine simple friendly figures in a loose row;
+eight drawn in flat green marked as able, one drawn in grey gently set apart
+as unable. Large label exactly "8 af 9 kan".
+Caption exactly "Nogle gange er det værd at spørge én gang mere."
+
+File: `public/images/articles/naesten-alle-kan.webp`
+Alt: `Dato hvor næsten alle deltagere kan`
+
+### ingen-dato-passer-alle — flest vs. vigtigste deltagere
+
+Use case: infographic-diagram. Two equal boxes.
+Left box labeled exactly "Lørdag": exactly "15 kan" with the note exactly
+"Men en vigtig deltager mangler", and a subtle empty chair.
+Right box labeled exactly "Søndag": exactly "14 kan" with the note exactly
+"Alle nøglepersoner kan", gently highlighted as the better choice.
+Headline across the top exactly "Den bedste dato er ikke altid den med det
+største tal."
+
+File: `public/images/articles/flest-vs-vigtigste-deltagere.webp`
+Alt: `Sammenligning af antal deltagere og vigtige deltagere ved valg af dato`

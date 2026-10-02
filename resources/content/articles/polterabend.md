@@ -308,6 +308,8 @@ Samtidig bliver afstemningen ikke unødvendigt stor.
 
 Hvis ingen dato fungerer, kan I altid lave en ny runde.
 
+Læs også, [hvad I gør, hvis ingen dato passer alle](/artikler/ingen-dato-passer-alle).
+
 
 ## En besked I kan sende til gruppen
 

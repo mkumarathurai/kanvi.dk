@@ -24,7 +24,7 @@ class ArticlesTest extends TestCase
 
     public function test_all_articles_render_public_content_and_seo_without_javascript(): void
     {
-        $this->assertCount(11, $this->guides());
+        $this->assertCount(12, $this->guides());
         foreach ($this->guides() as $article) {
             $response = $this->get($article['path'])->assertOk();
             $html = $response->getContent();
@@ -60,7 +60,8 @@ class ArticlesTest extends TestCase
             }
         }
         $this->get('/til')->assertOk()->assertSee(url('/til/foreninger'))->assertSee(url('/til/klassearrangement'));
-        $this->get('/artikler')->assertOk()->assertSee(url('/artikler/hvor-mange-datoer-skal-man-foreslaa'));
+        $this->get('/artikler')->assertOk()->assertSee(url('/artikler/hvor-mange-datoer-skal-man-foreslaa'))
+            ->assertSee(url('/artikler/ingen-dato-passer-alle'));
         $this->get('/til/ukendt')->assertNotFound();
     }
 
@@ -84,14 +85,14 @@ class ArticlesTest extends TestCase
         config(['app.url' => 'https://kanvi.dk']);
         $response = $this->get('/sitemap.xml')->assertOk()->assertHeader('Content-Type', 'application/xml; charset=UTF-8');
         $xml = simplexml_load_string($response->getContent());
-        $this->assertCount(25, $xml->url);
+        $this->assertCount(26, $xml->url);
         foreach (config('articles') as $article) {
             $response->assertSee('https://kanvi.dk'.$article['path']);
         }
         // Exact URLs: /hjaelp/opret-afstemning belongs here and contains "/opret".
         // Keys must not be preserved; every <url> shares the name and would collapse to one.
         $urls = array_map('strval', iterator_to_array($xml->url, false));
-        $this->assertCount(25, $urls);
+        $this->assertCount(26, $urls);
         foreach (['/p/', '/admin/', '/adgang/'] as $private) {
             $this->assertEmpty(array_filter($urls, fn ($url) => str_contains($url, $private)));
         }
@@ -145,6 +146,37 @@ class ArticlesTest extends TestCase
         $this->assertSame('2026-10-02', $schema['@graph'][2]['datePublished']);
         $this->assertSame('2026-10-02', $schema['@graph'][2]['dateModified']);
         $this->assertSame(3, $xpath->query('//a[contains(@class,"article-cta")]')->length);
+    }
+
+    public function test_the_no_date_fits_article_links_the_cluster_and_is_linked_back(): void
+    {
+        $response = $this->get('/artikler/ingen-dato-passer-alle')->assertOk();
+        $response->assertSee('Hvad gør man, hvis ingen dato passer alle? | Kanvi')
+            ->assertSee('Flest er ikke altid det samme som bedst')
+            ->assertSee('Tidspunktet aftaler I i beskeden til gruppen')
+            ->assertSee('Ingen skal presses til')
+            ->assertDontSee('BILLEDE')->assertDontSee('Filnavn:')->assertDontSee('Redaktionel afklaring');
+
+        foreach (['/datoafstemning', '/find-en-dato', '/artikler/hvor-mange-datoer-skal-man-foreslaa',
+            '/til/bestyrelser', '/til/foreninger', '/til/julefrokost', '/til/polterabend',
+            '/til/familien', '/til/venner', '/til/klassearrangement'] as $path) {
+            $response->assertSee('href="'.$path.'"', false);
+        }
+
+        $document = new DOMDocument;
+        @$document->loadHTML('<?xml encoding="utf-8" ?>'.$response->getContent());
+        $xpath = new DOMXPath($document);
+        $schema = json_decode($xpath->query('//script[@type="application/ld+json"]')->item(0)->textContent, true, flags: JSON_THROW_ON_ERROR);
+        $this->assertSame(['Forside', 'Artikler', 'Hvad gør man, hvis ingen dato passer alle?'], array_column($schema['@graph'][1]['itemListElement'], 'name'));
+        $this->assertSame('Article', $schema['@graph'][2]['@type']);
+        $this->assertSame('2026-10-02', $schema['@graph'][2]['datePublished']);
+        $this->assertSame(3, $xpath->query('//a[contains(@class,"article-cta")]')->length);
+
+        // Every page with a "no date fits" section links back to the article.
+        foreach (['/datoafstemning', '/find-en-dato', '/doodle-alternativ', '/til/bestyrelser', '/til/foreninger',
+            '/til/familien', '/til/julefrokost', '/til/venner', '/til/polterabend', '/til/klassearrangement'] as $path) {
+            $this->get($path)->assertSee('href="/artikler/ingen-dato-passer-alle"', false);
+        }
     }
 
     public function test_every_article_image_has_real_assets_dimensions_and_lazy_loading(): void

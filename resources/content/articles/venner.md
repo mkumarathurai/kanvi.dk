@@ -209,6 +209,8 @@ Det er stadig bedre end endnu en uge med:
 
 > Hvad så med næste weekend?
 
+Læs også, [hvad I gør, hvis ingen dato passer alle](/artikler/ingen-dato-passer-alle).
+
 
 
 

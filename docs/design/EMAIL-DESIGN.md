@@ -174,10 +174,16 @@ HTML-previews bruger en lokal kopi af logoet. EML bruger den konfigurerede
 | Klient | Status |
 | --- | --- |
 | Gmail desktop | Bestået 2026-10-02. Lys visning med billeder bestået 2026-10-01 (preheader, logo, titel, grøn CTA og footer korrekte). Billeder fra og mørkt tema kontrolleret 2026-10-02 sammen med Mathi mod recovery-mailen fra 30/9 (template uændret siden). Uden billeder: logoet falder tilbage til alt-teksten "Kanvi", titelboks, grøn CTA og footer intakte og læsbare. Mørkt tema: Gmail web omfarver ikke mailindholdet, så mailen renderer som i lys visning. Kontoindstillinger (billeder og tema) gendannet og efterprøvet efter testen |
-| Gmail mobil | Afventer testdestination og klientkontrol |
+| Gmail mobil (iOS-appen) | Bestået 2026-10-02 på Mathis iPhone mod recovery-mailen fra 30/9 (template uændret siden). Lys visning: logo, overskrift, titelboks, grøn CTA, 16 px-margin og footer korrekte, ingen vandret overflow. Mørkt tema: appen inverterer mailen (modsat Gmail web og Apple Mail) — tekst, bokse, CTA og footer inverterer pænt og er læsbare, men logoets mørkeblå ordmærke har lav kontrast på den mørke baggrund (se åbent punkt nedenfor). Billeder fra: dækkes af Gmail web-beviset efter Mathis beslutning 2026-10-02; samme konto-indstilling og motor. Tema gendannet efter testen |
 | Apple Mail på macOS | Bestået 2026-10-02 sammen med Mathi mod recovery-mailen fra 30/9 (template uændret siden). Lys visning med billeder: logo, titelboks, grøn CTA og footer korrekte. Blokeret eksternt indhold: logoet falder tilbage til alt-teksten "Kanvi" i en pladsholderramme; resten intakt og læsbar. Mørk systemvisning: Apple Mail omfarver ikke mailindholdet, mailen beholder sit lyse kort. Preheaderen vises korrekt i listevisningen. Privatlivsindstillingen ("Beskyt mailaktivitet") gendannet efter testen |
 | Outlook (inkl. klassisk Windows) | Afventer testdestination og klientkontrol |
 | iPhone Mail | Afventer testdestination og klientkontrol |
+
+Åbent punkt fra Gmail-app-testen 2026-10-02: i appens mørke tema har logoets
+mørkeblå ordmærke lav kontrast mod den inverterede baggrund. Afsender kan ikke
+slå inverteringen fra. Mulig afhjælpning: en logo-PNG med lys kant eller en
+hvid plade bag logoet i skabelonen. Afventer Mathis beslutning; ingen ændring
+er lavet.
 
 Browserrendering og automatiserede tests dokumenterer ikke kompatibilitet i de
 fem mailklienter. Ved klientkontrol testes invitation, login og arrangøradgang

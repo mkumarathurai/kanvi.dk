@@ -22,6 +22,8 @@ Der findes ikke en perfekt dato blandt de muligheder, I har foreslået.
 
 Nu handler det om at finde den bedste løsning.
 
+![Datoafstemning hvor ingen af datoerne passer alle deltagere](/images/articles/ingen-dato-passer-alle.webp)
+
 ## Først: Det er helt normalt
 
 Jo flere mennesker der skal deltage, desto sværere bliver det at finde en dato, hvor alle kan.
@@ -60,6 +62,8 @@ Målet behøver ikke altid være:
 Det kan lige så godt være:
 
 **Så mange som muligt skal kunne.**
+
+![Dato der passer flest deltagere i en datoafstemning](/images/articles/dato-der-passer-flest.webp)
 
 Læs også, [hvordan I finder en dato, der passer alle](/find-en-dato).
 

@@ -192,6 +192,7 @@ class ArticlesTest extends TestCase
         }
         $this->assertEquals([
             'hvor-mange-datoer' => 1,
+            'ingen-dato-passer-alle' => 2,
             'klassearrangement' => 4,
             'datoafstemning' => 3,
             'venner' => 3,

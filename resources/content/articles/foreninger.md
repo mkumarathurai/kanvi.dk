@@ -262,7 +262,9 @@ Her handler det ofte ikke om, at alle skal kunne.
 
 Det handler om at finde en dag, hvor så mange som muligt kan være med.
 
+**En forening. Mange datoer.**
 
+![Eksempler på datoafstemninger til aktiviteter i en forening](/images/articles/forening-brugsscenarier.webp)
 
 
 ## Hvad hvis ikke alle medlemmer svarer?

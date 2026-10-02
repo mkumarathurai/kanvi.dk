@@ -130,6 +130,18 @@ Alt: `Sammenligning af familiechat og datoafstemning`
 Generated 2026-10-02 in ChatGPT, with the added instruction for smooth,
 continuous bars proportional to the totals instead of segmented squares.
 
+## foreninger — brugsscenarier
+
+Use case: illustration-story. Four small cards of equal importance in a
+balanced 2-by-2 arrangement, each with a small hand-drawn calendar icon and one
+label beneath, exactly "Bestyrelsesmøde", "Arbejdsdag", "Sommerfest",
+"Udvalgsmøde". Cards only — no scenes, no people.
+
+Files: `public/images/articles/forening-brugsscenarier.webp`, with `-720` and `-390` variants.
+Alt: `Eksempler på datoafstemninger til aktiviteter i en forening`
+
+Generated 2026-10-02 in ChatGPT.
+
 ## Planned prompts — written 2026-10-01, not generated yet
 
 Shared style for every prompt below (repeat it verbatim after the primary
@@ -145,16 +157,6 @@ wording legible at 720 px display width. Horizontal 16:9.
 Where a panel shows date rows with totals, use four neatly aligned rows with
 clean horizontal green tally bars, one row softly highlighted as best, and a
 small caption "Eksempel" below the panel.
-
-### foreninger — brugsscenarier
-
-Use case: illustration-story. Four small cards of equal importance in a
-balanced 2-by-2 arrangement, each with a small hand-drawn calendar icon and one
-label beneath, exactly "Bestyrelsesmøde", "Arbejdsdag", "Sommerfest",
-"Udvalgsmøde". Cards only — no scenes, no people.
-
-File: `public/images/articles/forening-brugsscenarier.webp`
-Alt: `Eksempler på datoafstemninger til aktiviteter i en forening`
 
 ### foreninger — beskeder vs. Kanvi
 

@@ -142,6 +142,22 @@ Alt: `Eksempler på datoafstemninger til aktiviteter i en forening`
 
 Generated 2026-10-02 in ChatGPT.
 
+## foreninger — beskeder vs. Kanvi
+
+Use case: infographic-diagram. Two equal panels.
+Left panel labeled exactly "Hvem kan hvornår?": three message slips styled as a
+mail, a chat bubble and an SMS, with these exact phrases: "Jeg kan den 5.",
+"Ikke den 5.", "Måske den 12.".
+Right panel labeled exactly "Kanvi": four date rows, labels exactly
+"Tir. 5. maj", "Tor. 7. maj", "Tir. 12. maj", "Tor. 14. maj"; totals exactly
+"7 kan", "5 kan", "9 kan", "6 kan"; third row highlighted.
+
+Files: `public/images/articles/forening-beskeder-vs-kanvi.webp`, with `-720` and `-390` variants.
+Alt: `Datoer fra mail og beskeder samlet i en Kanvi-afstemning`
+
+Generated 2026-10-02 in ChatGPT. The message slips were moved from the 4th
+and 11th to the 5th and 12th to match the corrected May dates.
+
 ## Planned prompts — written 2026-10-01, not generated yet
 
 Shared style for every prompt below (repeat it verbatim after the primary
@@ -157,19 +173,6 @@ wording legible at 720 px display width. Horizontal 16:9.
 Where a panel shows date rows with totals, use four neatly aligned rows with
 clean horizontal green tally bars, one row softly highlighted as best, and a
 small caption "Eksempel" below the panel.
-
-### foreninger — beskeder vs. Kanvi
-
-Use case: infographic-diagram. Two equal panels.
-Left panel labeled exactly "Hvem kan hvornår?": three message slips styled as a
-mail, a chat bubble and an SMS, with these exact phrases: "Jeg kan den 4.",
-"Ikke den 4.", "Måske den 11.".
-Right panel labeled exactly "Kanvi": four date rows, labels exactly
-"Tir. 5. maj", "Tor. 7. maj", "Tir. 12. maj", "Tor. 14. maj"; totals exactly
-"7 kan", "5 kan", "9 kan", "6 kan"; third row highlighted.
-
-File: `public/images/articles/forening-beskeder-vs-kanvi.webp`
-Alt: `Datoer fra mail og beskeder samlet i en Kanvi-afstemning`
 
 ### bestyrelser — flere situationer i foreningen
 

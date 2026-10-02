@@ -320,7 +320,11 @@ Men ingen af delene er nødvendigvis den bedste måde at sammenligne seks datoer
 
 Det er her en datoafstemning kan bruges som et lille værktøj ovenpå den kommunikation, I allerede har.
 
+**Saml svarene ét sted.**
 
+![Datoer fra mail og beskeder samlet i en Kanvi-afstemning](/images/articles/forening-beskeder-vs-kanvi.webp)
+
+*Illustreret eksempel: tirsdag 12. maj passer 9, tirsdag 5. maj passer 7, torsdag 14. maj passer 6 og torsdag 7. maj passer 5.*
 
 
 ## Brug det samme linkprincip hver gang

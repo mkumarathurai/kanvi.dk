@@ -272,6 +272,19 @@ Generated 2026-10-02 in ChatGPT with two changes to the prompt above: no
 headline in the image (it is page text above the image), and the long list
 runs off the panel edge so its rows cannot be counted against "22".
 
+## ingen-dato-passer-alle — næsten alle kan
+
+Use case: infographic-diagram. Nine simple friendly figures in a loose row;
+eight drawn in flat green marked as able, one drawn in grey gently set apart
+as unable. Large label exactly "8 af 9 kan".
+Caption exactly "Nogle gange er det værd at spørge én gang mere."
+
+Files: `public/images/articles/naesten-alle-kan.webp`, with `-720` and `-390` variants.
+Alt: `Dato hvor næsten alle deltagere kan`
+
+Generated 2026-10-02 in ChatGPT without the caption; the brief's sentence is
+page text below the image.
+
 ## Planned prompts — written 2026-10-01, not generated yet
 
 Shared style for every prompt below (repeat it verbatim after the primary
@@ -287,16 +300,6 @@ wording legible at 720 px display width. Horizontal 16:9.
 Where a panel shows date rows with totals, use four neatly aligned rows with
 clean horizontal green tally bars, one row softly highlighted as best, and a
 small caption "Eksempel" below the panel.
-
-### ingen-dato-passer-alle — næsten alle kan
-
-Use case: infographic-diagram. Nine simple friendly figures in a loose row;
-eight drawn in flat green marked as able, one drawn in grey gently set apart
-as unable. Large label exactly "8 af 9 kan".
-Caption exactly "Nogle gange er det værd at spørge én gang mere."
-
-File: `public/images/articles/naesten-alle-kan.webp`
-Alt: `Dato hvor næsten alle deltagere kan`
 
 ### ingen-dato-passer-alle — flest vs. vigtigste deltagere
 

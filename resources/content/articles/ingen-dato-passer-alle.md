@@ -165,6 +165,10 @@ Ingen skal presses til at ændre private planer.
 
 Men nogle gange kan én lille ændring løse hele kalenderpuslespillet.
 
+![Dato hvor næsten alle deltagere kan](/images/articles/naesten-alle-kan.webp)
+
+**Nogle gange er det værd at spørge én gang mere.**
+
 ## 6. Lav en ny runde
 
 Hvis ingen af mulighederne er gode nok, så start igen.

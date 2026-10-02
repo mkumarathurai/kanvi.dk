@@ -175,7 +175,7 @@ HTML-previews bruger en lokal kopi af logoet. EML bruger den konfigurerede
 | --- | --- |
 | Gmail desktop | Bestået 2026-10-02. Lys visning med billeder bestået 2026-10-01 (preheader, logo, titel, grøn CTA og footer korrekte). Billeder fra og mørkt tema kontrolleret 2026-10-02 sammen med Mathi mod recovery-mailen fra 30/9 (template uændret siden). Uden billeder: logoet falder tilbage til alt-teksten "Kanvi", titelboks, grøn CTA og footer intakte og læsbare. Mørkt tema: Gmail web omfarver ikke mailindholdet, så mailen renderer som i lys visning. Kontoindstillinger (billeder og tema) gendannet og efterprøvet efter testen |
 | Gmail mobil | Afventer testdestination og klientkontrol |
-| Apple Mail på macOS | Afventer klientkontrol |
+| Apple Mail på macOS | Bestået 2026-10-02 sammen med Mathi mod recovery-mailen fra 30/9 (template uændret siden). Lys visning med billeder: logo, titelboks, grøn CTA og footer korrekte. Blokeret eksternt indhold: logoet falder tilbage til alt-teksten "Kanvi" i en pladsholderramme; resten intakt og læsbar. Mørk systemvisning: Apple Mail omfarver ikke mailindholdet, mailen beholder sit lyse kort. Preheaderen vises korrekt i listevisningen. Privatlivsindstillingen ("Beskyt mailaktivitet") gendannet efter testen |
 | Outlook (inkl. klassisk Windows) | Afventer testdestination og klientkontrol |
 | iPhone Mail | Afventer testdestination og klientkontrol |
 

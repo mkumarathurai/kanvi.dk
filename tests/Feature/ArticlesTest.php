@@ -196,7 +196,7 @@ class ArticlesTest extends TestCase
             'klassearrangement' => 4,
             'datoafstemning' => 3,
             'venner' => 4,
-            'familien' => 3,
+            'familien' => 4,
             'polterabend' => 4,
             'foreninger' => 2,
             'bestyrelser' => 3,

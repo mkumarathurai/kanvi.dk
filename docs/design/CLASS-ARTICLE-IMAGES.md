@@ -114,6 +114,22 @@ Generated 2026-10-02 in ChatGPT. The first attempt drew segmented bars whose
 filled squares did not match the totals; a follow-up asking for exactly 11
 squares per row, filled to the total, fixed it. Count the squares.
 
+## familien — familiechat vs. Kanvi
+
+Use case: infographic-diagram. Two equal panels.
+Left panel labeled exactly "Familiechatten": five overlapping message slips
+with these exact phrases: "Kan I den 8.?", "Vi kan ikke.", "Hvad med 14.?",
+"Skal lige høre børnene.", "Jeg troede det var den 15.?".
+Right panel labeled exactly "Kanvi": four date rows, labels exactly
+"Søn. 8. marts", "Lør. 14. marts", "Søn. 15. marts", "Lør. 21. marts"; totals
+exactly "6 kan", "9 kan", "7 kan", "8 kan"; second row highlighted.
+
+Files: `public/images/articles/familie-chat-vs-kanvi.webp`, with `-720` and `-390` variants.
+Alt: `Sammenligning af familiechat og datoafstemning`
+
+Generated 2026-10-02 in ChatGPT, with the added instruction for smooth,
+continuous bars proportional to the totals instead of segmented squares.
+
 ## Planned prompts — written 2026-10-01, not generated yet
 
 Shared style for every prompt below (repeat it verbatim after the primary
@@ -129,19 +145,6 @@ wording legible at 720 px display width. Horizontal 16:9.
 Where a panel shows date rows with totals, use four neatly aligned rows with
 clean horizontal green tally bars, one row softly highlighted as best, and a
 small caption "Eksempel" below the panel.
-
-### familien — familiechat vs. Kanvi
-
-Use case: infographic-diagram. Two equal panels.
-Left panel labeled exactly "Familiechatten": five overlapping message slips
-with these exact phrases: "Kan I den 8.?", "Vi kan ikke.", "Hvad med 14.?",
-"Skal lige høre børnene.", "Jeg troede det var den 15.?".
-Right panel labeled exactly "Kanvi": four date rows, labels exactly
-"Søn. 8. marts", "Lør. 14. marts", "Søn. 15. marts", "Lør. 21. marts"; totals
-exactly "6 kan", "9 kan", "7 kan", "8 kan"; second row highlighted.
-
-File: `public/images/articles/familie-chat-vs-kanvi.webp`
-Alt: `Sammenligning af familiechat og datoafstemning`
 
 ### foreninger — brugsscenarier
 

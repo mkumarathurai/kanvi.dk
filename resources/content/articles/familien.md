@@ -282,7 +282,11 @@ Kanvi skal bare holde styr på:
 
 **Hvornår?**
 
+**Mindre kalenderrod. Mere familietid.**
 
+![Sammenligning af familiechat og datoafstemning](/images/articles/familie-chat-vs-kanvi.webp)
+
+*Illustreret eksempel: lørdag 14. marts passer 9, lørdag 21. marts passer 8, søndag 15. marts passer 7 og søndag 8. marts passer 6.*
 
 
 ## Hvor mange datoer bør man foreslå?

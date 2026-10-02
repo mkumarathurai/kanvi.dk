@@ -190,6 +190,10 @@ Kanvi har endnu ikke datointervaller, så foreslå i stedet én dato pr. weekend
 
 Og skriv i beskeden til gruppen, at svaret gælder hele weekenden.
 
+**Antallet afhænger af det, I skal planlægge.**
+
+![Eksempler på antal datoer til forskellige typer arrangementer](/images/articles/antal-datoer-efter-arrangement.webp)
+
 ## Hvad hvis ingen af datoerne passer?
 
 Så har afstemningen stadig været nyttig.

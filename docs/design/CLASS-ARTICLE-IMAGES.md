@@ -235,6 +235,24 @@ Generated 2026-10-02 in ChatGPT. The right column came out with 19 rows under
 the "18 datoer" label; the bottom row was painted over with background
 copied from just below it, leaving exactly 18.
 
+## hvor-mange-datoer — antal efter arrangement
+
+Use case: infographic-diagram. Four small cards in a balanced 2-by-2
+arrangement.
+Cards labeled exactly "Møde" with exactly "3 muligheder", "Middag" with
+exactly "4 muligheder", "Fest" with exactly "5 muligheder", "Weekendtur" with
+exactly "4 lørdage".
+Headline across the top exactly "Antallet afhænger af det, I skal planlægge."
+Note: the weekend card says "4 lørdage", not "4 weekender" — Kanvi has no
+date ranges, and the article recommends one Saturday per weekend.
+
+Files: `public/images/articles/antal-datoer-efter-arrangement.webp`, with `-720` and `-390` variants.
+Alt: `Eksempler på antal datoer til forskellige typer arrangementer`
+
+Generated 2026-10-02 in ChatGPT. The in-image headline had a malformed "a" in
+"Antallet", so the top strip was cropped off (1672×770, wider than 16:9) and
+the headline is set as text above the image, like every other image heading.
+
 ## Planned prompts — written 2026-10-01, not generated yet
 
 Shared style for every prompt below (repeat it verbatim after the primary
@@ -250,20 +268,6 @@ wording legible at 720 px display width. Horizontal 16:9.
 Where a panel shows date rows with totals, use four neatly aligned rows with
 clean horizontal green tally bars, one row softly highlighted as best, and a
 small caption "Eksempel" below the panel.
-
-### hvor-mange-datoer — antal efter arrangement
-
-Use case: infographic-diagram. Four small cards in a balanced 2-by-2
-arrangement.
-Cards labeled exactly "Møde" with exactly "3 muligheder", "Middag" with
-exactly "4 muligheder", "Fest" with exactly "5 muligheder", "Weekendtur" with
-exactly "4 lørdage".
-Headline across the top exactly "Antallet afhænger af det, I skal planlægge."
-Note: the weekend card says "4 lørdage", not "4 weekender" — Kanvi has no
-date ranges, and the article recommends one Saturday per weekend.
-
-File: `public/images/articles/antal-datoer-efter-arrangement.webp`
-Alt: `Eksempler på antal datoer til forskellige typer arrangementer`
 
 ### hvor-mange-datoer — få vs. mange
 

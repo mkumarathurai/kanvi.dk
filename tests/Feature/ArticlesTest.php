@@ -191,6 +191,7 @@ class ArticlesTest extends TestCase
             $this->assertImagesAreServable($images);
         }
         $this->assertEquals([
+            'hvor-mange-datoer' => 1,
             'klassearrangement' => 4,
             'datoafstemning' => 3,
             'venner' => 3,

@@ -88,6 +88,8 @@ Det kan eksempelvis være:
 
 Hvis I allerede ved, at det skal være enten tirsdag, onsdag eller torsdag, er der ingen grund til at tilføje flere datoer bare for at gøre afstemningen større.
 
+![Datoafstemning med tre konkrete mødedatoer](/images/articles/tre-datoer-afstemning.webp)
+
 ## Hvornår giver 5-6 datoer mening?
 
 Flere muligheder giver især mening, når:

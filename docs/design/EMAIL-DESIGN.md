@@ -173,7 +173,7 @@ HTML-previews bruger en lokal kopi af logoet. EML bruger den konfigurerede
 
 | Klient | Status |
 | --- | --- |
-| Gmail desktop | Delvist bestået 2026-10-01: recovery-mailen fra 30/9 (template uændret siden) kontrolleret i Gmail web, lys tilstand med billeder til — preheader, logo, titel, grøn CTA og footer korrekte. Billeder fra og dark mode udestår; kræver ændring af kontoindstillinger sammen med Mathi |
+| Gmail desktop | Bestået 2026-10-02. Lys visning med billeder bestået 2026-10-01 (preheader, logo, titel, grøn CTA og footer korrekte). Billeder fra og mørkt tema kontrolleret 2026-10-02 sammen med Mathi mod recovery-mailen fra 30/9 (template uændret siden). Uden billeder: logoet falder tilbage til alt-teksten "Kanvi", titelboks, grøn CTA og footer intakte og læsbare. Mørkt tema: Gmail web omfarver ikke mailindholdet, så mailen renderer som i lys visning. Kontoindstillinger (billeder og tema) gendannet og efterprøvet efter testen |
 | Gmail mobil | Afventer testdestination og klientkontrol |
 | Apple Mail på macOS | Afventer klientkontrol |
 | Outlook (inkl. klassisk Windows) | Afventer testdestination og klientkontrol |

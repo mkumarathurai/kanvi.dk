@@ -1,16 +1,17 @@
 # Article illustrations
 
-Editorial illustrations for the articles, generated with the Claude app's
-built-in image generation tool. These are illustrations, not screenshots of
-product behavior; product UI is always a real screenshot. WebP files are
-resized/encoded variants of the generated originals; all in-image Danish labels
-are checked visually before publishing.
+Editorial illustrations for the articles. The two class article illustrations
+were generated 2026-09-29 with the Claude app's built-in image tool; the rest
+were generated 2026-10-02, the last fourteen in ChatGPT, one image per
+conversation, by Mathi's choice that day. These are illustrations, not
+screenshots of product behavior; product UI is always a real screenshot. WebP
+files are resized/encoded variants of the generated originals; all in-image
+Danish labels are checked visually before publishing.
 
-The two class article illustrations below were generated 2026-09-29, the
-three comparison illustrations after them 2026-10-02. The
-**Planned prompts** section holds the prompts for the remaining articles,
-written 2026-10-01 from the image briefs in `docs/indhold/`; move an entry up
-here with its asset paths once it is generated and published.
+Every entry below carries its prompt, asset paths and what was corrected after
+generation. The remaining prompts were written 2026-10-01 from the image briefs
+in `docs/indhold/`. **Shared style and lessons** at the end holds the style
+text every prompt repeats and what the 2026-10-02 round taught.
 
 ## Scenarios
 
@@ -285,10 +286,26 @@ Alt: `Dato hvor næsten alle deltagere kan`
 Generated 2026-10-02 in ChatGPT without the caption; the brief's sentence is
 page text below the image.
 
-## Planned prompts — written 2026-10-01, not generated yet
+## ingen-dato-passer-alle — flest vs. vigtigste deltagere
 
-Shared style for every prompt below (repeat it verbatim after the primary
-request): Style: Soft Nordic editorial illustration, warm cream background
+Use case: infographic-diagram. Two equal boxes.
+Left box labeled exactly "Lørdag": exactly "15 kan" with the note exactly
+"Men en vigtig deltager mangler", and a subtle empty chair.
+Right box labeled exactly "Søndag": exactly "14 kan" with the note exactly
+"Alle nøglepersoner kan", gently highlighted as the better choice.
+Headline across the top exactly "Den bedste dato er ikke altid den med det
+største tal."
+
+Files: `public/images/articles/flest-vs-vigtigste-deltagere.webp`, with `-720` and `-390` variants.
+Alt: `Sammenligning af antal deltagere og vigtige deltagere ved valg af dato`
+
+Generated 2026-10-02 in ChatGPT without the headline; it is page text above
+the image.
+
+## Shared style and lessons
+
+Shared style for every prompt written 2026-10-01 (repeat it verbatim after
+the primary request): Style: Soft Nordic editorial illustration, warm cream background
 #FFFDF8, fine hand-drawn dark navy #0B2540 outlines, flat green #16A34A and
 mint #86EFAC with restrained yellow #FBBF24 accents. Human and calm, generous
 whitespace, no gradients, no photorealism, no heavy card boxes. Calm rounded
@@ -301,15 +318,15 @@ Where a panel shows date rows with totals, use four neatly aligned rows with
 clean horizontal green tally bars, one row softly highlighted as best, and a
 small caption "Eksempel" below the panel.
 
-### ingen-dato-passer-alle — flest vs. vigtigste deltagere
+Lessons from the 2026-10-02 ChatGPT round, for any future prompt:
 
-Use case: infographic-diagram. Two equal boxes.
-Left box labeled exactly "Lørdag": exactly "15 kan" with the note exactly
-"Men en vigtig deltager mangler", and a subtle empty chair.
-Right box labeled exactly "Søndag": exactly "14 kan" with the note exactly
-"Alle nøglepersoner kan", gently highlighted as the better choice.
-Headline across the top exactly "Den bedste dato er ikke altid den med det
-største tal."
-
-File: `public/images/articles/flest-vs-vigtigste-deltagere.webp`
-Alt: `Sammenligning af antal deltagere og vigtige deltagere ved valg af dato`
+- Generate one image per conversation; a request for several returns one
+  contact sheet whose tiles are too small to publish.
+- Check every weekday label against the real calendar before sending the
+  prompt; two of the 2026-10-01 prompts paired weekdays with wrong dates.
+- Ask for smooth, continuous bars proportional to the totals. Segmented
+  squares invite a count, and ChatGPT miscounted them.
+- Keep headlines and long sentences out of the image and set them as page
+  text; ChatGPT misspelled or malformed letters in them. Short labels are fine.
+- Where a label states a count ("18 datoer"), count the drawn items, or let
+  the list run off the edge so it cannot be counted.

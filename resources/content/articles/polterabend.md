@@ -219,7 +219,9 @@ Folk har forskellig kontekst og svarer på forskellige tidspunkter.
 
 En fælles datoafstemning gør det lettere, fordi alle bare skal forholde sig til de samme muligheder.
 
+**18 mennesker. 4 datoer. 1 beslutning.**
 
+![Stor gruppe der finder en fælles dato til polterabend](/images/articles/stor-gruppe-polterabend.webp)
 
 
 ## Hold planlægningen adskilt fra datoafstemningen

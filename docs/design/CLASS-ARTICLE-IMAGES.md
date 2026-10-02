@@ -84,6 +84,19 @@ Alt: `Forskel på at finde en dato i gruppechat og med Kanvi`
 
 Generated 2026-10-02.
 
+## polterabend — stor gruppe
+
+Use case: illustration-story. Eighteen small, varied, friendly hand-drawn
+people gathered loosely around one central poll card. The card shows four date
+rows with short green tally bars and no readable totals. Conveys: many people,
+few dates, one decision. No other text.
+
+Files: `public/images/articles/stor-gruppe-polterabend.webp`, with `-720` and `-390` variants.
+Alt: `Stor gruppe der finder en fælles dato til polterabend`
+
+Generated 2026-10-02 in ChatGPT. The image shows 17 people and date labels
+without weekdays; both accepted.
+
 ## Planned prompts — written 2026-10-01, not generated yet
 
 Shared style for every prompt below (repeat it verbatim after the primary
@@ -99,16 +112,6 @@ wording legible at 720 px display width. Horizontal 16:9.
 Where a panel shows date rows with totals, use four neatly aligned rows with
 clean horizontal green tally bars, one row softly highlighted as best, and a
 small caption "Eksempel" below the panel.
-
-### polterabend — stor gruppe
-
-Use case: illustration-story. Eighteen small, varied, friendly hand-drawn
-people gathered loosely around one central poll card. The card shows four date
-rows with short green tally bars and no readable totals. Conveys: many people,
-few dates, one decision. No other text.
-
-File: `public/images/articles/stor-gruppe-polterabend.webp`
-Alt: `Stor gruppe der finder en fælles dato til polterabend`
 
 ### polterabend — chat vs. Kanvi
 

@@ -97,6 +97,23 @@ Alt: `Stor gruppe der finder en fælles dato til polterabend`
 Generated 2026-10-02 in ChatGPT. The image shows 17 people and date labels
 without weekdays; both accepted.
 
+## polterabend — chat vs. Kanvi
+
+Use case: infographic-diagram. Two equal panels.
+Left panel labeled exactly "Polterabend-chatten": six overlapping message slips
+with these exact phrases: "Jeg kan 9. og 16.", "Ikke 16.", "Hvad med 23.?",
+"Jeg kan måske.", "Skal vi ikke tage 30.?", "Vent, er 9. stadig i spil?".
+Right panel labeled exactly "Kanvi": four date rows, labels exactly
+"Lør. 9. maj", "Lør. 16. maj", "Lør. 23. maj", "Lør. 30. maj"; totals exactly
+"8 kan", "6 kan", "11 kan", "7 kan"; third row highlighted.
+
+Files: `public/images/articles/polterabend-chat-vs-kanvi.webp`, with `-720` and `-390` variants.
+Alt: `Sammenligning af gruppechat og datoafstemning til polterabend`
+
+Generated 2026-10-02 in ChatGPT. The first attempt drew segmented bars whose
+filled squares did not match the totals; a follow-up asking for exactly 11
+squares per row, filled to the total, fixed it. Count the squares.
+
 ## Planned prompts — written 2026-10-01, not generated yet
 
 Shared style for every prompt below (repeat it verbatim after the primary
@@ -112,19 +129,6 @@ wording legible at 720 px display width. Horizontal 16:9.
 Where a panel shows date rows with totals, use four neatly aligned rows with
 clean horizontal green tally bars, one row softly highlighted as best, and a
 small caption "Eksempel" below the panel.
-
-### polterabend — chat vs. Kanvi
-
-Use case: infographic-diagram. Two equal panels.
-Left panel labeled exactly "Polterabend-chatten": six overlapping message slips
-with these exact phrases: "Jeg kan 9. og 16.", "Ikke 16.", "Hvad med 23.?",
-"Jeg kan måske.", "Skal vi ikke tage 30.?", "Vent, er 9. stadig i spil?".
-Right panel labeled exactly "Kanvi": four date rows, labels exactly
-"Lør. 9. maj", "Lør. 16. maj", "Lør. 23. maj", "Lør. 30. maj"; totals exactly
-"8 kan", "6 kan", "11 kan", "7 kan"; third row highlighted.
-
-File: `public/images/articles/polterabend-chat-vs-kanvi.webp`
-Alt: `Sammenligning af gruppechat og datoafstemning til polterabend`
 
 ### familien — familiechat vs. Kanvi
 

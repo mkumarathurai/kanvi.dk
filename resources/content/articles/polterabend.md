@@ -297,7 +297,11 @@ Men den er mindre god til:
 
 Her bliver en datoafstemning langt lettere at overskue.
 
+**Planlæg festen. Ikke regnearket.**
 
+![Sammenligning af gruppechat og datoafstemning til polterabend](/images/articles/polterabend-chat-vs-kanvi.webp)
+
+*Illustreret eksempel: lørdag 23. maj passer 11, lørdag 9. maj passer 8, lørdag 30. maj passer 7 og lørdag 16. maj passer 6.*
 
 
 ## Hvor mange datoer skal I foreslå?

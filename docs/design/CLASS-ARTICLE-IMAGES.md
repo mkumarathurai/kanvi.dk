@@ -173,6 +173,20 @@ Generated 2026-10-02 in ChatGPT. It spelled the first label "Bestyrrelsesmøde"
 twice, so the extra "r" was cut out of the original by removing its pixel
 columns and shifting the rest of the word left; no new text was drawn.
 
+## find-en-dato — få valgmuligheder
+
+Use case: infographic-diagram. Two equal panels.
+Left panel labeled exactly "20 datoer 😵": one long, cramped, slightly askew
+list of twenty thin unreadable date lines.
+Right panel labeled exactly "4 gode muligheder 👍": four clear, calm date rows
+with short green tally bars and no readable totals.
+
+Files: `public/images/articles/antal-datoer-afstemning.webp`, with `-720` and `-390` variants.
+Alt: `Få konkrete datoer gør det lettere at finde en fælles dato`
+
+Generated 2026-10-02 in ChatGPT. The left list has 21 rows, not 20; accepted,
+since the cramped list is meant to be uncountable at a glance.
+
 ## Planned prompts — written 2026-10-01, not generated yet
 
 Shared style for every prompt below (repeat it verbatim after the primary
@@ -188,17 +202,6 @@ wording legible at 720 px display width. Horizontal 16:9.
 Where a panel shows date rows with totals, use four neatly aligned rows with
 clean horizontal green tally bars, one row softly highlighted as best, and a
 small caption "Eksempel" below the panel.
-
-### find-en-dato — få valgmuligheder
-
-Use case: infographic-diagram. Two equal panels.
-Left panel labeled exactly "20 datoer 😵": one long, cramped, slightly askew
-list of twenty thin unreadable date lines.
-Right panel labeled exactly "4 gode muligheder 👍": four clear, calm date rows
-with short green tally bars and no readable totals.
-
-File: `public/images/articles/antal-datoer-afstemning.webp`
-Alt: `Få konkrete datoer gør det lettere at finde en fælles dato`
 
 ### julefrokost — fredag eller lørdag
 

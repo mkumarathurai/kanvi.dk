@@ -99,7 +99,9 @@ Færre og mere realistiske valgmuligheder gør det nemmere at svare.
 
 Til mange arrangementer er **3-6 muligheder** et godt sted at starte.
 
+**Gør det nemt at svare.**
 
+![Få konkrete datoer gør det lettere at finde en fælles dato](/images/articles/antal-datoer-afstemning.webp)
 
 
 ## 3. Saml svarene ét sted

@@ -200,7 +200,7 @@ class ArticlesTest extends TestCase
             'polterabend' => 4,
             'foreninger' => 4,
             'bestyrelser' => 4,
-            'find-en-dato' => 3,
+            'find-en-dato' => 4,
             'julefrokost' => 2,
         ], array_filter($counts), 'The set of illustrated articles changed.');
     }

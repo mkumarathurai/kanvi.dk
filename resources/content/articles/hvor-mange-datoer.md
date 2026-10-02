@@ -330,6 +330,10 @@ Hvis afstemningen føles som en opgave, får du langsommere svar.
 
 Hvis den er enkel, kommer svarene hurtigere.
 
+**Jo lettere det er at svare, desto lettere er det at finde datoen.**
+
+![Sammenligning af en stor og en enkel datoafstemning](/images/articles/faa-vs-mange-datoer.webp)
+
 ## Den korte tommelfingerregel
 
 Hvis du er i tvivl:

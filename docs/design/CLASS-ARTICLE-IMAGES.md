@@ -253,6 +253,25 @@ Generated 2026-10-02 in ChatGPT. The in-image headline had a malformed "a" in
 "Antallet", so the top strip was cropped off (1672×770, wider than 16:9) and
 the headline is set as text above the image, like every other image heading.
 
+## hvor-mange-datoer — få vs. mange
+
+Use case: infographic-diagram. Two equal panels.
+Left panel labeled exactly "22 muligheder": a very long, cramped, slightly
+askew poll list of thin unreadable date lines, with one speech bubble exactly
+"Jeg gør det senere …".
+Right panel labeled exactly "5 muligheder": a short, calm poll with five
+clear date rows and short green tally bars, with one speech bubble exactly
+"Done ✓".
+Headline across the top exactly "Jo lettere det er at svare, desto lettere er
+det at finde datoen."
+
+Files: `public/images/articles/faa-vs-mange-datoer.webp`, with `-720` and `-390` variants.
+Alt: `Sammenligning af en stor og en enkel datoafstemning`
+
+Generated 2026-10-02 in ChatGPT with two changes to the prompt above: no
+headline in the image (it is page text above the image), and the long list
+runs off the panel edge so its rows cannot be counted against "22".
+
 ## Planned prompts — written 2026-10-01, not generated yet
 
 Shared style for every prompt below (repeat it verbatim after the primary
@@ -268,21 +287,6 @@ wording legible at 720 px display width. Horizontal 16:9.
 Where a panel shows date rows with totals, use four neatly aligned rows with
 clean horizontal green tally bars, one row softly highlighted as best, and a
 small caption "Eksempel" below the panel.
-
-### hvor-mange-datoer — få vs. mange
-
-Use case: infographic-diagram. Two equal panels.
-Left panel labeled exactly "22 muligheder": a very long, cramped, slightly
-askew poll list of thin unreadable date lines, with one speech bubble exactly
-"Jeg gør det senere …".
-Right panel labeled exactly "5 muligheder": a short, calm poll with five
-clear date rows and short green tally bars, with one speech bubble exactly
-"Done ✓".
-Headline across the top exactly "Jo lettere det er at svare, desto lettere er
-det at finde datoen."
-
-File: `public/images/articles/faa-vs-mange-datoer.webp`
-Alt: `Sammenligning af en stor og en enkel datoafstemning`
 
 ### ingen-dato-passer-alle — næsten alle kan
 

@@ -153,7 +153,7 @@ Left panel labeled exactly "Hvem kan hvornår?": three message slips styled as a
 mail, a chat bubble and an SMS, with these exact phrases: "Jeg kan den 4.",
 "Ikke den 4.", "Måske den 11.".
 Right panel labeled exactly "Kanvi": four date rows, labels exactly
-"Tir. 4. maj", "Tor. 6. maj", "Tir. 11. maj", "Tor. 13. maj"; totals exactly
+"Tir. 5. maj", "Tor. 7. maj", "Tir. 12. maj", "Tor. 14. maj"; totals exactly
 "7 kan", "5 kan", "9 kan", "6 kan"; third row highlighted.
 
 File: `public/images/articles/forening-beskeder-vs-kanvi.webp`

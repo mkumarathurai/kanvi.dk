@@ -112,7 +112,9 @@ Der er ikke noget universelt rigtigt valg.
 
 Derfor kan det give god mening at foreslå både fredage og lørdage i afstemningen.
 
+**Lad gruppen vælge.**
 
+![Afstemning om julefrokost fredag eller lørdag](/images/articles/julefrokost-fredag-eller-loerdag.webp)
 
 
 ## Sådan finder I datoen på 5 trin

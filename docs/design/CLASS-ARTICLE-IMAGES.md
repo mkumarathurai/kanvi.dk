@@ -187,6 +187,20 @@ Alt: `Få konkrete datoer gør det lettere at finde en fælles dato`
 Generated 2026-10-02 in ChatGPT. The left list has 21 rows, not 20; accepted,
 since the cramped list is meant to be uncountable at a glance.
 
+## julefrokost — fredag eller lørdag
+
+Use case: infographic-diagram. Two equal halves.
+Left half labeled exactly "Fredag 🍻", right half labeled exactly "Lørdag 🎄".
+Beneath each label, two small hand-drawn calendar cards with short green tally
+bars suggesting votes, slightly longer bars on the right half. No readable
+numbers. Small caption "Eksempel" bottom right.
+
+Files: `public/images/articles/julefrokost-fredag-eller-loerdag.webp`, with `-720` and `-390` variants.
+Alt: `Afstemning om julefrokost fredag eller lørdag`
+
+Generated 2026-10-02 in ChatGPT, with the added instruction that the calendar
+cards carry no dates.
+
 ## Planned prompts — written 2026-10-01, not generated yet
 
 Shared style for every prompt below (repeat it verbatim after the primary
@@ -202,17 +216,6 @@ wording legible at 720 px display width. Horizontal 16:9.
 Where a panel shows date rows with totals, use four neatly aligned rows with
 clean horizontal green tally bars, one row softly highlighted as best, and a
 small caption "Eksempel" below the panel.
-
-### julefrokost — fredag eller lørdag
-
-Use case: infographic-diagram. Two equal halves.
-Left half labeled exactly "Fredag 🍻", right half labeled exactly "Lørdag 🎄".
-Beneath each label, two small hand-drawn calendar cards with short green tally
-bars suggesting votes, slightly longer bars on the right half. No readable
-numbers. Small caption "Eksempel" bottom right.
-
-File: `public/images/articles/julefrokost-fredag-eller-loerdag.webp`
-Alt: `Afstemning om julefrokost fredag eller lørdag`
 
 ### julefrokost — chat vs. Kanvi
 

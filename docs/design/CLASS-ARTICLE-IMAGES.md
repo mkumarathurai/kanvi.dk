@@ -302,7 +302,7 @@ Alt: `Sammenligning af antal deltagere og vigtige deltagere ved valg af dato`
 Generated 2026-10-02 in ChatGPT without the headline; it is page text above
 the image.
 
-## datoafstemning — gruppechat vs. Kanvi (not generated yet)
+## datoafstemning — gruppechat vs. Kanvi
 
 Written 2026-10-02: the brief in `docs/indhold/datoafstemning.md` asks for this
 image, but no prompt was written on 2026-10-01, so it was missing from the
@@ -321,6 +321,8 @@ Smooth, continuous bars proportional to the totals, and a small caption
 
 Files: `public/images/articles/gruppechat-vs-datoafstemning.webp`, with `-720` and `-390` variants.
 Alt: `Sammenligning af gruppechat og en overskuelig datoafstemning`
+
+Generated 2026-10-02 in ChatGPT.
 
 ## Shared style and lessons
 

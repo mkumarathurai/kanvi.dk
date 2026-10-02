@@ -194,7 +194,7 @@ class ArticlesTest extends TestCase
             'hvor-mange-datoer' => 4,
             'ingen-dato-passer-alle' => 4,
             'klassearrangement' => 4,
-            'datoafstemning' => 3,
+            'datoafstemning' => 4,
             'venner' => 4,
             'familien' => 4,
             'polterabend' => 4,

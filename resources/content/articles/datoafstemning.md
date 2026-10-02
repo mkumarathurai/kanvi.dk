@@ -302,7 +302,11 @@ Og Kanvi til:
 
 Det ene behøver ikke erstatte det andet.
 
+**Fra 37 beskeder til en dato.**
 
+![Sammenligning af gruppechat og en overskuelig datoafstemning](/images/articles/gruppechat-vs-datoafstemning.webp)
+
+*Illustreret eksempel: lørdag 14. februar passer 8, lørdag 7. februar passer 6, fredag 6. februar passer 5 og fredag 13. februar passer 4.*
 
 
 ## En god datoafstemning er enkel

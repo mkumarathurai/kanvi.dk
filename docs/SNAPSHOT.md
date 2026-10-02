@@ -1,8 +1,9 @@
 # Kanvi session snapshot
 
-Project: Kanvi · Branch: `main` · HEAD: `12f90aa` · Recorded: 2026-10-02 ~07:50 CEST.
+Project: Kanvi · Branch: `main` · HEAD: `ab4ff89` · Recorded: 2026-10-02 23:55 CEST.
 
-The snapshot's own commit follows this one, so HEAD is one behind by design.
+`ab4ff89` is pushed and live. This file is uncommitted; committing it adds one
+more commit after `ab4ff89`.
 
 Technical handover only. Project knowledge is in the Knowledge Base overview at
 `02-Projekter/Mathi ApS/Kanvi`. Outstanding work is on the KAN board:
@@ -11,91 +12,80 @@ https://mkumarathurai.atlassian.net/jira/software/c/projects/KAN/boards/575
 ## 1. Where we are
 
 Kanvi is live at https://kanvi.dk and launches in week 41 once the KAN board is
-done. This was an autonomous overnight session: Mathi asked for KAN-11 and
-KAN-16 to be pushed as far as possible while he slept. Reached: the Gmail
-desktop round of the mail-client test is partially done (light mode with
-images passes, verified against the real 2026-09-30 recovery mail), and a gap
-in the illustration plan was found and closed — the julefrokost brief requires
-a fourth image that the prompt list missed, so twelve prompts are now ready,
-not eleven. KAN-16 moved to In Progress. All three remaining tickets (KAN-7,
-KAN-11, KAN-16) are now blocked on Mathi; nothing further can move without
-him.
+done. This session published the editorial illustrations: Mathi generated
+them in ChatGPT one at a time, each was checked (labels, weekdays, counts)
+before it went in, and production now serves all seventeen from the prompt
+list. A brief-versus-page check found one image no prompt ever covered — the
+chat comparison for the date poll article — so its prompt was written and
+Mathi generated it too. KAN-11, KAN-24 and KAN-25 are closed; every article
+has every image its brief asks for. Late in the session a Facebook share of
+kanvi.dk showed no image: the homepage had no Open Graph tags at all and the
+listings had no image. KAN-26 fixed that and is live; it closes once Mathi
+re-scrapes the homepage in Facebook's Sharing Debugger. KAN-16 (Outlook,
+dark-mode logo) stays parked by Mathi.
 
 ## 2. What was done
 
-- `901d28b` KAN-11 · Twelfth illustration prompt written
-  (julefrokost chat-vs-Kanvi, `julefrokost-chat-vs-kanvi.webp`). The brief at
-  `docs/indhold/julefrokost.md` (BILLEDE 4) specified it; the prompt list in
-  `docs/design/CLASS-ARTICLE-IMAGES.md` had missed it. December dates use real
-  2026 weekday pairs (1 Dec 2026 is a Tuesday).
-- `6a7376f` KAN-16 · Gmail desktop result recorded in
-  `docs/design/EMAIL-DESIGN.md`: light mode with images passes in Gmail web —
-  preheader, logo, heading, poll-title box, green CTA and footer all correct.
-  Test object was the real recovery mail from 2026-09-30; valid because no
-  commit after the send touched any mail-rendering file (last template commit
-  is `cca3918`, 2026-09-29).
-- KAN-16 transitioned to In Progress; evidence comments added to KAN-16 and
-  KAN-11. KB overview updated (status entry, next-steps counts).
-- `12f90aa` · The overnight snapshot; this file now also covers what followed
-  it (the SSH push failure below).
-- CI green on all three commits; production serves `12f90aa`.
-- The nightly 03:15 backup run of 2026-10-02 has now happened; its evidence
-  sits unread on the server (KAN-7, next step 1).
+- `b15b851` · Three comparison illustrations (venner, bestyrelser,
+  find-en-dato). Venner prompt had wrong weekdays; the image was right.
+- `9dc5464` · Foreninger prompt weekdays fixed (4 May 2026 is a Monday).
+- `f41af4d` … `1f31f2e` · Fourteen ChatGPT illustrations, one commit each,
+  across polterabend, familien, foreninger, bestyrelser, find-en-dato,
+  julefrokost, hvor-mange-datoer and ingen-dato-passer-alle. Each commit bumps
+  the image map in `tests/Feature/ArticlesTest.php` (written red first).
+- `3aff293` · `docs/design/CLASS-ARTICLE-IMAGES.md`: every entry records its
+  prompt and post-generation corrections; the planned section became
+  **Shared style and lessons**.
+- Pushed `29670ea..3aff293`; CI run 37059241683 green; production serves
+  `3aff293`.
+- `756dfd3` · Missing prompt for `gruppechat-vs-datoafstemning.webp`
+  (Feb 2026 dates, weekdays verified).
+- `c8b60e2` · That image on /datoafstemning. Pushed; CI run 37063998035
+  green; production serves `c8b60e2`.
+- Jira: KAN-24 and KAN-25 → Done (comments 15248, 15249); KAN-11 → Done
+  (comment 15253).
+- `75bb778` · KAN-26: homepage and the four listings get `og:*` share
+  images (`/deling/forside`, `/deling/{guides,til,hjaelp,artikler}`) from
+  `PollPreview`; homepage gains canonical. CI run 37064942608 green; verified
+  as `facebookexternalhit`. KAN-26 comment 15254, still open.
+- `99b49ea` · KAN-26 follow-up: Mathi found the drawn homepage card bland, so
+  the homepage now shares a real screenshot of its hero
+  (`public/images/share/kanvi-forside.png`, 1440 px capture scaled to
+  1200x630); `/deling/forside` is gone. CI run 37065575581 green.
+- `ab4ff89` · Homepage title is now "Find en dag, der passer alle – Kanvi?"
+  (Mathi's wording; en dash, question mark echoes the logo). Also og:title.
+  CI run 37066155990 green.
+- KB overview: status entry, ChatGPT decision, next steps.
 
 ## 3. Unfinished
 
-Working tree clean except this snapshot, nothing unpushed, no stashes.
-
-- **KAN-7**: nightly 03:15 `clpctl db:backup` cron still unproven (started but
-  produced no dumps 2026-09-29→10-01; now logs). Check after 2026-10-02 03:15
-  with Mathi on the server before closing.
-- **KAN-11**: the twelve editorial illustrations await Mathi's generation in
-  the Claude app from `docs/design/CLASS-ARTICLE-IMAGES.md`. When PNGs arrive:
-  WebP variants (cwebp 1440/720/390), insert per the briefs in
-  `docs/indhold/*.md`, bump the counts in
-  `tests/Feature/ArticlesTest.php` (map after insertion: venner 4, familien 4,
-  polterabend 4, foreninger 4, bestyrelser 4, find-en-dato 4, julefrokost 4;
-  klassearrangement and datoafstemning unchanged).
-- **KAN-16**: Gmail desktop images-off and dark mode not run — both require
-  Gmail account-setting changes, which are not made without Mathi (and the
-  permission layer blocks them in autonomous runs; correctly so). Settings
-  were left untouched (the unsaved change was cancelled). The four other
-  clients need Mathi's devices, one client per round.
-- Local dev DB holds nine fictional polls kept for future captures; local
-  only. Umami still holds three false `poll-created` events from the night of
-  2026-09-30 22:15–22:20 UTC; subtract them when reading that night.
+- Nothing half-done in code. Working tree holds only this snapshot.
+- **KAN-26**: open until Mathi re-scrapes https://kanvi.dk/ in
+  https://developers.facebook.com/tools/debug/ and sees the image; then close.
+- **KAN-16**: Outlook round and the Gmail-app dark-mode logo question,
+  parked by Mathi.
+- Source PNGs sit in `~/Downloads/kanvi/`. Edited originals (`6-fixed.png`,
+  `10-fixed.png`, `11-cropped.png`) were in the session scratchpad and are
+  gone; the published WebPs are the record.
 
 ## 4. Next steps
 
-1. KAN-7, after 2026-10-02 03:15, with Mathi on the server:
+1. Commit and push this snapshot (a push deploys; docs only):
 
    ```sh
-   sudo cat /home/clp/db-backup-cron.log
-   sudo find /home/kanvi/backups/databases/kanvi -type f -name '*.sql.gz' -newermt '2026-10-02'
+   git add docs/SNAPSHOT.md && git commit -m "Save the session snapshot" -m "Refs: KAN-11"
+   git push origin main
    ```
 
-   A fresh dump plus a clean log closes the ticket; an error in the log names
-   the cause. A CloudPanel update may overwrite `/etc/cron.d/clp` and remove
-   the logging.
+2. Close KAN-26 once Mathi confirms the Sharing Debugger shows the image.
 
-2. KAN-16, Gmail desktop rest round with Mathi (two minutes): Settings →
-   General → Images → "Ask before displaying external images", save, reopen
-   the 30/9 mail "Din arrangøradgang til Kanvi", screenshot; switch theme to
-   dark, screenshot; restore both settings. Note: the images setting is
-   account-wide and also affects his Gmail apps until restored. Then the four
-   device rounds per the plan in `docs/design/EMAIL-DESIGN.md`.
+3. KAN-16 when Mathi has Outlook installed: one round per the plan in
+   `docs/design/EMAIL-DESIGN.md`, and his decision on the dark-mode logo.
 
-3. KAN-11, when Mathi delivers the twelve PNGs (filenames per the prompts):
+4. Launch in week 41 once the board is done: Mathi announces; submit the
+   sitemap in Search Console.
 
-   ```sh
-   cwebp -q 85 <name>.png -o public/images/articles/<name>.webp
-   cwebp -q 85 -resize 720 0 <name>.png -o public/images/articles/<name>-720.webp
-   cwebp -q 85 -resize 390 0 <name>.png -o public/images/articles/<name>-390.webp
-   ```
-
-   Insert per brief, update the test map, run the check battery.
-
-4. After any code change:
+5. Check battery after any change:
 
    ```sh
    php artisan test --compact
@@ -107,112 +97,98 @@ Working tree clean except this snapshot, nothing unpushed, no stashes.
 
 ## 5. Waiting on Mathi
 
-- The twelve illustration PNGs from the Claude app (KAN-11).
-- The two-minute Gmail settings round (KAN-16, images off + dark mode), then
-  devices and inboxes for the four remaining clients.
-- The server shell for the KAN-7 log check after 03:15.
+- Re-scrape kanvi.dk in Facebook's Sharing Debugger (KAN-26).
+- Outlook installed, plus the dark-mode logo decision (KAN-16).
 - The launch day within week 41.
 
 ## 6. Decisions made, and why
 
-No Mathi decisions this session (he was asleep). Working choices made
-autonomously, with reasons, so they are not redone or reversed blindly:
-
-- **The Gmail web test ran against the existing 2026-09-30 recovery mail
-  instead of sending a fresh one.** Sending a fresh one would require a new
-  fictional poll in production, which pollutes Umami with a false
-  `poll-created` event and needs the delete sequence afterwards. Valid
-  because git proves no mail-rendering file changed after the send.
-- **No images were generated with other tools.** The 2026-10-01 decision
-  stands: illustrations come from the Claude app, run by Mathi, for style
-  consistency.
-- **Account-setting changes were not made autonomously.** Policy and the
-  permission layer agree; they are cheap to do together.
+- **Mathi switched illustration generation to ChatGPT, one image per
+  conversation** (2026-10-02). Supersedes the 2026-10-01 Claude-app decision;
+  recorded in the KB overview.
+- **Headlines and long sentences go in page text, not in the image** (working
+  choice, not a Mathi decision). ChatGPT malformed or misspelled them; briefs
+  list them as "Overskrift"/"Tekst", which the articles already render as bold
+  text next to the image.
+- **Small defects were fixed in the original rather than regenerated** when
+  the edit removes pixels only (extra "r" cut out, extra row painted over with
+  copied background, headline strip cropped). No text was drawn in.
+- **Accepted as-is**: 17 people where the prompt said 18 (polterabend), 21
+  rows in an unlabeled-count list (find-en-dato), roughly 13–14 people at the
+  "14 kan" table. None is a label stating that exact count.
+- **The homepage share image is a static screenshot**, not a drawn card
+  (Mathi, 2026-10-02). Retake it when the hero changes: headless Chrome at
+  1440x756, device scale 2, then scale to 1200x630.
+- Captions ("Illustreret eksempel: …") are added under every image that shows
+  totals, ordered highest first, matching the class article.
+- **PageSpeed's render-blocking Livewire warning is left alone** (Mathi,
+  2026-10-02). Lighthouse 12 mobile: home 95 (FCP 2.0 s, LCP 2.7 s), /til/venner
+  100. Brotli and year-long caching are already on. If revisited: bundle the
+  Livewire ESM into `app.js` with `@livewireScriptConfig` (module scripts do not
+  block); the script cannot simply be dropped because the homepage demo poll
+  uses the Alpine that ships with Livewire.
 
 ## 7. Dead ends and corrections
 
-- **`git push` over SSH fails while the Mac's keychain is locked** (overnight,
-  screen locked): the agent refuses to sign even after
-  `ssh-add --apple-use-keychain`. Workaround that worked: push over HTTPS with
-  the gh CLI's credentials —
-  `git -c credential.helper= -c "credential.helper=!gh auth git-credential" push https://github.com/mkumarathurai/kanvi.dk.git main`
-  — then sync the stale tracking ref with
-  `git update-ref refs/remotes/origin/main <sha>`, since fetch over SSH also
-  fails. Also saved in Claude's auto-memory; applies machine-wide.
-- **Saving a Gmail settings change is blocked in autonomous runs** by the
-  permission classifier (account-setting change). Do not retry without Mathi
-  present; the attempt was cancelled cleanly and settings are untouched.
-- The Gmail MCP `viewUrl` for a thread navigates Chrome straight to the
-  message — no inbox searching needed. Clicking Gmail toolbar icons by
-  coordinates is unreliable (viewport scale shifted mid-session and a click
-  opened the account switcher); use `find` + ref-clicks.
-- Everything in the previous snapshot's dead-ends list still holds
-  (`git log docs/SNAPSHOT.md` for `5601f29`): `clpctl` only exists for the
-  `clp` user, `sudo find /home/*` glob trap, `sips -c` crops centered,
-  injected `pointer-events:none` blocks later clicks, hover scrolls
-  off-screen elements, Livewire needs `wait_for` on "har svaret", Search
-  Console's "Kunne ikke hentes" was transient.
+- A ChatGPT request for several images returns one contact sheet; tiles are
+  ~420 px and unusable. One image per conversation.
+- Segmented tally bars get miscounted; ask for smooth bars proportional to the
+  totals. Asking ChatGPT to fix a single letter failed twice ("Bestyrrelses-
+  møde"); fix it locally instead.
+- The 2026-10-01 prompt list missed a brief image. Before declaring images
+  complete, compare every `\`*.webp\`` name in `docs/indhold/<slug>.md` with
+  `resources/content/articles/<slug>.md`.
+- Chrome DevTools MCP cannot save screenshots to the scratchpad (outside its
+  workspace roots); take them inline.
+- Earlier dead ends still hold: `git log docs/SNAPSHOT.md` (`c9854b9`,
+  `5601f29`).
 
 ## 8. Traps in this repository
 
 - **A push is a deployment.** CI runs on every branch; only `main` deploys.
-- The julefrokost article plans **four** images total (two screenshots
-  published, two illustrations pending) — the test map bump must account for
-  it, see section 3.
-- Screenshot method and rules live in `docs/indhold/PUBLICERING.md` (capture)
-  and `docs/design/CLASS-ARTICLE-IMAGES.md` (prompts): product UI must be a
-  real screenshot through the real creation flow; never fabricate UI.
-- The image test asserts exact per-article image counts and real srcset
-  variant widths; adding an image without `-720`/`-390` variants fails CI.
-- Funnel events fire only in `app()->environment('production')`; tests that
-  force production must `Queue::fake()`.
-- Retention runs on `last_activity_at`; deleting a poll outside the purge
-  requires the `PurgeExpiredPolls` sequence; `RecoveryMail::enabled()` allows
-  only real transports; `APP_URL` drives canonical URLs and share images;
-  secrets live only in `/home/kanvi/htdocs/kanvi.dk/shared/.env` on the
-  server.
+- The image test asserts exact per-article counts and real 390/720 variants.
+- Chrome logs an "issue" (not error) "Lazy-loaded images should have explicit
+  dimensions" on every article page, including untouched ones; images do
+  carry width, height and aspect-ratio. Pre-existing, not investigated.
+- Product UI must be a real screenshot; never a generated one
+  (`docs/indhold/PUBLICERING.md`).
+- Funnel events fire only in production; retention, recovery-mail and secrets
+  rules unchanged — see `AGENTS.md` and the previous snapshot.
 
 ## 9. How to check this snapshot still holds
 
 ```sh
 cd /Users/mathi/www/sites/kanvi.dk
 git status --short
-git log --oneline -6
+git log --oneline -4
+git log --oneline @{u}..HEAD
 curl -sS https://kanvi.dk/deploy-revision.txt
-gh run list --limit 3
-php artisan test --compact
+gh run list --limit 2
 ```
-
-Production should serve `12f90aa` or the snapshot commit after it.
 
 ## 10. Verification evidence
 
-Run at the time of writing, 2026-10-02 07:49 CEST, on `12f90aa`:
+Run 2026-10-02 on `c8b60e2`:
 
-- CI runs 36917379083 and 36916085338: green. Production serves `12f90aa`
-  (deploy-revision.txt checked 07:49). Working tree clean, nothing unpushed,
-  no stashes.
-- The test suite was **not rerun locally** this session — both commits are
-  docs-only; CI ran the full suite (including MySQL) and passed.
-- Gmail web rendering: inspected visually in Mathi's Chrome (light mode,
-  images on), including footer and thread-list preheader. Screenshots were
-  viewed live, not saved.
-- Mail template freshness: `git log --since=2026-09-30` empty across
-  app/Mail, resources/views/emails, resources/views/components,
-  public/images/email and app/Jobs/SendAdminRecovery.php.
-- Jira: KAN-16 In Progress with comment 15038; KAN-11 comment 15039.
+- `php artisan test --compact` on `75bb778`: 155 passed, 1 skipped (2083
+  assertions).
+  `npm test`: 38 passed, 0 failed. Pint passed, build passed,
+  `git diff --check` clean.
+- CI runs 37059241683 (`3aff293`) and 37063998035 (`c8b60e2`) green;
+  production serves `c8b60e2`.
+- Production: the ten changed pages each show 4 images; every srcset variant
+  returns HTTP 200 and all 40 load in Chrome.
+- Brief check: every `.webp` named in `docs/indhold/<slug>.md` appears in
+  `resources/content/articles/<slug>.md`.
+- Walked through in Chrome at 1280 px (venner) and 390 px mobile
+  (hvor-mange-datoer, datoafstemning): images render, no horizontal
+  overflow; console has no errors or warnings.
 
-**Not verified:** the nightly backup cron run (first possible evidence
-2026-10-02 03:15), Gmail web images-off/dark, the four remaining mail
-clients, per-URL indexing eligibility in Search Console, load on production
-MySQL.
+**Not verified:** keyboard navigation and contrast of the new images (images
+carry alt text only), Lighthouse, KAN-16 Outlook.
 
 ## 11. Skills for the next session
 
 - `snapshot` to resume from this file.
-- `tdd` for any code change; `writing-for-agents` when editing this file,
-  `AGENTS.md` or `CLAUDE.md`.
-- `claude-in-chrome` for Gmail web rounds in Mathi's browser; Chrome DevTools
-  MCP (emulation) for any further article screenshots.
-- Atlassian connector for the KAN board; the Knowledge Base is on the local
-  Drive path.
+- `tdd` for any code change; Chrome DevTools MCP for production
+  walkthroughs; Atlassian connector for KAN-16.

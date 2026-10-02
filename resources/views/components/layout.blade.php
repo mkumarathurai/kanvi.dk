@@ -28,6 +28,9 @@
             if (isset($seo['breadcrumbs'])) {
                 $graph[] = ['@type' => 'BreadcrumbList', 'itemListElement' => array_map(fn ($crumb, $index) => ['@type' => 'ListItem', 'position' => $index + 1, 'name' => $crumb['label'], 'item' => $crumb['url']], $seo['breadcrumbs'], array_keys($seo['breadcrumbs']))];
             }
+            if (isset($seo['article'])) {
+                $graph[] = ['@type' => 'Article', 'headline' => $seo['article']['headline'], 'datePublished' => $seo['article']['datePublished'], 'dateModified' => $seo['article']['dateModified'], 'author' => ['@type' => 'Organization', 'name' => 'Kanvi'], 'publisher' => ['@type' => 'Organization', 'name' => 'Kanvi'], 'image' => $seo['image'], 'mainEntityOfPage' => $seo['canonical'], 'inLanguage' => 'da'];
+            }
         @endphp
         <script type="application/ld+json">{!! json_encode(['@context' => 'https://schema.org', '@graph' => $graph], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) !!}</script>
     @endif

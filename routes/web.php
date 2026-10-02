@@ -14,6 +14,7 @@ Route::view('/opret', 'create', ['landing' => false])->name('polls.create');
 Route::get('/guides', [ArticleController::class, 'index'])->name('articles.index');
 Route::get('/til', [ArticleController::class, 'index'])->name('articles.situations');
 Route::get('/hjaelp', [ArticleController::class, 'index'])->name('articles.help');
+Route::get('/artikler', [ArticleController::class, 'index'])->name('articles.articles');
 Route::get('/sitemap.xml', [ArticleController::class, 'sitemap'])->name('sitemap');
 foreach (config('articles') as $key => $article) {
     Route::get($article['path'], [ArticleController::class, 'show'])->defaults('article', $key)->name('articles.'.$key);

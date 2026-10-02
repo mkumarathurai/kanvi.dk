@@ -36,6 +36,17 @@ class ArticleController extends Controller
             'seo_title' => 'Anledninger | Kanvi',
             'description' => 'Enkle guides til at finde en fælles dato med venner, familie, bestyrelse og forening. Få aftalen i kalenderen med Kanvi.',
         ],
+        'articles.articles' => [
+            'path' => '/artikler',
+            'crumb' => 'Artikler',
+            'kind' => 'guide',
+            'prefix' => '/artikler/',
+            'heading' => 'Gode råd, når datoen skal findes',
+            'kicker' => 'Artikler',
+            'intro' => 'Konkrete råd til datoafstemningen: hvor mange muligheder I bør foreslå, og hvordan I lander på dagen.',
+            'seo_title' => 'Artikler | Kanvi',
+            'description' => 'Artikler med gode råd til datoafstemningen, blandt andet hvor mange datoer man bør foreslå, før gruppen skal svare.',
+        ],
         'articles.help' => [
             'path' => '/hjaelp',
             'crumb' => 'Hjælp',
@@ -60,17 +71,26 @@ class ArticleController extends Controller
         }
         $breadcrumbs[] = ['label' => $page['label'], 'url' => $articles->url($page['path'])];
 
+        $seo = [
+            'title' => $page['seo_title'],
+            'description' => $page['description'],
+            'canonical' => $articles->url($page['path']),
+            'image' => $articles->url('/deling/'.$article),
+            'breadcrumbs' => $breadcrumbs,
+        ];
+        if (isset($page['published'])) {
+            $seo['article'] = [
+                'headline' => $page['title'],
+                'datePublished' => $page['published'],
+                'dateModified' => $page['modified'] ?? $page['published'],
+            ];
+        }
+
         return view('articles.show', [
             'article' => $page,
             'articles' => $articles->guides(),
             'breadcrumbs' => $breadcrumbs,
-            'seo' => [
-                'title' => $page['seo_title'],
-                'description' => $page['description'],
-                'canonical' => $articles->url($page['path']),
-                'image' => $articles->url('/deling/'.$article),
-                'breadcrumbs' => $breadcrumbs,
-            ],
+            'seo' => $seo,
         ]);
     }
 

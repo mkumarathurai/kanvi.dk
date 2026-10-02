@@ -194,3 +194,46 @@ second row highlighted.
 
 File: `public/images/articles/julefrokost-chat-vs-kanvi.webp`
 Alt: `Planlægning af julefrokost i gruppechat sammenlignet med Kanvi`
+
+### hvor-mange-datoer — for få, tilpas, for mange (hero)
+
+Use case: infographic-diagram. Three equal columns.
+Left column labeled exactly "2 datoer": two calm date rows, caption exactly
+"For få?".
+Middle column labeled exactly "5 datoer": five clear date rows with short
+green tally bars, visually calm and balanced, caption exactly "God balance".
+Right column labeled exactly "18 datoer": one long cramped list of eighteen
+thin unreadable date lines, caption exactly "For meget?".
+The middle column reads as the obvious, easy choice.
+
+File: `public/images/articles/hvor-mange-datoer-afstemning.webp`
+Alt: `Eksempel på hvor mange datoer man kan foreslå i en datoafstemning`
+
+### hvor-mange-datoer — antal efter arrangement
+
+Use case: infographic-diagram. Four small cards in a balanced 2-by-2
+arrangement.
+Cards labeled exactly "Møde" with exactly "3 muligheder", "Middag" with
+exactly "4 muligheder", "Fest" with exactly "5 muligheder", "Weekendtur" with
+exactly "4 lørdage".
+Headline across the top exactly "Antallet afhænger af det, I skal planlægge."
+Note: the weekend card says "4 lørdage", not "4 weekender" — Kanvi has no
+date ranges, and the article recommends one Saturday per weekend.
+
+File: `public/images/articles/antal-datoer-efter-arrangement.webp`
+Alt: `Eksempler på antal datoer til forskellige typer arrangementer`
+
+### hvor-mange-datoer — få vs. mange
+
+Use case: infographic-diagram. Two equal panels.
+Left panel labeled exactly "22 muligheder": a very long, cramped, slightly
+askew poll list of thin unreadable date lines, with one speech bubble exactly
+"Jeg gør det senere …".
+Right panel labeled exactly "5 muligheder": a short, calm poll with five
+clear date rows and short green tally bars, with one speech bubble exactly
+"Done ✓".
+Headline across the top exactly "Jo lettere det er at svare, desto lettere er
+det at finde datoen."
+
+File: `public/images/articles/faa-vs-mange-datoer.webp`
+Alt: `Sammenligning af en stor og en enkel datoafstemning`

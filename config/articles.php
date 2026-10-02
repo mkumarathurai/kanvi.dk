@@ -92,6 +92,18 @@ return [
         'kind' => 'guide',
     ],
 
+    // Advice articles. /artikler lists them; /guides and the home page include them.
+    'hvor-mange-datoer' => [
+        'path' => '/artikler/hvor-mange-datoer-skal-man-foreslaa',
+        'title' => 'Hvor mange datoer bør man foreslå i en datoafstemning?',
+        'seo_title' => 'Hvor mange datoer bør man foreslå? | Kanvi',
+        'description' => 'Hvor mange datoer skal man have med i en datoafstemning? Få en enkel tommelfingerregel og se, hvordan du gør det nemt for deltagerne at svare.',
+        'label' => 'Hvor mange datoer bør man foreslå?',
+        'group' => 'Gode råd',
+        'kind' => 'guide',
+        'published' => '2026-10-02',
+    ],
+
     // Task-oriented help pages. /hjaelp lists them.
     'hjaelp-opret-afstemning' => [
         'path' => '/hjaelp/opret-afstemning',

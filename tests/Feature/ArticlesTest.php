@@ -24,7 +24,7 @@ class ArticlesTest extends TestCase
 
     public function test_all_articles_render_public_content_and_seo_without_javascript(): void
     {
-        $this->assertCount(10, $this->guides());
+        $this->assertCount(11, $this->guides());
         foreach ($this->guides() as $article) {
             $response = $this->get($article['path'])->assertOk();
             $html = $response->getContent();
@@ -60,6 +60,7 @@ class ArticlesTest extends TestCase
             }
         }
         $this->get('/til')->assertOk()->assertSee(url('/til/foreninger'))->assertSee(url('/til/klassearrangement'));
+        $this->get('/artikler')->assertOk()->assertSee(url('/artikler/hvor-mange-datoer-skal-man-foreslaa'));
         $this->get('/til/ukendt')->assertNotFound();
     }
 
@@ -83,14 +84,14 @@ class ArticlesTest extends TestCase
         config(['app.url' => 'https://kanvi.dk']);
         $response = $this->get('/sitemap.xml')->assertOk()->assertHeader('Content-Type', 'application/xml; charset=UTF-8');
         $xml = simplexml_load_string($response->getContent());
-        $this->assertCount(23, $xml->url);
+        $this->assertCount(25, $xml->url);
         foreach (config('articles') as $article) {
             $response->assertSee('https://kanvi.dk'.$article['path']);
         }
         // Exact URLs: /hjaelp/opret-afstemning belongs here and contains "/opret".
         // Keys must not be preserved; every <url> shares the name and would collapse to one.
         $urls = array_map('strval', iterator_to_array($xml->url, false));
-        $this->assertCount(23, $urls);
+        $this->assertCount(25, $urls);
         foreach (['/p/', '/admin/', '/adgang/'] as $private) {
             $this->assertEmpty(array_filter($urls, fn ($url) => str_contains($url, $private)));
         }
@@ -118,6 +119,31 @@ class ArticlesTest extends TestCase
         $xpath = new DOMXPath($document);
         $schema = json_decode($xpath->query('//script[@type="application/ld+json"]')->item(0)->textContent, true, flags: JSON_THROW_ON_ERROR);
         $this->assertSame(['Forside', 'Til', 'Klassearrangement'], array_column($schema['@graph'][1]['itemListElement'], 'name'));
+        $this->assertSame(3, $xpath->query('//a[contains(@class,"article-cta")]')->length);
+    }
+
+    public function test_the_dates_count_article_links_the_cluster_and_stays_truthful(): void
+    {
+        $response = $this->get('/artikler/hvor-mange-datoer-skal-man-foreslaa')->assertOk();
+        $response->assertSee('Hvor mange datoer bør man foreslå? | Kanvi')
+            ->assertSee('3-6 realistiske datoer')
+            ->assertSee('Kanvi har endnu ikke datointervaller')
+            ->assertSee('ikke særskilte tidsmuligheder')
+            ->assertDontSee('BILLEDE')->assertDontSee('Filnavn:')->assertDontSee('Redaktionel afklaring');
+
+        foreach (['/datoafstemning', '/find-en-dato', '/til/julefrokost', '/til/bestyrelser', '/til/foreninger',
+            '/til/venner', '/til/familien', '/til/polterabend', '/til/klassearrangement', '/doodle-alternativ'] as $path) {
+            $response->assertSee('href="'.$path.'"', false);
+        }
+
+        $document = new DOMDocument;
+        @$document->loadHTML('<?xml encoding="utf-8" ?>'.$response->getContent());
+        $xpath = new DOMXPath($document);
+        $schema = json_decode($xpath->query('//script[@type="application/ld+json"]')->item(0)->textContent, true, flags: JSON_THROW_ON_ERROR);
+        $this->assertSame(['Forside', 'Artikler', 'Hvor mange datoer bør man foreslå?'], array_column($schema['@graph'][1]['itemListElement'], 'name'));
+        $this->assertSame('Article', $schema['@graph'][2]['@type']);
+        $this->assertSame('2026-10-02', $schema['@graph'][2]['datePublished']);
+        $this->assertSame('2026-10-02', $schema['@graph'][2]['dateModified']);
         $this->assertSame(3, $xpath->query('//a[contains(@class,"article-cta")]')->length);
     }
 

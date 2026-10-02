@@ -285,7 +285,7 @@ class ArticlesTest extends TestCase
     public function test_the_homepage_keeps_its_title_and_gains_a_canonical_link(): void
     {
         $this->get('/')->assertOk()
-            ->assertSee('<title>Find en dag, der passer alle · Kanvi</title>', false)
+            ->assertSee('<title>Find en dag, der passer alle – Kanvi?</title>', false)
             ->assertSee('<link rel="canonical" href="'.app(Articles::class)->url('/').'">', false);
         $this->get('/opret')->assertOk()->assertDontSee('property="og:image"', false);
     }

@@ -201,7 +201,11 @@ En datoafstemning organiserer i stedet oplysningerne efter dato.
 
 Det er præcis det, I skal bruge.
 
+**Samme svar. Bedre overblik.**
 
+![Sammenligning af mailtråd og datoafstemning til bestyrelsesmøde](/images/articles/bestyrelsesmoede-mail-vs-kanvi.webp)
+
+*Illustreret eksempel: torsdag 5. februar og torsdag 12. februar passer begge 6 medlemmer, tirsdag 10. februar passer 5 og tirsdag 3. februar passer 4.*
 
 
 ## Brug samme metode hver gang

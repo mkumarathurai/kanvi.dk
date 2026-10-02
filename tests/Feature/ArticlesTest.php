@@ -195,12 +195,12 @@ class ArticlesTest extends TestCase
             'ingen-dato-passer-alle' => 2,
             'klassearrangement' => 4,
             'datoafstemning' => 3,
-            'venner' => 3,
+            'venner' => 4,
             'familien' => 3,
             'polterabend' => 2,
             'foreninger' => 2,
-            'bestyrelser' => 2,
-            'find-en-dato' => 2,
+            'bestyrelser' => 3,
+            'find-en-dato' => 3,
             'julefrokost' => 2,
         ], array_filter($counts), 'The set of illustrated articles changed.');
     }

@@ -328,7 +328,11 @@ En afstemning organiserer svarene efter dato i stedet for efter besked.
 
 Det gør det langt lettere at få overblik.
 
+**Samme mennesker. Meget bedre overblik.**
 
+![Forskel på at finde en dato i gruppechat og med Kanvi](/images/articles/find-dato-chat-vs-kanvi.webp)
+
+*Illustreret eksempel: lørdag 9. maj passer 8, lørdag 16. maj passer 7, fredag 8. maj passer 6 og fredag 15. maj passer 5.*
 
 
 ## En enkel opskrift

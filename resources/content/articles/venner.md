@@ -305,7 +305,11 @@ Derfor kan lidt struktur gøre en stor forskel.
 
 I stedet for 20 beskeder frem og tilbage kan alle tjekke kalenderen og svare på de samme muligheder.
 
+**Fra “vi skal snart ses” til en rigtig dato.**
 
+![Sammenligning af gruppechat og datoafstemning med venner](/images/articles/venner-gruppechat-vs-kanvi.webp)
+
+*Illustreret eksempel: lørdag 7. november passer 7 venner, lørdag 14. november passer 6, fredag 6. november passer 5 og fredag 13. november passer 4.*
 
 
 ## Hvor mange datoer skal man foreslå?

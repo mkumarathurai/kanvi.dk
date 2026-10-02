@@ -6,7 +6,8 @@ product behavior; product UI is always a real screenshot. WebP files are
 resized/encoded variants of the generated originals; all in-image Danish labels
 are checked visually before publishing.
 
-The two class article illustrations below were generated 2026-09-29. The
+The two class article illustrations below were generated 2026-09-29, the
+three comparison illustrations after them 2026-10-02. The
 **Planned prompts** section holds the prompts for the remaining articles,
 written 2026-10-01 from the image briefs in `docs/indhold/`; move an entry up
 here with its asset paths once it is generated and published.
@@ -33,6 +34,56 @@ Constraints: No app chrome, no browser or phone, no calendar grid, no redesigned
 
 Files: `public/images/articles/klassechat-vs-kanvi.webp`, with `-720` and `-390` variants.
 
+## venner — gruppechat vs. Kanvi
+
+Use case: infographic-diagram. Two equal panels.
+Left panel labeled exactly "Vi skal snart ses!": six overlapping simple message
+slips with these exact Danish phrases: "Hvad med fredag?", "Kan ikke 😭",
+"Lørdag?", "Har børnene.", "Næste uge?", "Jeg vender tilbage.".
+Right panel labeled exactly "Kanvi": four date rows, labels exactly
+"Fre. 6. november", "Lør. 7. november", "Fre. 13. november", "Lør. 14. november";
+totals exactly "5 kan", "7 kan", "4 kan", "6 kan"; second row highlighted.
+
+Files: `public/images/articles/venner-gruppechat-vs-kanvi.webp`, with `-720` and `-390` variants.
+Alt: `Sammenligning af gruppechat og datoafstemning med venner`
+
+Generated 2026-10-02.
+
+The prompt as written on 2026-10-01 paired weekdays with the wrong dates
+(7 November 2026 is a Saturday); the generated image and this prompt use the
+correct 2026 pairs.
+
+## bestyrelser — mail vs. Kanvi
+
+Use case: infographic-diagram. Two equal panels.
+Left panel labeled exactly "Mailtråden": a stack of five overlapping mail slips
+whose subject lines read exactly "Mødedato", "SV: Mødedato", "SV: SV: Mødedato",
+"VS: Mødedato", "SV: SV: SV: Mødedato".
+Right panel labeled exactly "Kanvi": four date rows, labels exactly
+"Tir. 3. februar", "Tor. 5. februar", "Tir. 10. februar", "Tor. 12. februar";
+totals exactly "4 kan", "6 kan", "5 kan", "6 kan"; second row highlighted.
+
+Files: `public/images/articles/bestyrelsesmoede-mail-vs-kanvi.webp`, with `-720` and `-390` variants.
+Alt: `Sammenligning af mailtråd og datoafstemning til bestyrelsesmøde`
+
+Generated 2026-10-02.
+
+## find-en-dato — chat vs. overblik
+
+Use case: infographic-diagram. Two equal panels.
+Left panel labeled exactly "I gruppechatten": twelve small speech bubbles;
+five legible with these exact phrases: "Jeg kan den 8.", "Hvad med 15.?",
+"15 går ikke 😕", "Er 9. stadig en mulighed?", "Jeg vender tilbage."; the other
+seven tiny and unreadable.
+Right panel labeled exactly "I Kanvi": four date rows, labels exactly
+"Fre. 8. maj", "Lør. 9. maj", "Fre. 15. maj", "Lør. 16. maj"; totals exactly
+"6 kan", "8 kan", "5 kan", "7 kan"; second row highlighted.
+
+Files: `public/images/articles/find-dato-chat-vs-kanvi.webp`, with `-720` and `-390` variants.
+Alt: `Forskel på at finde en dato i gruppechat og med Kanvi`
+
+Generated 2026-10-02.
+
 ## Planned prompts — written 2026-10-01, not generated yet
 
 Shared style for every prompt below (repeat it verbatim after the primary
@@ -48,19 +99,6 @@ wording legible at 720 px display width. Horizontal 16:9.
 Where a panel shows date rows with totals, use four neatly aligned rows with
 clean horizontal green tally bars, one row softly highlighted as best, and a
 small caption "Eksempel" below the panel.
-
-### venner — gruppechat vs. Kanvi
-
-Use case: infographic-diagram. Two equal panels.
-Left panel labeled exactly "Vi skal snart ses!": six overlapping simple message
-slips with these exact Danish phrases: "Hvad med fredag?", "Kan ikke 😭",
-"Lørdag?", "Har børnene.", "Næste uge?", "Jeg vender tilbage.".
-Right panel labeled exactly "Kanvi": four date rows, labels exactly
-"Fre. 7. november", "Lør. 8. november", "Fre. 14. november", "Lør. 15. november";
-totals exactly "5 kan", "7 kan", "4 kan", "6 kan"; second row highlighted.
-
-File: `public/images/articles/venner-gruppechat-vs-kanvi.webp`
-Alt: `Sammenligning af gruppechat og datoafstemning med venner`
 
 ### polterabend — stor gruppe
 
@@ -121,19 +159,6 @@ Right panel labeled exactly "Kanvi": four date rows, labels exactly
 File: `public/images/articles/forening-beskeder-vs-kanvi.webp`
 Alt: `Datoer fra mail og beskeder samlet i en Kanvi-afstemning`
 
-### bestyrelser — mail vs. Kanvi
-
-Use case: infographic-diagram. Two equal panels.
-Left panel labeled exactly "Mailtråden": a stack of five overlapping mail slips
-whose subject lines read exactly "Mødedato", "SV: Mødedato", "SV: SV: Mødedato",
-"VS: Mødedato", "SV: SV: SV: Mødedato".
-Right panel labeled exactly "Kanvi": four date rows, labels exactly
-"Tir. 3. februar", "Tor. 5. februar", "Tir. 10. februar", "Tor. 12. februar";
-totals exactly "4 kan", "6 kan", "5 kan", "6 kan"; second row highlighted.
-
-File: `public/images/articles/bestyrelsesmoede-mail-vs-kanvi.webp`
-Alt: `Sammenligning af mailtråd og datoafstemning til bestyrelsesmøde`
-
 ### bestyrelser — flere situationer i foreningen
 
 Use case: infographic-diagram. Three small poll cards labeled exactly
@@ -155,20 +180,6 @@ with short green tally bars and no readable totals.
 
 File: `public/images/articles/antal-datoer-afstemning.webp`
 Alt: `Få konkrete datoer gør det lettere at finde en fælles dato`
-
-### find-en-dato — chat vs. overblik
-
-Use case: infographic-diagram. Two equal panels.
-Left panel labeled exactly "I gruppechatten": twelve small speech bubbles;
-five legible with these exact phrases: "Jeg kan den 8.", "Hvad med 15.?",
-"15 går ikke 😕", "Er 9. stadig en mulighed?", "Jeg vender tilbage."; the other
-seven tiny and unreadable.
-Right panel labeled exactly "I Kanvi": four date rows, labels exactly
-"Fre. 8. maj", "Lør. 9. maj", "Fre. 15. maj", "Lør. 16. maj"; totals exactly
-"6 kan", "8 kan", "5 kan", "7 kan"; second row highlighted.
-
-File: `public/images/articles/find-dato-chat-vs-kanvi.webp`
-Alt: `Forskel på at finde en dato i gruppechat og med Kanvi`
 
 ### julefrokost — fredag eller lørdag
 

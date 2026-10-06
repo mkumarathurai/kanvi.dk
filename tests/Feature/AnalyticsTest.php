@@ -23,6 +23,8 @@ class AnalyticsTest extends TestCase
             $this->assertStringContainsString('data-domains="kanvi.dk,www.kanvi.dk"', $head);
             $this->assertStringContainsString('data-exclude-search="true"', $head);
             $this->assertStringContainsString('data-exclude-hash="true"', $head);
+            // A deferred tracker that hangs delays DOMContentLoaded, so Livewire never boots.
+            $this->assertStringContainsString('<script async src="https://stats.mathi.dev/script.js"', $head);
         }
     }
 

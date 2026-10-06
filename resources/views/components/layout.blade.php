@@ -54,7 +54,7 @@
     @endif
     <title>{{ $seo['title'] ?? $title.' · Kanvi' }}</title>
     @if (app()->environment('production') && ! $private)
-        <script defer src="https://stats.mathi.dev/script.js" data-website-id="fa2c9fe6-7537-4afb-835c-f47f75a9d546" data-domains="kanvi.dk,www.kanvi.dk" data-exclude-search="true" data-exclude-hash="true" referrerpolicy="no-referrer"></script>
+        <script async src="https://stats.mathi.dev/script.js" data-website-id="fa2c9fe6-7537-4afb-835c-f47f75a9d546" data-domains="kanvi.dk,www.kanvi.dk" data-exclude-search="true" data-exclude-hash="true" referrerpolicy="no-referrer"></script>
     @endif
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles

@@ -77,8 +77,8 @@
             <nav class="footer-legal-links" aria-label="Privatliv og data"><a href="{{ route('articles.privatliv') }}">Privatliv og data</a></nav>
             <div lang="en">
             <p>Made with <span role="img" aria-label="love">❤️</span></p>
-            <p>© {{ now()->year }} Mathi Kumarathurai. All rights reserved.</p>
             </div>
+            <p>© {{ now()->year }} Mathi ApS, CVR 32890032, Nygårdsvænget 25, 8370 Hadsten · <a href="mailto:mail@kanvi.dk">mail@kanvi.dk</a> · <a href="tel:+4527890091">+45 2789 0091</a></p>
         </footer>
     </div>
     @livewireScripts

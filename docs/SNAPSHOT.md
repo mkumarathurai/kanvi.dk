@@ -1,8 +1,8 @@
 # Kanvi session snapshot
 
-Project: Kanvi · Branch: `main` · HEAD: `51519ef` · Recorded: 2026-10-03 13:24 CEST.
+Project: Kanvi · Branch: `main` · HEAD: `54a03cc` · Recorded: 2026-10-13 12:55 CDT.
 
-This file describes `51519ef`; its own commit follows, so HEAD is one ahead by
+This file describes `54a03cc`; its own commit follows, so HEAD is one ahead by
 design.
 
 Technical handover only. Project knowledge is in the Knowledge Base overview at
@@ -11,46 +11,51 @@ https://mkumarathurai.atlassian.net/jira/software/c/projects/KAN/boards/575
 
 ## 1. Where we are
 
-Kanvi launched on 2026-10-03, a Saturday in week 40, one week ahead of the
-week-41 plan. Mathi chose to launch today and announced Kanvi in their network.
-To make that possible, Mathi closed KAN-16 without the Outlook round and kept the
-logo as it is in the Gmail app's dark theme. KAN-3, its epic, closed with it,
-so the KAN board has no open tickets. No code changed this session: production
-still serves `51519ef`. The sitemap was already submitted on 2026-10-01; the
-Knowledge Base had recorded that in its status but never ticked the next step,
-which this session fixed. The one open item is checking indexing in Search
-Console after launch.
+Kanvi is live and the KAN board has no open tickets. This session made one code
+change: the footer now ends with the company details (Mathi ApS, CVR, address,
+mail@kanvi.dk, phone) in place of the old copyright line (KAN-28). KAN-27, the
+async analytics-script fix from 2026-10-06, was closed after confirming the
+`async` tag is live. Most of the session went to moving the self-hosted Umami
+instance at `stats.mathi.dev` from the home server blackcoffee, which Mathi shut
+down for security reasons, to silanthi. Umami has counted visits again since
+2026-10-11. Visits from 2026-10-05 to 2026-10-11 were not counted. Kanvi's
+`data-website-id` and server-side funnel config did not change.
 
 ## 2. What was done
 
-- No code commits. HEAD `51519ef` is the previous snapshot.
-- Jira: KAN-16 → Done with an evidence comment (four clients passed 2026-10-02,
-  Outlook not tested, logo unchanged); KAN-3 → Done.
-- Knowledge Base overview: 2026-10-03 status entries (launch decision,
-  pre-launch check, launch announced), two dated decisions, two open questions
-  answered, next steps ticked (sitemap, mail clients, launch).
-- Pre-launch production check, 2026-10-03: `/`, `/sitemap.xml`, `/robots.txt`,
-  `/guides`, `/artikler`, `/hjaelp`, `/privatliv` and `/til/venner` return 200
-  in under 0.2 s; sitemap lists 26 URLs; `robots.txt` disallows nothing; no
-  `noindex` meta on the homepage.
+- `54a03cc` Footer shows the company details at the very bottom
+  (`resources/views/components/layout.blade.php`). The year stays dynamic. The
+  mail and phone are links. KAN-28 created and closed.
+- KAN-27 moved to Done. Fix `0acbdca` verified live: kanvi.dk serves
+  `<script async src="https://stats.mathi.dev/script.js" …>`.
+- Umami moved to silanthi. This was server work with no repo change. Knowledge
+  for it is in the KB note `04-Faste omraader/Server og hosting/Umami statistik.md`.
+  - Data moved with the database, so website IDs, including Kanvi's
+    `fa2c9fe6-…`, are unchanged.
+  - Runs as Umami v3.4.0. The database was upgraded to migration
+    `26_add_api_key`.
+- KB updated on 2026-10-11: the new Umami note, and two dated entries at the end
+  of `Status lige nu` in the Kanvi overview.
 
 ## 3. Unfinished
 
-- Working tree: only this file, committed with this snapshot. Nothing
-  unpushed after the push; no stashes.
+- Working tree: only this file, committed with this snapshot. Nothing is
+  unpushed. There are no stashes.
 - No open KAN tickets.
-- Outlook rendering of the mails is not verified, by Mathi's choice.
-- The core poll flow was not exercised in production today, to avoid real
-  data; it was verified in earlier sessions.
+- Outside this repo, open items are recorded in the KB Umami note:
+  - an off-server backup for Umami
+  - activityhub.dk's repo still loads Umami with Timeslot's website ID
+  - deleting the old Umami volume on blackcoffee
+- Search Console indexing check from the previous snapshot: not verified this
+  session.
 
 ## 4. Next steps
 
-1. In a few days: check indexing in Search Console (Pages report) for the 26
-   sitemap URLs. Mathi's browser; no command. Create a KAN ticket first if it
-   turns into work.
-2. Continue FAQ, help centre and content per the SEO plan, when Mathi asks.
-   New work needs a KAN ticket for the commit trailer.
-3. Check battery before any code change is pushed:
+1. Check indexing in Search Console (Pages report) for the sitemap URLs. This
+   happens in Mathi's browser and needs no command.
+2. For any new work, create a KAN ticket first for the commit trailer. Use the
+   Atlassian MCP connector, not Rovo.
+3. Run the check battery before pushing code:
 
    ```sh
    php artisan test --compact
@@ -62,47 +67,45 @@ Console after launch.
 
 ## 5. Waiting on Mathi
 
-- The Search Console indexing check (Mathi's Google account).
-- Any new content or feature requests after launch.
+- The Search Console indexing check.
+- Decisions on the three Umami open questions in the KB note. They live outside
+  this repo.
 
 ## 6. Decisions made, and why
 
-- **Launch on 2026-10-03 instead of week 41** (Mathi). The 2026-09-30 decision
-  stays in the KB as history.
-- **KAN-16 closed without Outlook; dark-mode logo unchanged** (Mathi), so the
-  launch did not wait on installing Outlook. Supersedes the 2026-10-02
-  decision to park both.
-- Earlier decisions still hold: see `git show 51519ef:docs/SNAPSHOT.md`
-  section 6 (ChatGPT illustrations, homepage share screenshot, homepage title,
-  `fb:app_id` warning ignored, Livewire PageSpeed warning left alone, no text
-  in images).
+- **Footer uses mail@kanvi.dk, not hej@invity.dk** (Mathi). The request
+  contained the Invity address. Every other Kanvi page uses mail@kanvi.dk, so
+  Mathi chose consistency.
+- **The company line replaces the old "© Mathi Kumarathurai" line** (Mathi), so
+  the footer has a single copyright line. The new line sits outside the
+  `lang="en"` block because it is Danish.
+- **Umami data was moved, not reinstalled empty.** Website IDs stay the same, so
+  none of the ten sites needed a code change or a deploy.
+- Earlier decisions: see `git show 51519ef:docs/SNAPSHOT.md` section 6.
 
 ## 7. Dead ends and corrections
 
-- The previous snapshot listed "submit the sitemap" as a launch step because
-  the KB next-step item bundled it with the launch. It had been done on
-  2026-10-01. When reading a snapshot, cross-check each next step against the
-  KB's dated status entries.
-- The Atlassian **Rovo** connector returns 403 "The app is not installed on
-  this instance"; use the **Atlassian MCP** connector with cloudId
-  `https://mkumarathurai.atlassian.net`.
-- SSH to GitHub fails when the Mac's keychain is locked ("communication with
-  agent failed"); fetch and push over HTTPS with the gh credential helper (see
-  the auto-memory note `ssh-push-when-mac-locked`).
+- The Atlassian **Rovo** connector again returned 403 "The app is not installed
+  on this instance", both for search and for create. The **Atlassian MCP**
+  connector with cloudId `5f410f19-f91f-4037-934a-c04305b2e3ff` works.
+- Umami on blackcoffee ran in Docker. Docker is stopped there on purpose.
+  Searching the native Postgres or the site directory finds nothing. The data
+  is in the Docker volume `umami_umami-db-data`. Do not start Docker on
+  blackcoffee to reach it.
 - Earlier dead ends: `git show 51519ef:docs/SNAPSHOT.md` section 7.
 
 ## 8. Traps in this repository
 
-- **A push is a deployment.** CI runs on every branch; only `main` deploys.
-  The site is now public and announced: treat every push as user-facing.
-- Every commit needs a `Refs: KAN-n` trailer; with the board empty, create a
+- **A push is a deployment.** CI runs on every branch; only `main` deploys. The
+  site is public: treat every push as user-facing.
+- Every commit needs a `Refs: KAN-n` trailer. With the board empty, create a
   ticket before new work.
-- `/deling/{article}` accepts only `ArticleController::shareKeys()`; static
+- The footer has a `lang="en"` block ("Made with ❤️"). Danish text goes outside
+  it.
+- `/deling/{article}` accepts only `ArticleController::shareKeys()`. Static
   `.png` paths are served by the host and never reach PHP.
-- The image test asserts exact per-article counts and real 390/720 variants.
-- Inline SVG logos contain `<title>Kanvi?</title>`; a grep for `<title>` finds
-  them besides the page title.
-- Product UI must be a real screenshot (`docs/indhold/PUBLICERING.md`).
+- Inline SVG logos contain `<title>Kanvi?</title>`, so a grep for `<title>`
+  finds them as well as the page title.
 - Retention, recovery-mail, funnel and secrets rules: see `AGENTS.md`.
 
 ## 9. How to check this snapshot still holds
@@ -114,23 +117,28 @@ git log --oneline -4
 git log --oneline @{u}..HEAD
 curl -sS https://kanvi.dk/deploy-revision.txt
 gh run list --limit 2
+curl -s -o /dev/null -w '%{http_code}\n' https://stats.mathi.dev/script.js
 ```
 
 ## 10. Verification evidence
 
-Run 2026-10-03 13:24 CEST on `51519ef`:
+Run 2026-10-13 12:55 CDT on `54a03cc`:
 
-- CI run 37069952895 (`51519ef`) green; production serves `51519ef`.
-- Remote `main` fetched over HTTPS equals `51519ef`.
-- Jira JQL `project = KAN AND statusCategory != Done` returned KAN-3 and
-  KAN-16 before this session; both transitioned to Done.
-- Tests were not rerun: no code changed since the last run on 2026-10-02
-  (`php artisan test --compact` 156 passed, 1 skipped; `npm test` 38 passed).
+- `php artisan test` 156 passed, 1 skipped. `npm test` 38 passed.
+  `vendor/bin/pint --test` passed.
+- CI run 37848208271 (`54a03cc`) green. Production `deploy-revision.txt` shows
+  `54a03cc…-37848208271-1`.
+- The live footer shows "Mathi ApS, CVR 32890032, Nygårdsvænget 25, 8370
+  Hadsten · …".
+- `https://stats.mathi.dev/script.js` returns 200. Mathi confirmed on
+  2026-10-11 that a kanvi.dk visit appeared in Umami Realtime.
+- Jira JQL `project = KAN AND statusCategory != Done` returns no issues.
+- Remote `main` equals local `main`, so nothing is unpushed.
 
-**Not verified:** Outlook rendering; Google indexing of the sitemap URLs.
+**Not verified:** Google indexing; Outlook rendering (by Mathi's earlier choice).
 
 ## 11. Skills for the next session
 
 - `snapshot` to resume from this file.
-- `tdd` for any code change; Chrome DevTools MCP for production walkthroughs;
-  Atlassian MCP connector for new KAN tickets.
+- `tdd` for any code change. Use the Atlassian MCP connector for KAN tickets.
+  Use Chrome DevTools MCP for production walkthroughs.

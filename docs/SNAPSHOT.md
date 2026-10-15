@@ -1,8 +1,8 @@
 # Kanvi session snapshot
 
-Project: Kanvi · Branch: `main` · HEAD: `54a03cc` · Recorded: 2026-10-13 12:55 CDT.
+Project: Kanvi · Branch: `main` · HEAD: `c1b5c16` · Recorded: 2026-10-15 11:31 CDT.
 
-This file describes `54a03cc`; its own commit follows, so HEAD is one ahead by
+This file describes `c1b5c16`; its own commit follows, so HEAD is one ahead by
 design.
 
 Technical handover only. Project knowledge is in the Knowledge Base overview at
@@ -11,51 +11,53 @@ https://mkumarathurai.atlassian.net/jira/software/c/projects/KAN/boards/575
 
 ## 1. Where we are
 
-Kanvi is live and the KAN board has no open tickets. This session made one code
-change: the footer now ends with the company details (Mathi ApS, CVR, address,
-mail@kanvi.dk, phone) in place of the old copyright line (KAN-28). KAN-27, the
-async analytics-script fix from 2026-10-06, was closed after confirming the
-`async` tag is live. Most of the session went to moving the self-hosted Umami
-instance at `stats.mathi.dev` from the home server blackcoffee, which Mathi shut
-down for security reasons, to silanthi. Umami has counted visits again since
-2026-10-11. Visits from 2026-10-05 to 2026-10-11 were not counted. Kanvi's
-`data-website-id` and server-side funnel config did not change.
+Kanvi is live and the KAN board has no open tickets. This session made no code
+change in this repo. It checked Google indexing in Search Console: 20 pages are
+indexed, eight sitemap pages are "discovered, not yet indexed", and the one
+redirect is `www.kanvi.dk/`. With Mathi's approval, indexing was requested for
+all eight. The rest of the session closed out Umami follow-ups. One of them, the
+activityhub.dk script removal, is committed in that repo but not pushed.
 
 ## 2. What was done
 
-- `54a03cc` Footer shows the company details at the very bottom
-  (`resources/views/components/layout.blade.php`). The year stays dynamic. The
-  mail and phone are links. KAN-28 created and closed.
-- KAN-27 moved to Done. Fix `0acbdca` verified live: kanvi.dk serves
-  `<script async src="https://stats.mathi.dev/script.js" …>`.
-- Umami moved to silanthi. This was server work with no repo change. Knowledge
-  for it is in the KB note `04-Faste omraader/Server og hosting/Umami statistik.md`.
-  - Data moved with the database, so website IDs, including Kanvi's
-    `fa2c9fe6-…`, are unchanged.
-  - Runs as Umami v3.4.0. The database was upgraded to migration
-    `26_add_api_key`.
-- KB updated on 2026-10-11: the new Umami note, and two dated entries at the end
-  of `Status lige nu` in the Kanvi overview.
+- Search Console check (data from 2026-10-11). The eight pages are
+  `/artikler/hvor-mange-datoer-skal-man-foreslaa`,
+  `/artikler/ingen-dato-passer-alle`, `/datoafstemning`,
+  `/hjaelp/rediger-afstemning`, `/hjaelp/vaelg-dato`, `/til/bestyrelser`,
+  `/til/foreninger` and `/til/venner`. Each returns 200, has no `noindex` and
+  has a self-referencing canonical. "Request indexing" was confirmed for each.
+- Outside this repo: activityhub.dk commit `9bb43fe` removes the Umami script
+  from `welcome`, `modules` and `contact` (Jira TIME-530). Its full test suite
+  passed in a clean worktree: 3381 passed, 17 skipped.
+- KB updated: a dated status entry and a new next step in the Kanvi overview,
+  and the Umami note (`04-Faste omraader/Server og hosting/Umami statistik.md`).
 
 ## 3. Unfinished
 
-- Working tree: only this file, committed with this snapshot. Nothing is
-  unpushed. There are no stashes.
-- No open KAN tickets.
-- Outside this repo, open items are recorded in the KB Umami note:
-  - an off-server backup for Umami
-  - activityhub.dk's repo still loads Umami with Timeslot's website ID
-  - deleting the old Umami volume on blackcoffee
-- Search Console indexing check from the previous snapshot: not verified this
-  session.
+- This repo: working tree holds only this file, committed with this snapshot.
+  Nothing unpushed. No stashes. No open KAN tickets.
+- **activityhub.dk has an unpushed commit, `9bb43fe`, on `main`.** Mathi chose
+  not to push it yet, because a push to that repo's `main` deploys to
+  production. Until it ships, the live activityhub.dk pages still report to
+  Umami under Timeslot's website ID. TIME-530 stays open until it is deployed.
+  An older commit, `d7176df` ("docs: snapshot 2026-10-05"), is also unpushed
+  there and would ship with it. That repo also has 90 uncommitted files from
+  other, unrelated work. None of them was touched.
+- Umami: off-server backup and deleting the old volume on blackcoffee are both
+  postponed by Mathi.
 
 ## 4. Next steps
 
-1. Check indexing in Search Console (Pages report) for the sitemap URLs. This
-   happens in Mathi's browser and needs no command.
-2. For any new work, create a KAN ticket first for the commit trailer. Use the
-   Atlassian MCP connector, not Rovo.
-3. Run the check battery before pushing code:
+1. Around 2026-10-29, open Search Console → Indexing → Pages and check that
+   "Registreret – endnu ikke indekseret" has dropped from 8. This happens in
+   Mathi's browser.
+2. Ship activityhub.dk `9bb43fe` from a session in that repo, when Mathi says
+   so. Then close TIME-530.
+
+   ```sh
+   cd /Users/mathi/www/sites/activityhub.dk && git log --oneline @{u}..HEAD
+   ```
+3. For new Kanvi work, create a KAN ticket first, then run the check battery:
 
    ```sh
    php artisan test --compact
@@ -67,43 +69,42 @@ down for security reasons, to silanthi. Umami has counted visits again since
 
 ## 5. Waiting on Mathi
 
-- The Search Console indexing check.
-- Decisions on the three Umami open questions in the KB note. They live outside
-  this repo.
+- The push of activityhub.dk `9bb43fe`.
+- Umami decisions: off-server backup, and when the blackcoffee volume may go.
+- Whether the activityhub.dk handover to Indexed goes into the Timeslot KB
+  overview (`02-Projekter/Indexed/Timeslot`). It is not written there yet.
 
 ## 6. Decisions made, and why
 
-- **Footer uses mail@kanvi.dk, not hej@invity.dk** (Mathi). The request
-  contained the Invity address. Every other Kanvi page uses mail@kanvi.dk, so
-  Mathi chose consistency.
-- **The company line replaces the old "© Mathi Kumarathurai" line** (Mathi), so
-  the footer has a single copyright line. The new line sits outside the
-  `lang="en"` block because it is Danish.
-- **Umami data was moved, not reinstalled empty.** Website IDs stay the same, so
-  none of the ten sites needed a code change or a deploy.
-- Earlier decisions: see `git show 51519ef:docs/SNAPSHOT.md` section 6.
+- **Request indexing for the eight pages instead of waiting** (Mathi). Nothing
+  on the site blocks them, so a recrawl request is the only lever.
+- **Remove Umami from activityhub.dk** (Mathi). The project is handed over to
+  Indexed, who will add their own analytics.
+- **Do not push activityhub.dk yet** (Mathi).
+- **Umami backup and blackcoffee cleanup postponed** (Mathi).
+- Earlier decisions: `git show c1b5c16:docs/SNAPSHOT.md` section 6.
 
 ## 7. Dead ends and corrections
 
-- The Atlassian **Rovo** connector again returned 403 "The app is not installed
-  on this instance", both for search and for create. The **Atlassian MCP**
-  connector with cloudId `5f410f19-f91f-4037-934a-c04305b2e3ff` works.
-- Umami on blackcoffee ran in Docker. Docker is stopped there on purpose.
-  Searching the native Postgres or the site directory finds nothing. The data
-  is in the Docker volume `umami_umami-db-data`. Do not start Docker on
-  blackcoffee to reach it.
-- Earlier dead ends: `git show 51519ef:docs/SNAPSHOT.md` section 7.
+- Search Console deep links of the form `/search-console/inspect?…&id=<url>`
+  return a 404. Use the search bar at the top instead.
+- In Search Console the inspect search bar sometimes ignores the first click.
+  Click it, press cmd+a, then type.
+- Running activityhub.dk tests in a worktree with a **symlinked** `vendor`
+  fails: the autoloader resolves to the original repo. Run `composer install`
+  in the worktree instead.
+- Earlier dead ends: `git show c1b5c16:docs/SNAPSHOT.md` section 7.
 
 ## 8. Traps in this repository
 
-- **A push is a deployment.** CI runs on every branch; only `main` deploys. The
-  site is public: treat every push as user-facing.
+- **A push is a deployment.** Only `main` deploys. Treat every push as
+  user-facing.
 - Every commit needs a `Refs: KAN-n` trailer. With the board empty, create a
-  ticket before new work.
+  ticket before new work. Use the Atlassian MCP connector (cloudId
+  `5f410f19-f91f-4037-934a-c04305b2e3ff`), not Rovo.
 - The footer has a `lang="en"` block ("Made with ❤️"). Danish text goes outside
   it.
-- `/deling/{article}` accepts only `ArticleController::shareKeys()`. Static
-  `.png` paths are served by the host and never reach PHP.
+- `/deling/{article}` accepts only `ArticleController::shareKeys()`.
 - Inline SVG logos contain `<title>Kanvi?</title>`, so a grep for `<title>`
   finds them as well as the page title.
 - Retention, recovery-mail, funnel and secrets rules: see `AGENTS.md`.
@@ -117,28 +118,27 @@ git log --oneline -4
 git log --oneline @{u}..HEAD
 curl -sS https://kanvi.dk/deploy-revision.txt
 gh run list --limit 2
-curl -s -o /dev/null -w '%{http_code}\n' https://stats.mathi.dev/script.js
+cd /Users/mathi/www/sites/activityhub.dk && git log --oneline @{u}..HEAD
 ```
 
 ## 10. Verification evidence
 
-Run 2026-10-13 12:55 CDT on `54a03cc`:
+Run 2026-10-15 on `c1b5c16`:
 
-- `php artisan test` 156 passed, 1 skipped. `npm test` 38 passed.
-  `vendor/bin/pint --test` passed.
-- CI run 37848208271 (`54a03cc`) green. Production `deploy-revision.txt` shows
-  `54a03cc…-37848208271-1`.
-- The live footer shows "Mathi ApS, CVR 32890032, Nygårdsvænget 25, 8370
-  Hadsten · …".
-- `https://stats.mathi.dev/script.js` returns 200. Mathi confirmed on
-  2026-10-11 that a kanvi.dk visit appeared in Umami Realtime.
+- CI run 38442732783 (`c1b5c16`) green. Production `deploy-revision.txt` shows
+  `c1b5c16…-38442732783-1`.
 - Jira JQL `project = KAN AND statusCategory != Done` returns no issues.
-- Remote `main` equals local `main`, so nothing is unpushed.
+- Remote `main` equals local `main`.
+- The eight pages: `curl` shows 200, no `noindex`, self canonical.
+- `https://stats.mathi.dev/script.js` returns 200.
+- Kanvi tests were not re-run, because no Kanvi code changed. Last run:
+  2026-10-13, 156 passed, 1 skipped.
 
-**Not verified:** Google indexing; Outlook rendering (by Mathi's earlier choice).
+**Not verified:** whether Google actually indexes the eight pages; Outlook
+rendering (by Mathi's earlier choice).
 
 ## 11. Skills for the next session
 
 - `snapshot` to resume from this file.
-- `tdd` for any code change. Use the Atlassian MCP connector for KAN tickets.
-  Use Chrome DevTools MCP for production walkthroughs.
+- `tdd` for any code change. Use the Atlassian MCP connector for tickets.
+  Use Claude in Chrome for Search Console checks.
